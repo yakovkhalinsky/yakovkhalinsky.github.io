@@ -1,0 +1,2046 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A research set on multi-agent operations, failure modes, role taxonomy, and evaluation.">
+      
+      
+      
+        <link rel="canonical" href="https://yakov.khalinsky.com/agent-fleet-research/artifacts/agentic-patterns/">
+      
+      
+        <link rel="prev" href="../../papers/05-evaluation-protocol/">
+      
+      
+        <link rel="next" href="../role-taxonomy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Agentic Patterns - Agent Fleet Research</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agentic-strategies-and-patterns-catalogue" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="/" title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent Fleet Research
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agentic Patterns
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yakovkhalinsky.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../papers/01-field-study/" class="md-tabs__link">
+          
+  
+  
+  Papers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Artifacts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../pattern-examples-proposal/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pattern Examples Supplement
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../publishing-charter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Publishing Charter
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="/" title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+
+    </a>
+    Agent Fleet Research
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yakovkhalinsky.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/01-field-study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Strategies in a Six-Agent Operations Fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/02-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Long-Running Agent Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/03-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Role-Oriented Taxonomy for Multi-Agent Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/04-position-paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory-Centric Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/05-evaluation-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toward an Evaluation Protocol for Persistent Multi-Agent Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artifacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Patterns
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-dispatch-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Dispatch patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Dispatch patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-11-role-based-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 1.1: Role-based routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-12-verifiable-dispatch-instruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 1.2: Verifiable dispatch instruction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-11-status-only-check-ins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 1.1: Status-only check-ins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-12-confident-misrouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 1.2: Confident misrouting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-memory-and-shared-state-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memory and shared-state patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Memory and shared-state patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-21-externalise-session-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2.1: Externalise session state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-22-explicit-identity-in-shared-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2.2: Explicit identity in shared tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-23-local-first-shared-when-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2.3: Local-first, shared-when-useful
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-21-drifting-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 2.1: Drifting context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-22-silent-dependency-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 2.2: Silent dependency break
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-verification-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verification patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Verification patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-31-gate-before-forward-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 3.1: Gate before forward motion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-32-calibrate-evaluation-metrics-to-the-task-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 3.2: Calibrate evaluation metrics to the task distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-31-tool-success-mission-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 3.1: Tool success, mission failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-32-surface-level-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 3.2: Surface-level drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-build-deploy-runtime-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Build / deploy / runtime patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Build / deploy / runtime patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-41-coupled-urgent-fix-bundles-ship-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 4.1: Coupled urgent-fix bundles ship together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-42-idempotent-secret-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 4.2: Idempotent secret bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-43-render-the-desired-state-never-suppress-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 4.3: Render the desired state, never suppress it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-41-ungoverned-secret-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 4.1: Ungoverned secret mutation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-42-stale-hand-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 4.2: Stale hand-off
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-coordination-and-governance-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Coordination and governance patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Coordination and governance patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-51-single-owner-skills-and-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 5.1: Single-owner skills and docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-52-drive-forward-without-permission-stalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 5.2: Drive forward without permission stalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-53-post-mission-review-as-ritual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 5.3: Post-mission review as ritual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-51-decisions-without-landing-rituals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 5.1: Decisions without landing rituals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pattern-index-by-paper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Pattern index by paper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pattern-to-archetype-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Pattern-to-archetype mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../role-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Role Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incident-archetypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Archetypes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pattern-examples-proposal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pattern Examples Supplement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publishing-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-dispatch-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Dispatch patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Dispatch patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-11-role-based-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 1.1: Role-based routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-12-verifiable-dispatch-instruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 1.2: Verifiable dispatch instruction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-11-status-only-check-ins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 1.1: Status-only check-ins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-12-confident-misrouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 1.2: Confident misrouting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-memory-and-shared-state-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memory and shared-state patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Memory and shared-state patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-21-externalise-session-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2.1: Externalise session state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-22-explicit-identity-in-shared-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2.2: Explicit identity in shared tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-23-local-first-shared-when-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 2.3: Local-first, shared-when-useful
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-21-drifting-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 2.1: Drifting context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-22-silent-dependency-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 2.2: Silent dependency break
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-verification-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verification patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Verification patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-31-gate-before-forward-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 3.1: Gate before forward motion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-32-calibrate-evaluation-metrics-to-the-task-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 3.2: Calibrate evaluation metrics to the task distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-31-tool-success-mission-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 3.1: Tool success, mission failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-32-surface-level-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 3.2: Surface-level drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-build-deploy-runtime-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Build / deploy / runtime patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Build / deploy / runtime patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-41-coupled-urgent-fix-bundles-ship-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 4.1: Coupled urgent-fix bundles ship together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-42-idempotent-secret-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 4.2: Idempotent secret bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-43-render-the-desired-state-never-suppress-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 4.3: Render the desired state, never suppress it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-41-ungoverned-secret-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 4.1: Ungoverned secret mutation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-42-stale-hand-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 4.2: Stale hand-off
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-coordination-and-governance-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Coordination and governance patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Coordination and governance patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-51-single-owner-skills-and-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 5.1: Single-owner skills and docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-52-drive-forward-without-permission-stalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 5.2: Drive forward without permission stalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-53-post-mission-review-as-ritual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern 5.3: Post-mission review as ritual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-pattern-51-decisions-without-landing-rituals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-pattern 5.1: Decisions without landing rituals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pattern-index-by-paper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Pattern index by paper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pattern-to-archetype-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Pattern-to-archetype mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="agentic-strategies-and-patterns-catalogue">Agentic Strategies and Patterns catalogue<a class="headerlink" href="#agentic-strategies-and-patterns-catalogue" title="Permanent link">&para;</a></h1>
+<p>A catalogue of recurring strategies, good patterns, and anti-patterns observed in a long-running multi-agent operations fleet. Each entry is derived from anonymised incident archetypes and operational experience.</p>
+<p>The catalogue is organised by the concern it addresses: dispatch, memory, verification, build/deploy, and coordination rituals. It is intended to feed the paper set and the role taxonomy.</p>
+<h2 id="1-dispatch-patterns">1. Dispatch patterns<a class="headerlink" href="#1-dispatch-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="pattern-11-role-based-routing">Pattern 1.1: Role-based routing<a class="headerlink" href="#pattern-11-role-based-routing" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Assign work to agents by responsibility, not by availability or message proximity.</p>
+<p><strong>How it works:</strong> A Dispatcher reads the task domain and routes to the agent whose role owns that domain: Builder for code, Runtime for infrastructure, Verifier for correctness gates, Researcher for options, Archivist for memory and guidance.</p>
+<p><strong>Why it helps:</strong> Clear ownership prevents multiple agents from making partial edits to the same artefact. It also makes misrouting auditable.</p>
+<p><strong>When it fails:</strong> When the Dispatcher routes based on keyword matching without confidence (see anti-pattern 1.2), or when boundaries between roles are vague.</p>
+<p><strong>Linked archetype:</strong> confident-misrouting</p>
+<p><strong>Example.</strong> A user asks the fleet to "fix the slow endpoint." The Dispatcher routes the task to the Runtime role for infrastructure diagnosis, rather than to the Builder, because the symptom points to a service health problem. The Builder is only pulled in once the Runtime role confirms the issue is in code.</p>
+<h3 id="pattern-12-verifiable-dispatch-instruction">Pattern 1.2: Verifiable dispatch instruction<a class="headerlink" href="#pattern-12-verifiable-dispatch-instruction" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Every dispatch must include a concrete deliverable and a verification criterion.</p>
+<p><strong>How it works:</strong> Instead of asking an agent to “look at X,” the Dispatcher says: “Fix X so that test Y passes; do not commit until Z is green.”</p>
+<p><strong>Why it helps:</strong> Status updates can be faked or stalled; a verifiable deliverable forces closure.</p>
+<p><strong>Linked archetype:</strong> loop-without-progress</p>
+<p><strong>Example.</strong> The Dispatcher sends the Builder: <em>"Update the health-check endpoint so that the fleet-wide liveness probe returns HTTP 200 within 2 seconds; do not mark the task complete until the Verifier reports the probe green on the staging fleet."</em> The Builder cannot reply with a status update alone; the green/red verdict from the Verifier is the required deliverable.</p>
+<h3 id="anti-pattern-11-status-only-check-ins">Anti-pattern 1.1: Status-only check-ins<a class="headerlink" href="#anti-pattern-11-status-only-check-ins" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> A coordination ritual that asks agents for status but not for a deliverable.</p>
+<p><strong>Symptoms:</strong> Agents report next steps repeatedly without completing them; the same blocker appears in every report.</p>
+<p><strong>Consequence:</strong> The fleet keeps moving without making progress.</p>
+<p><strong>Linked archetype:</strong> loop-without-progress</p>
+<p><strong>Example.</strong> Every hour the Dispatcher asks the Builder for an update on a failing deploy. The Builder replies, "I will check the logs next," for six cycles. No log check happens, no artefact is produced, and the deploy remains broken because the ritual never required evidence of progress.</p>
+<h3 id="anti-pattern-12-confident-misrouting">Anti-pattern 1.2: Confident misrouting<a class="headerlink" href="#anti-pattern-12-confident-misrouting" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> A Dispatcher assigns work to a specialist based on assumptions that are not verified.</p>
+<p><strong>Symptoms:</strong> A build agent is asked to fix a runtime problem; a runtime agent is asked to edit code. The specialist proceeds anyway because the instruction does not allow declining.</p>
+<p><strong>Consequence:</strong> Subtle wrong outputs, wasted time, and blame diffusion.</p>
+<p><strong>Linked archetype:</strong> confident-misrouting</p>
+<p><strong>Example.</strong> The Dispatcher sees a runtime alert and assumes it is caused by a recent configuration change. It sends the Builder a request to revert the change. The Builder complies, but the real fault is a stale network rule managed by the Runtime role. The revert is harmless and irrelevant; the outage continues.</p>
+<hr />
+<h2 id="2-memory-and-shared-state-patterns">2. Memory and shared-state patterns<a class="headerlink" href="#2-memory-and-shared-state-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="pattern-21-externalise-session-state">Pattern 2.1: Externalise session state<a class="headerlink" href="#pattern-21-externalise-session-state" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Session affinity must survive replica restart and horizontal scaling.</p>
+<p><strong>How it works:</strong> Store session metadata in a shared service (e.g., Redis) with an in-memory fallback for single-process or degraded modes.</p>
+<p><strong>Why it helps:</strong> Agents can scale without losing conversation context; recovery becomes stateless.</p>
+<p><strong>Linked archetype:</strong> drifting-context</p>
+<p><strong>Example.</strong> A conversation spans ten turns. A deployment restarts the agent process mid-task. Because session metadata is held in a shared memory service, the restarted agent resumes the same conversation state. Without externalisation, the agent defaults to a generic identity and asks the user to restate the goal.</p>
+<h3 id="pattern-22-explicit-identity-in-shared-tools">Pattern 2.2: Explicit identity in shared tools<a class="headerlink" href="#pattern-22-explicit-identity-in-shared-tools" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Tools that write shared memory must require the caller’s identity and the subject’s identity; defaults must not encode a single-agent assumption.</p>
+<p><strong>How it works:</strong> A memory tool rejects a write unless both the caller identity and the subject identity are supplied.</p>
+<p><strong>Why it helps:</strong> Prevents silent misrouting into the wrong memory bucket in multi-agent systems.</p>
+<p><strong>Linked archetype:</strong> silent-dependency-break</p>
+<p><strong>Example.</strong> The Archivist role maintains a memory tool. Early on, the tool defaulted to a generic bucket when the caller identity was omitted. One agent wrote critical runtime notes into that bucket, but another agent later queried a different bucket and found nothing. Requiring explicit identity fields on every write turned the hidden bug into a visible contract violation.</p>
+<h3 id="pattern-23-local-first-shared-when-useful">Pattern 2.3: Local-first, shared-when-useful<a class="headerlink" href="#pattern-23-local-first-shared-when-useful" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Keep transient, per-agent state in local memory; promote only stable, cross-agent facts to shared memory.</p>
+<p><strong>How it works:</strong> Agents tag local memories by maturity: draft, private, or ready to share. Only ready memories are promoted to the shared store with source attribution.</p>
+<p><strong>Why it helps:</strong> Reduces noise in shared memory and protects sensitive or unverified context.</p>
+<p><strong>Linked archetype:</strong> silent-dependency-break</p>
+<p><strong>Example.</strong> A Researcher agent drafts three candidate approaches to a problem and labels them draft. Only the final recommended approach, once verified, is promoted to the shared store as a shareable fact with a source link. The earlier discarded drafts never pollute the memory that the Builder or Runtime roles query.</p>
+<h3 id="anti-pattern-21-drifting-context">Anti-pattern 2.1: Drifting context<a class="headerlink" href="#anti-pattern-21-drifting-context" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Summarisation or process-local storage loses constraints, identity, or goal information that later agents need.</p>
+<p><strong>Symptoms:</strong> A restarted agent defaults to a generic identity; a long thread drifts from the original goal after repeated summarisation.</p>
+<p><strong>Consequence:</strong> Decisions are made with stale or incomplete context.</p>
+<p><strong>Linked archetype:</strong> drifting-context</p>
+<p><strong>Example.</strong> A long-running task is summarised to fit a context window. The summary drops a constraint: "do not restart the database." The next agent in the thread proposes a recovery step that requires a database restart. The original constraint is gone, and the proposal would have caused data loss.</p>
+<h3 id="anti-pattern-22-silent-dependency-break">Anti-pattern 2.2: Silent dependency break<a class="headerlink" href="#anti-pattern-22-silent-dependency-break" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> An agent changes shared state without notifying other agents that depend on it.</p>
+<p><strong>Symptoms:</strong> One agent writes to a different identity namespace, regenerates a shared secret, or changes a config file; other agents fail hours later with no obvious cause.</p>
+<p><strong>Consequence:</strong> Cascading failures, long debugging loops.</p>
+<p><strong>Linked archetype:</strong> silent-dependency-break</p>
+<p><strong>Example.</strong> A Runtime agent rotates a shared credential used by the Archivist to authenticate to the memory service. The rotation succeeds locally, but the Archivist is not informed. Hours later every memory lookup fails with an authentication error, and the failure is first noticed as unrelated "amnesia" in downstream tasks.</p>
+<hr />
+<h2 id="3-verification-patterns">3. Verification patterns<a class="headerlink" href="#3-verification-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="pattern-31-gate-before-forward-motion">Pattern 3.1: Gate before forward motion<a class="headerlink" href="#pattern-31-gate-before-forward-motion" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> No fleet-approved change moves to the next phase until a Verifier signs off on the current phase.</p>
+<p><strong>How it works:</strong> Each phase has written pass/fail criteria. The Verifier runs the criteria and posts a green/red verdict before the Dispatcher advances.</p>
+<p><strong>Why it helps:</strong> Prevents accumulating unverified debt across phases.</p>
+<p><strong>Linked archetype:</strong> tool-success-mission-failure</p>
+<p><strong>Example.</strong> A migration is split into three phases: render manifests, apply to staging, apply to production. The Verifier defines that the staging phase is green only when the health endpoint reports 200 for five minutes. The Dispatcher refuses to schedule production until the Verifier posts green; the Runtime role cannot bypass the gate.</p>
+<h3 id="pattern-32-calibrate-evaluation-metrics-to-the-task-distribution">Pattern 3.2: Calibrate evaluation metrics to the task distribution<a class="headerlink" href="#pattern-32-calibrate-evaluation-metrics-to-the-task-distribution" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> A success metric must distinguish between successful outcomes in the target workload.</p>
+<p><strong>How it works:</strong> If a scoring formula collapses to zero for common successful cases, rescale or re-parameterise it.</p>
+<p><strong>Why it helps:</strong> A metric that cannot distinguish success is worse than no metric.</p>
+<p><strong>Linked archetype:</strong> tool-success-mission-failure</p>
+<p><strong>Example.</strong> A benchmark scores agents on task completion time alone. Long but correct solutions receive the same score as failures. A tournament that compares two agents becomes meaningless because both fast and slow successes look identical to the metric. The scoring is recalibrated to reward correctness first and efficiency second.</p>
+<h3 id="anti-pattern-31-tool-success-mission-failure">Anti-pattern 3.1: Tool success, mission failure<a class="headerlink" href="#anti-pattern-31-tool-success-mission-failure" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Each step succeeds, but the composed workflow fails because there is no end-to-end gate.</p>
+<p><strong>Symptoms:</strong> Template renders, build passes, tests pass, but the deployed system is broken; benchmark tasks score as failed despite producing correct outputs.</p>
+<p><strong>Consequence:</strong> False confidence; regressions discovered late.</p>
+<p><strong>Linked archetype:</strong> tool-success-mission-failure</p>
+<p><strong>Example.</strong> A deploy pipeline reports every step green: the template rendered, the container built, and the unit tests passed. But the rendered manifest dropped a required environment variable. The deployed service starts and then immediately crashes. No end-to-end health gate existed, so the failure surfaces in production instead of at the pipeline.</p>
+<h3 id="anti-pattern-32-surface-level-drift">Anti-pattern 3.2: Surface-level drift<a class="headerlink" href="#anti-pattern-32-surface-level-drift" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Docs, scripts, and code examples diverge from the actual system shape.</p>
+<p><strong>Symptoms:</strong> New adopters follow a tutorial that uses flat config keys while the loader expects nested keys; tool names differ between README and runtime; quickstart emits URLs for a component that was removed.</p>
+<p><strong>Consequence:</strong> First-try failures, support load, erosion of trust.</p>
+<p><strong>Linked archetype:</strong> surface-level-drift</p>
+<p><strong>Example.</strong> A quickstart guide tells a new operator to run a setup command using one binary name, but the binary has been renamed. The tutorial also emits a URL for a reverse proxy that was removed two releases ago. Each document is internally consistent; together they are impossible to follow on the first try.</p>
+<hr />
+<h2 id="4-build-deploy-runtime-patterns">4. Build / deploy / runtime patterns<a class="headerlink" href="#4-build-deploy-runtime-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="pattern-41-coupled-urgent-fix-bundles-ship-together">Pattern 4.1: Coupled urgent-fix bundles ship together<a class="headerlink" href="#pattern-41-coupled-urgent-fix-bundles-ship-together" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> When multiple fixes are tightly coupled, land them as one unit with a single merge/deploy/rollback plan.</p>
+<p><strong>How it works:</strong> The Builder writes a merge plan; the Runtime agent writes a deploy plan; the Verifier writes a rollback plan. The fleet reviews all three before execution.</p>
+<p><strong>Why it helps:</strong> Prevents partial landing where one fix is on <code>master</code> and the runtime is still down.</p>
+<p><strong>Linked archetype:</strong> loop-without-progress</p>
+<p><strong>Example.</strong> Three separate bugs each have a fix approved, but each sits on its own branch. The live system remains broken because no single plan coordinates merging, deploying, and verifying all three together. The fleet bundles them into one urgent-fix unit with a shared merge/deploy/rollback plan and lands them in one coordinated step.</p>
+<h3 id="pattern-42-idempotent-secret-bootstrap">Pattern 4.2: Idempotent secret bootstrap<a class="headerlink" href="#pattern-42-idempotent-secret-bootstrap" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Live secrets must be created once and preserved across upgrades; rotation must be a separate, deliberate operation.</p>
+<p><strong>How it works:</strong> A bootstrap script creates missing secrets and skips existing ones. Routine upgrades do not pass secret values. A CI check verifies that every expected secret is present in the rendered manifest.</p>
+<p><strong>Why it helps:</strong> Stops deploy tools from accidentally invalidating credentials.</p>
+<p><strong>Linked archetype:</strong> ungoverned-secret-mutation</p>
+<p><strong>Example.</strong> A bootstrap script runs on a fresh environment and creates API keys, database passwords, and signing secrets only if they do not already exist. A routine upgrade later renders the manifest without passing secret values; the CI check confirms the secrets are still referenced. No rotation happens by accident during a normal deploy.</p>
+<h3 id="pattern-43-render-the-desired-state-never-suppress-it">Pattern 4.3: Render the desired state, never suppress it<a class="headerlink" href="#pattern-43-render-the-desired-state-never-suppress-it" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> In declarative deployment tools, always emit the resource manifest; use live lookups only to preserve existing values, not to gate emission.</p>
+<p><strong>How it works:</strong> Declarative templates always render the desired resource. A live lookup reads current values so the upgrade is a no-op; a retention policy prevents accidental deletion.</p>
+<p><strong>Why it helps:</strong> Declarative tools prune resources they no longer see. Suppressing a resource to “protect” it causes the exact failure it was meant to prevent.</p>
+<p><strong>Linked archetype:</strong> tool-success-mission-failure</p>
+<p><strong>Example.</strong> A deployment tool is configured to skip rendering a Secret when it already exists in the cluster, intending to protect live credentials. The tool interprets the suppressed manifest as "this Secret is no longer desired" and deletes it. The correct approach is to always render the Secret and use a live lookup to preserve its existing value.</p>
+<h3 id="anti-pattern-41-ungoverned-secret-mutation">Anti-pattern 4.1: Ungoverned secret mutation<a class="headerlink" href="#anti-pattern-41-ungoverned-secret-mutation" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> A helper script or automation regenerates credentials that downstream consumers already hold.</p>
+<p><strong>Symptoms:</strong> A render-values helper is run against an environment file; it regenerates API keys and passwords and applies them. Services start, but agents cannot authenticate.</p>
+<p><strong>Consequence:</strong> Auth outage, credential drift, manual recovery.</p>
+<p><strong>Linked archetype:</strong> ungoverned-secret-mutation</p>
+<p><strong>Example.</strong> A Runtime agent runs a values-rendering helper against an environment file to refresh a deployment. The helper regenerates API keys, database passwords, and signing secrets, and the agent applies the new values. Services restart with the fresh credentials, but other agents and stateful consumers still hold the old ones. Within minutes the fleet reports widespread authentication failures.</p>
+<h3 id="anti-pattern-42-stale-hand-off">Anti-pattern 4.2: Stale hand-off<a class="headerlink" href="#anti-pattern-42-stale-hand-off" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> One agent completes recovery or setup but leaves state bound to an environment that no longer exists.</p>
+<p><strong>Symptoms:</strong> A cluster is rebuilt, but storage volumes still point to the old node identity; a kubeconfig on a workstation is stale after cluster recreation.</p>
+<p><strong>Consequence:</strong> Stateful workloads cannot start; operators cannot see the cluster.</p>
+<p><strong>Linked archetype:</strong> stale-hand-off</p>
+<p><strong>Example.</strong> The Runtime role rebuilds a cluster after a node failure. The new cluster is healthy, but persistent volumes still reference the old node identity. When the Builder role schedules workloads, their storage cannot mount because the stateful layer is anchored to the previous world.</p>
+<hr />
+<h2 id="5-coordination-and-governance-patterns">5. Coordination and governance patterns<a class="headerlink" href="#5-coordination-and-governance-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="pattern-51-single-owner-skills-and-docs">Pattern 5.1: Single-owner skills and docs<a class="headerlink" href="#pattern-51-single-owner-skills-and-docs" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Every piece of agent guidance has one canonical owner and location.</p>
+<p><strong>How it works:</strong> Skills carry frontmatter declaring the owner, canonical path, and related skills. Duplicates are retired or merged, not copied silently.</p>
+<p><strong>Why it helps:</strong> Prevents drift between copies; agents read the same guidance.</p>
+<p><strong>Linked archetype:</strong> surface-level-drift</p>
+<p><strong>Example.</strong> Two profiles each contain a skill that describes how to triage a failed deploy. One copy says to re-run the bootstrap step; the other says to skip it. Depending on which profile an agent loads, it takes opposite actions. The fleet adopts a rule that every skill carries frontmatter naming a single owner role, a canonical location, and the last review date. Duplicates are retired, and agents are instructed to reject guidance that lacks the owner tag.</p>
+<h3 id="pattern-52-drive-forward-without-permission-stalls">Pattern 5.2: Drive forward without permission stalls<a class="headerlink" href="#pattern-52-drive-forward-without-permission-stalls" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> The Dispatcher advances multi-phase work to the next gate, convening the fleet at milestones, and only escalates to the human on true blockers.</p>
+<p><strong>How it works:</strong> At the end of each phase, the Dispatcher asks: what is blocked, who owns it, and can the fleet decide? If yes, continue. If no, escalate.</p>
+<p><strong>Why it helps:</strong> Reduces human coordination load; keeps momentum.</p>
+<p><strong>Linked archetype:</strong> loop-without-progress</p>
+<p><strong>Example.</strong> A migration has five phases. At the end of phase two the Dispatcher convenes the Builder, Runtime, and Verifier roles. All three agree the staging gate is green and the rollback plan is current. The Dispatcher advances to phase three without waiting for a new human prompt. It only escalates when phase four surfaces an unresolved dependency.</p>
+<h3 id="pattern-53-post-mission-review-as-ritual">Pattern 5.3: Post-mission review as ritual<a class="headerlink" href="#pattern-53-post-mission-review-as-ritual" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> After every significant migration or incident, the fleet convenes a review and updates skills, runbooks, or conventions.</p>
+<p><strong>Why it helps:</strong> Captures lessons before they decay; turns incidents into durable capability.</p>
+<p><strong>Linked archetypes:</strong> all</p>
+<p><strong>Example.</strong> After a secret-rotation outage, the Runtime and Archivist roles convene a review. They update the skill that describes secret handling to require explicit opt-in and a re-seeding plan. They also add a CI check that fails if a render helper is run against a live environment file. The next similar task follows the updated guidance.</p>
+<h3 id="anti-pattern-51-decisions-without-landing-rituals">Anti-pattern 5.1: Decisions without landing rituals<a class="headerlink" href="#anti-pattern-51-decisions-without-landing-rituals" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> The fleet approves changes but does not define who merges, deploys, verifies, and rolls back.</p>
+<p><strong>Symptoms:</strong> Urgent fixes exist on branches weeks after approval while the main branch remains broken; everyone assumes someone else will land the work.</p>
+<p><strong>Consequence:</strong> Approved work rots; runtime and codebases diverge.</p>
+<p><strong>Linked archetype:</strong> loop-without-progress</p>
+<p><strong>Example.</strong> The fleet agrees that a critical fix is needed. The Builder writes the patch, but no one is assigned to merge it. The Runtime role assumes the Builder will merge; the Builder assumes the Runtime role will deploy. Two weeks later the patch is still on a branch and the production system is still broken.</p>
+<hr />
+<h2 id="6-pattern-index-by-paper">6. Pattern index by paper<a class="headerlink" href="#6-pattern-index-by-paper" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern / Anti-pattern</th>
+<th>Paper 1 (field study)</th>
+<th>Paper 2 (anti-patterns)</th>
+<th>Paper 3 (taxonomy)</th>
+<th>Paper 4 (position)</th>
+<th>Paper 5 (evaluation)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1 Role-based routing</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.2 Verifiable dispatch instruction</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1.1 Status-only check-ins</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.1 Externalise session state</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td>2.2 Explicit identity in shared tools</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td>2.3 Local-first, shared-when-useful</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td>3.1 Gate before forward motion</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td>3.2 Calibrate evaluation metrics</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td></td>
+<td>✓</td>
+</tr>
+<tr>
+<td>4.1 Coupled urgent-fix bundles ship together</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2 Idempotent secret bootstrap</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4.3 Render the desired state</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.1 Single-owner skills and docs</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.2 Drive forward without permission stalls</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.3 Post-mission review as ritual</td>
+<td>✓</td>
+<td>✓</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-pattern-to-archetype-mapping">7. Pattern-to-archetype mapping<a class="headerlink" href="#7-pattern-to-archetype-mapping" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern / Anti-pattern</th>
+<th>Incident archetype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1 Role-based routing</td>
+<td>confident-misrouting (counter)</td>
+</tr>
+<tr>
+<td>1.2 Verifiable dispatch instruction</td>
+<td>loop-without-progress (counter)</td>
+</tr>
+<tr>
+<td>1.1 Status-only check-ins</td>
+<td>loop-without-progress</td>
+</tr>
+<tr>
+<td>2.1 Externalise session state</td>
+<td>drifting-context (counter)</td>
+</tr>
+<tr>
+<td>2.2 Explicit identity in shared tools</td>
+<td>silent-dependency-break (counter)</td>
+</tr>
+<tr>
+<td>2.3 Local-first, shared-when-useful</td>
+<td>silent-dependency-break (counter)</td>
+</tr>
+<tr>
+<td>3.1 Gate before forward motion</td>
+<td>tool-success-mission-failure (counter)</td>
+</tr>
+<tr>
+<td>3.2 Calibrate evaluation metrics</td>
+<td>tool-success-mission-failure (counter)</td>
+</tr>
+<tr>
+<td>4.1 Coupled urgent-fix bundles ship together</td>
+<td>loop-without-progress (counter)</td>
+</tr>
+<tr>
+<td>4.2 Idempotent secret bootstrap</td>
+<td>ungoverned-secret-mutation (counter)</td>
+</tr>
+<tr>
+<td>4.3 Render the desired state</td>
+<td>tool-success-mission-failure (counter)</td>
+</tr>
+<tr>
+<td>5.1 Single-owner skills and docs</td>
+<td>surface-level-drift (counter)</td>
+</tr>
+<tr>
+<td>5.2 Drive forward without permission stalls</td>
+<td>loop-without-progress (counter)</td>
+</tr>
+<tr>
+<td>5.3 Post-mission review as ritual</td>
+<td>all</td>
+</tr>
+</tbody>
+</table>
+<p><em>Use this catalogue as the source of truth for examples and claims in the papers.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Yakov Khalinsky. Published under the MIT license.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/" target="_blank" rel="noopener" title="Back to main site" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" target="_blank" rel="noopener" title="Site source on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

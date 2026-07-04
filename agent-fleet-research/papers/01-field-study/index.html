@@ -1,0 +1,2043 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A research set on multi-agent operations, failure modes, role taxonomy, and evaluation.">
+      
+      
+      
+        <link rel="canonical" href="https://yakov.khalinsky.com/agent-fleet-research/papers/01-field-study/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../02-failure-modes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Agentic Strategies in a Six-Agent Operations Fleet - Agent Fleet Research</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agentic-strategies-in-a-six-agent-operations-fleet-an-experience-report" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="/" title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent Fleet Research
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agentic Strategies in a Six-Agent Operations Fleet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yakovkhalinsky.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Papers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../artifacts/agentic-patterns/" class="md-tabs__link">
+          
+  
+  
+  Artifacts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../artifacts/pattern-examples-proposal/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pattern Examples Supplement
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../publishing-charter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Publishing Charter
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="/" title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+
+    </a>
+    Agent Fleet Research
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yakovkhalinsky.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Strategies in a Six-Agent Operations Fleet
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Strategies in a Six-Agent Operations Fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-method-from-incidents-to-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Method: from incidents to patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Method: from incidents to patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Setting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Data collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-threats-to-validity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Threats to validity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dispatch-routing-work-to-the-right-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dispatch: routing work to the right agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Dispatch: routing work to the right agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-strategy-role-based-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Strategy: role-based routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-strategy-verifiable-dispatch-instruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Strategy: verifiable dispatch instruction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-anti-pattern-status-only-check-ins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Anti-pattern: status-only check-ins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-anti-pattern-confident-misrouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Anti-pattern: confident misrouting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-memory-and-shared-state-preserving-context-and-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memory and shared state: preserving context and identity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Memory and shared state: preserving context and identity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-strategy-externalise-session-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Strategy: externalise session state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-strategy-explicit-identity-in-shared-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Strategy: explicit identity in shared tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-strategy-local-first-shared-when-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Strategy: local-first, shared-when-useful
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-anti-pattern-drifting-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Anti-pattern: drifting context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-anti-pattern-silent-dependency-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Anti-pattern: silent dependency break
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-verification-proving-the-system-is-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Verification: proving the system is right
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Verification: proving the system is right">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-strategy-gate-before-forward-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Strategy: gate before forward motion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-strategy-calibrate-evaluation-metrics-to-the-task-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Strategy: calibrate evaluation metrics to the task distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anti-pattern-tool-success-mission-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Anti-pattern: tool success, mission failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-anti-pattern-surface-level-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Anti-pattern: surface-level drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-deploy-and-runtime-landing-changes-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Build, deploy, and runtime: landing changes safely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Build, deploy, and runtime: landing changes safely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-strategy-coupled-bundles-ship-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Strategy: coupled bundles ship together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-strategy-idempotent-secret-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Strategy: idempotent secret bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-strategy-render-the-desired-state-never-suppress-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Strategy: render the desired state, never suppress it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-anti-pattern-ungoverned-secret-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Anti-pattern: ungoverned secret mutation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-anti-pattern-stale-hand-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Anti-pattern: stale hand-off
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-coordination-rituals-keeping-the-fleet-coherent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Coordination rituals: keeping the fleet coherent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Coordination rituals: keeping the fleet coherent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-strategy-single-owner-skills-and-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Strategy: single-owner skills and docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-strategy-drive-forward-without-permission-stalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Strategy: drive forward without permission stalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-strategy-post-mission-review-as-ritual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Strategy: post-mission review as ritual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-anti-pattern-decisions-without-landing-rituals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Anti-pattern: decisions without landing rituals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-limitations-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Limitations and future work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Long-Running Agent Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Role-Oriented Taxonomy for Multi-Agent Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-position-paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory-Centric Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-evaluation-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toward an Evaluation Protocol for Persistent Multi-Agent Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artifacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/agentic-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/role-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Role Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/incident-archetypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Archetypes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/pattern-examples-proposal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pattern Examples Supplement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publishing-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-method-from-incidents-to-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Method: from incidents to patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Method: from incidents to patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Setting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-data-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Data collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-threats-to-validity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Threats to validity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dispatch-routing-work-to-the-right-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dispatch: routing work to the right agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Dispatch: routing work to the right agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-strategy-role-based-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Strategy: role-based routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-strategy-verifiable-dispatch-instruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Strategy: verifiable dispatch instruction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-anti-pattern-status-only-check-ins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Anti-pattern: status-only check-ins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-anti-pattern-confident-misrouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Anti-pattern: confident misrouting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-memory-and-shared-state-preserving-context-and-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memory and shared state: preserving context and identity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Memory and shared state: preserving context and identity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-strategy-externalise-session-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Strategy: externalise session state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-strategy-explicit-identity-in-shared-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Strategy: explicit identity in shared tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-strategy-local-first-shared-when-useful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Strategy: local-first, shared-when-useful
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-anti-pattern-drifting-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Anti-pattern: drifting context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-anti-pattern-silent-dependency-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Anti-pattern: silent dependency break
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-verification-proving-the-system-is-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Verification: proving the system is right
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Verification: proving the system is right">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-strategy-gate-before-forward-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Strategy: gate before forward motion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-strategy-calibrate-evaluation-metrics-to-the-task-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Strategy: calibrate evaluation metrics to the task distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-anti-pattern-tool-success-mission-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Anti-pattern: tool success, mission failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-anti-pattern-surface-level-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Anti-pattern: surface-level drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-build-deploy-and-runtime-landing-changes-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Build, deploy, and runtime: landing changes safely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Build, deploy, and runtime: landing changes safely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-strategy-coupled-bundles-ship-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Strategy: coupled bundles ship together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-strategy-idempotent-secret-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Strategy: idempotent secret bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-strategy-render-the-desired-state-never-suppress-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Strategy: render the desired state, never suppress it
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-anti-pattern-ungoverned-secret-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Anti-pattern: ungoverned secret mutation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-anti-pattern-stale-hand-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Anti-pattern: stale hand-off
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-coordination-rituals-keeping-the-fleet-coherent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Coordination rituals: keeping the fleet coherent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Coordination rituals: keeping the fleet coherent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-strategy-single-owner-skills-and-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Strategy: single-owner skills and docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-strategy-drive-forward-without-permission-stalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Strategy: drive forward without permission stalls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-strategy-post-mission-review-as-ritual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Strategy: post-mission review as ritual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-anti-pattern-decisions-without-landing-rituals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Anti-pattern: decisions without landing rituals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-limitations-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Limitations and future work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="agentic-strategies-in-a-six-agent-operations-fleet-an-experience-report">Agentic Strategies in a Six-Agent Operations Fleet: An Experience Report<a class="headerlink" href="#agentic-strategies-in-a-six-agent-operations-fleet-an-experience-report" title="Permanent link">&para;</a></h1>
+<p><strong>Abstract.</strong> I report on the operation of a long-running fleet organised around six stable operational roles: Dispatcher, Builder, Runtime, Verifier, Researcher, and Archivist. In my implementation, each role was usually assigned to a distinct agent instance, but the patterns here concern responsibilities rather than process topology. Over an extended period I collected operational failures, near-misses, and coordination breakdowns, de-identified them into incident archetypes, and distilled the recurring coordination strategies and anti-patterns that shaped fleet reliability. I organise these into five concerns: dispatch, memory and shared state, verification, build/deploy/runtime, and coordination rituals. For each concern I present concrete patterns drawn from anonymised incident archetypes and discuss why they matter for long-running multi-agent operations systems. The paper is intended as an experience report for practitioners and as groundwork for a more formal taxonomy of agent collaboration; I do not claim statistical prevalence across fleets, only that these patterns recurred in mine and are plausible elsewhere.</p>
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>Multi-agent systems are increasingly used for long-running operational work: maintaining infrastructure, writing and verifying code, researching options, and remembering context across sessions. Much of the research literature focuses on single-turn tool use, benchmark performance, or small cooperative tasks. Less is written about what happens when agents run for weeks or months, coordinate through shared state, and own distinct operational responsibilities.</p>
+<p>I operated a fleet organised around six stable roles. In my implementation, each role was usually assigned to a distinct agent instance, but the patterns here concern the responsibilities, not the process topology:</p>
+<ul>
+<li><strong>Dispatcher</strong> — decides who does what, monitors progress, resolves ambiguity.</li>
+<li><strong>Builder</strong> — implements, modifies, and packages code or configuration.</li>
+<li><strong>Runtime</strong> — operates infrastructure and keeps services alive.</li>
+<li><strong>Verifier</strong> — checks correctness, runs tests, and audits outputs.</li>
+<li><strong>Researcher</strong> — gathers information, evaluates options, and reduces uncertainty.</li>
+<li><strong>Archivist</strong> — maintains shared memory, context, continuity, and agent guidance.</li>
+</ul>
+<p>This paper extracts the strategies and anti-patterns I observed. I deliberately avoid system-specific details; all examples are anonymised and generalised. Many of the patterns echo long-standing practices in site reliability engineering and incident management: checklists, ownership, gates, post-mortems, and immutable desired state. My contribution is not to introduce those practices but to show how they manifest, fail, and must be re-instrumented when the operators are LLM agents coordinating through shared state and tools.</p>
+<p>My contribution is observational: a catalogue of recurring coordination behaviours that other practitioners can adopt, test, or contradict in their own fleets. I do not claim statistical prevalence across all agent fleets. I claim only that these patterns recurred in mine and that each is plausible in other long-running agent systems.</p>
+<h2 id="2-method-from-incidents-to-patterns">2. Method: from incidents to patterns<a class="headerlink" href="#2-method-from-incidents-to-patterns" title="Permanent link">&para;</a></h2>
+<p>My analysis followed three steps. I treat the result as an observational experience report, not a controlled study.</p>
+<h3 id="21-setting">2.1 Setting<a class="headerlink" href="#21-setting" title="Permanent link">&para;</a></h3>
+<p>The fleet handled routine infrastructure, code, documentation, and research tasks over an extended period. In my implementation the six roles listed in §1 were usually assigned to distinct agent instances supervised by a human operator. The operator acted as a final arbiter for high-risk actions such as credential rotation, production deploys, and architectural changes; routine work within defined guardrails was left to the fleet. Concrete, anonymised illustrations of each pattern are collected in the <a href="../../artifacts/agentic-patterns/">agentic patterns catalogue</a>.</p>
+<h3 id="22-data-collection">2.2 Data collection<a class="headerlink" href="#22-data-collection" title="Permanent link">&para;</a></h3>
+<p>I recorded operational failures, near-misses, and coordination breakdowns as they happened. These ranged from configuration drift and authentication outages to loops where work was repeatedly discussed but not completed. Tens of incidents were logged and distilled into eight recurring archetypes (see <a href="../../artifacts/incident-archetypes/">incident archetypes</a>). I de-identified each incident before analysis: I removed product names, hostnames, dates, and internal identifiers, retaining only the interaction pattern, root-cause category, and lesson.</p>
+<p>For example, an internal incident in which a values-rendering script regenerated live credentials became the archetype <em>ungoverned secret mutation</em>: a helper script or automation regenerates credentials that downstream agents and services have already been seeded with, causing a fleet-wide authentication outage.</p>
+<h3 id="23-analysis">2.3 Analysis<a class="headerlink" href="#23-analysis" title="Permanent link">&para;</a></h3>
+<p>For each archetype I asked two questions:</p>
+<ol>
+<li>Did a positive counter-strategy exist in the fleet?</li>
+<li>Could that counter-strategy generalise beyond my specific system?</li>
+</ol>
+<p>If both answers were yes, I recorded the result as a pattern. I also recorded anti-patterns where no reliable counter-strategy had yet stabilised. The final catalogue contains twenty-two patterns and anti-patterns grouped by concern, each with a short anonymised example (see <a href="../../artifacts/agentic-patterns/">agentic patterns catalogue</a>).</p>
+<h3 id="24-threats-to-validity">2.4 Threats to validity<a class="headerlink" href="#24-threats-to-validity" title="Permanent link">&para;</a></h3>
+<p>This method has well-known limitations. My incident logs were biased toward memorable failures rather than routine successes. I also built and operated the system, so observer effects and hindsight bias are likely. The fleet is a single system, and its task mix, tooling, and human oversight model may not match other deployments. I therefore make no claim of statistical prevalence across agent fleets; I claim only that these patterns recurred in mine and that each is plausible elsewhere.</p>
+<h2 id="3-dispatch-routing-work-to-the-right-agent">3. Dispatch: routing work to the right agent<a class="headerlink" href="#3-dispatch-routing-work-to-the-right-agent" title="Permanent link">&para;</a></h2>
+<h3 id="31-strategy-role-based-routing">3.1 Strategy: role-based routing<a class="headerlink" href="#31-strategy-role-based-routing" title="Permanent link">&para;</a></h3>
+<p>In the fleet, the dispatch strategy that recurred most reliably was simple: route by responsibility. The Dispatcher did not ask “who is free?” but “who owns this domain?” A build task went to the Builder; an infrastructure task to the Runtime; a correctness task to the Verifier; a research task to the Researcher; a memory, continuity, or guidance task to the Archivist.</p>
+<p>This strategy correlated with fewer uncoordinated edits to the same artefact. It also made ownership legible: when something failed, the first question was whether the right role had been dispatched, not which agent had touched the code last.</p>
+<h3 id="32-strategy-verifiable-dispatch-instruction">3.2 Strategy: verifiable dispatch instruction<a class="headerlink" href="#32-strategy-verifiable-dispatch-instruction" title="Permanent link">&para;</a></h3>
+<p>A second dispatch strategy that proved durable for us was to make every dispatch contain a concrete deliverable and a verification criterion. Instead of “look into X,” the routine evolved to: “Fix X so that test Y passes; do not report completion until Z is green.”</p>
+<p>This was a direct response to status-only check-ins, in which agents would report next steps repeatedly without closing the task. Verifiable instructions shifted the conversation from activity to evidence.</p>
+<h3 id="33-anti-pattern-status-only-check-ins">3.3 Anti-pattern: status-only check-ins<a class="headerlink" href="#33-anti-pattern-status-only-check-ins" title="Permanent link">&para;</a></h3>
+<p>Among the dispatch anti-patterns I observed, the costliest was the status-only check-in. A coordination ritual asked agents for status at fixed intervals. Each agent reported what it planned to do next. No one verified that the previous next step had actually happened. After several cycles the same blocker appeared unchanged, merely re-described.</p>
+<p>The lesson: coordination rituals must require evidence of progress, not just reports of intent.</p>
+<h3 id="34-anti-pattern-confident-misrouting">3.4 Anti-pattern: confident misrouting<a class="headerlink" href="#34-anti-pattern-confident-misrouting" title="Permanent link">&para;</a></h3>
+<p>A second dispatch anti-pattern was routing based on unverified assumptions. For example, a build role was asked to fix a runtime problem because the Dispatcher assumed the issue was in a recently changed file. The build role proceeded because the instruction did not allow it to decline or escalate. The result was a technically correct edit that did not address the actual failure.</p>
+<p>The lesson: dispatch decisions should be auditable and reversible; specialists should be able to decline or escalate when the assignment is outside their domain.</p>
+<h2 id="4-memory-and-shared-state-preserving-context-and-identity">4. Memory and shared state: preserving context and identity<a class="headerlink" href="#4-memory-and-shared-state-preserving-context-and-identity" title="Permanent link">&para;</a></h2>
+<h3 id="41-strategy-externalise-session-state">4.1 Strategy: externalise session state<a class="headerlink" href="#41-strategy-externalise-session-state" title="Permanent link">&para;</a></h3>
+<p>Session state is easy to store in-process. That works until an agent restarts, scales horizontally, or a request lands on a different replica. I learned that session affinity must survive process boundaries.</p>
+<p>The strategy was to store session metadata in a shared service with an in-memory fallback for single-process or degraded operation. This allowed the system to scale without losing conversation context and made recovery stateless.</p>
+<h3 id="42-strategy-explicit-identity-in-shared-tools">4.2 Strategy: explicit identity in shared tools<a class="headerlink" href="#42-strategy-explicit-identity-in-shared-tools" title="Permanent link">&para;</a></h3>
+<p>Shared memory tools defaulted to a generic identity early in the project. That was convenient for a single agent but silently wrong for a fleet. Agents wrote memories into a bucket that other agents did not query.</p>
+<p>The fix was to require explicit caller and subject identity on every write. The tool rejected calls missing identity fields rather than silently defaulting. This turned a hidden correctness bug into an explicit contract.</p>
+<h3 id="43-strategy-local-first-shared-when-useful">4.3 Strategy: local-first, shared-when-useful<a class="headerlink" href="#43-strategy-local-first-shared-when-useful" title="Permanent link">&para;</a></h3>
+<p>Not every memory belongs in the shared store. I adopted a convention: local memory holds transient scaffolding, drafts, and per-agent preferences; shared memory holds stable, cross-agent facts. Agents tag local memories as <code>shareable</code>, <code>draft</code>, <code>private</code>, or <code>local-only</code>, and only promote <code>shareable</code> facts with source attribution.</p>
+<p>This reduced noise in shared memory and prevented sensitive or unverified context from leaking across agents.</p>
+<h3 id="44-anti-pattern-drifting-context">4.4 Anti-pattern: drifting context<a class="headerlink" href="#44-anti-pattern-drifting-context" title="Permanent link">&para;</a></h3>
+<p>A recurring anti-pattern was losing context through summarisation or process-local storage. A long-running workflow would be summarised for compactness, and the summary would drop a constraint. Or a session resolver would store state in-process, so a restarted agent would default to a generic identity and forget the active task.</p>
+<p>The lesson: preserve immutable goal or identity artefacts and externalise session state before advertising scale or recovery.</p>
+<h3 id="45-anti-pattern-silent-dependency-break">4.5 Anti-pattern: silent dependency break<a class="headerlink" href="#45-anti-pattern-silent-dependency-break" title="Permanent link">&para;</a></h3>
+<p>Agents often changed shared state without considering downstream consumers. One agent would write to a different identity namespace; another would regenerate a shared credential; a third would change a config file. Downstream agents failed hours later with no obvious cause.</p>
+<p>The lesson: assign write ownership and identity; broadcast changes through a shared event log or schema; reject ambiguous calls rather than silently defaulting.</p>
+<h2 id="5-verification-proving-the-system-is-right">5. Verification: proving the system is right<a class="headerlink" href="#5-verification-proving-the-system-is-right" title="Permanent link">&para;</a></h2>
+<h3 id="51-strategy-gate-before-forward-motion">5.1 Strategy: gate before forward motion<a class="headerlink" href="#51-strategy-gate-before-forward-motion" title="Permanent link">&para;</a></h3>
+<p>The verification strategy that proved most effective for us was to block forward motion until a Verifier signed off on the current phase. Each phase had written pass/fail criteria. The Verifier ran them and posted a green/red verdict. The Dispatcher did not advance until the gate was green.</p>
+<p>This prevented unverified debt from accumulating across phases. It also forced the Verifier to publish criteria before work started, reducing subjective “looks fine” sign-offs.</p>
+<h3 id="52-strategy-calibrate-evaluation-metrics-to-the-task-distribution">5.2 Strategy: calibrate evaluation metrics to the task distribution<a class="headerlink" href="#52-strategy-calibrate-evaluation-metrics-to-the-task-distribution" title="Permanent link">&para;</a></h3>
+<p>A benchmark suite initially used a fitness formula that collapsed to zero for long but successful tasks. The metric could not distinguish between a fast success and a slow success, making tournament-mode comparison impossible.</p>
+<p>The lesson: a metric that cannot distinguish successful outcomes is worse than no metric. I recalibrated the scoring function to the actual task distribution.</p>
+<h3 id="53-anti-pattern-tool-success-mission-failure">5.3 Anti-pattern: tool success, mission failure<a class="headerlink" href="#53-anti-pattern-tool-success-mission-failure" title="Permanent link">&para;</a></h3>
+<p>A pervasive anti-pattern was treating per-step success as workflow success. Every individual call succeeded — the template rendered, the build passed, the tests passed — but the deployed system was broken because no end-to-end gate existed. In one case a configuration template was edited but a value was removed and never replaced; the build was clean, but the rendered manifest was syntactically broken.</p>
+<p>The lesson: verify end-to-end outcomes, not just per-step status codes or clean diffs.</p>
+<h3 id="54-anti-pattern-surface-level-drift">5.4 Anti-pattern: surface-level drift<a class="headerlink" href="#54-anti-pattern-surface-level-drift" title="Permanent link">&para;</a></h3>
+<p>Documentation, scripts, and code examples drifted from the actual system shape. New adopters followed a tutorial that used a flat config shape while the loader expected a nested shape. Tool names differed between the README and the runtime. A quickstart emitted URLs for a reverse proxy that had been removed.</p>
+<p>Each file was internally consistent. Together they were impossible to follow. The lesson: treat docs, scripts, and config examples as part of the product interface; keep one canonical example and verify it end-to-end.</p>
+<h2 id="6-build-deploy-and-runtime-landing-changes-safely">6. Build, deploy, and runtime: landing changes safely<a class="headerlink" href="#6-build-deploy-and-runtime-landing-changes-safely" title="Permanent link">&para;</a></h2>
+<h3 id="61-strategy-coupled-bundles-ship-together">6.1 Strategy: coupled bundles ship together<a class="headerlink" href="#61-strategy-coupled-bundles-ship-together" title="Permanent link">&para;</a></h3>
+<p>When several urgent fixes are tightly coupled, splitting them across releases creates a different risk than bundling them. I learned to ship coupled urgent-fix bundles as one unit with three artefacts: a merge plan (Builder), a deploy plan (Runtime), and a rollback plan (Verifier). The fleet reviewed all three before execution.</p>
+<p>This addressed a recurring failure in which fixes were approved but sat on branches while the live system remained broken. Everyone assumed someone else would land the work.</p>
+<h3 id="62-strategy-idempotent-secret-bootstrap">6.2 Strategy: idempotent secret bootstrap<a class="headerlink" href="#62-strategy-idempotent-secret-bootstrap" title="Permanent link">&para;</a></h3>
+<p>Credentials are a common source of accidental outage. I separated secret creation from routine upgrades. A bootstrap script created missing secrets and skipped existing ones. Routine upgrades did not pass secret values. A CI check verified that every expected secret was present in the rendered manifest.</p>
+<p>The principle: secret rotation and secret rendering are different operations and must be guarded differently.</p>
+<h3 id="63-strategy-render-the-desired-state-never-suppress-it">6.3 Strategy: render the desired state, never suppress it<a class="headerlink" href="#63-strategy-render-the-desired-state-never-suppress-it" title="Permanent link">&para;</a></h3>
+<p>In a declarative deployment system, I once tried to “protect” live secrets by suppressing their manifests when they already existed. The tool interpreted the suppressed manifest as “these resources are no longer desired” and pruned them. The outage was caused by a guard meant to prevent exactly that.</p>
+<p>The correct pattern is to always render the desired state and use live lookups only to preserve existing values. The declarative tool should see the resource every time.</p>
+<h3 id="64-anti-pattern-ungoverned-secret-mutation">6.4 Anti-pattern: ungoverned secret mutation<a class="headerlink" href="#64-anti-pattern-ungoverned-secret-mutation" title="Permanent link">&para;</a></h3>
+<p>A helper script intended for rendering values was run against a live environment file. It regenerated API keys, passwords, and signing secrets, and applied them. Services restarted with the new credentials, but agents and the database still held the old ones. The result was a fleet-wide authentication outage.</p>
+<p>The lesson: separate secret rendering from secret rotation; require explicit opt-in and a re-seeding plan before mutating live credentials.</p>
+<h3 id="65-anti-pattern-stale-hand-off">6.5 Anti-pattern: stale hand-off<a class="headerlink" href="#65-anti-pattern-stale-hand-off" title="Permanent link">&para;</a></h3>
+<p>One agent rebuilt a cluster but left storage volumes bound to the old node identity. Another agent then tried to deploy workloads, which failed because their PVCs could not mount. The cluster looked healthy, but the stateful layer was anchored to a previous world.</p>
+<p>The lesson: recovery procedures must include the lifecycle of stateful resources, not just pods and services.</p>
+<h2 id="7-coordination-rituals-keeping-the-fleet-coherent">7. Coordination rituals: keeping the fleet coherent<a class="headerlink" href="#7-coordination-rituals-keeping-the-fleet-coherent" title="Permanent link">&para;</a></h2>
+<h3 id="71-strategy-single-owner-skills-and-docs">7.1 Strategy: single-owner skills and docs<a class="headerlink" href="#71-strategy-single-owner-skills-and-docs" title="Permanent link">&para;</a></h3>
+<p>Agent instructions are executable code. When the same guidance existed in multiple overlapping skills across different profiles, outputs varied because agents were reading conflicting copies. I adopted a single-owner convention: every skill has one canonical profile, path, and owner. Duplicates are retired or merged, not copied silently.</p>
+<h3 id="72-strategy-drive-forward-without-permission-stalls">7.2 Strategy: drive forward without permission stalls<a class="headerlink" href="#72-strategy-drive-forward-without-permission-stalls" title="Permanent link">&para;</a></h3>
+<p>The operational routine evolved so that the Dispatcher advanced multi-phase work to the next gate without waiting for a fresh human prompt at every step. At each milestone it asked: what is blocked, who owns it, and can the fleet decide? If yes, it continued. If no, it escalated to the human.</p>
+<p>This reduced coordination load and kept momentum, but it required the other strategies — especially verifiable dispatch and gate-before-forward-motion — to avoid turning autonomy into drift.</p>
+<h3 id="73-strategy-post-mission-review-as-ritual">7.3 Strategy: post-mission review as ritual<a class="headerlink" href="#73-strategy-post-mission-review-as-ritual" title="Permanent link">&para;</a></h3>
+<p>After every significant migration or incident, the fleet convened a review and updated skills, runbooks, or conventions. This turned incidents into durable capability rather than one-off fixes.</p>
+<h3 id="74-anti-pattern-decisions-without-landing-rituals">7.4 Anti-pattern: decisions without landing rituals<a class="headerlink" href="#74-anti-pattern-decisions-without-landing-rituals" title="Permanent link">&para;</a></h3>
+<p>A recurring anti-pattern was approving changes without defining who would merge, deploy, verify, and roll back. The decision existed on paper but never reached the running system. Approved work rotted while the fleet argued about sequence.</p>
+<p>The lesson: a decision is not done until it has a merge plan, a deploy plan, a verification gate, and a rollback plan.</p>
+<h2 id="8-discussion">8. Discussion<a class="headerlink" href="#8-discussion" title="Permanent link">&para;</a></h2>
+<p>The patterns above share a common theme: agent collaboration fails when implicit assumptions cross boundaries. A default identity, a stale configuration context, a suppressed manifest, a status-only check-in — each is a small assumption that becomes a large failure when it is not shared, verified, or owned.</p>
+<p>The strategies that worked for us are mostly about making boundaries explicit:</p>
+<ul>
+<li>Roles make ownership explicit.</li>
+<li>Verifiable instructions make progress explicit.</li>
+<li>Explicit identity in shared tools makes authorship explicit.</li>
+<li>End-to-end gates make correctness explicit.</li>
+<li>Merge/deploy/rollback plans make landing explicit.</li>
+</ul>
+<p>My experience suggests that clearer contracts between agents may be at least as important as increasing the capability of individual agents. I treat this as a working hypothesis, not a proven causal claim; testing it in other fleets is an open question.</p>
+<p>The patterns are also hypotheses. Their value is in making implicit coordination assumptions explicit enough to be tested, instrumented, or contradicted in other long-running agent systems.</p>
+<h2 id="9-limitations-and-future-work">9. Limitations and future work<a class="headerlink" href="#9-limitations-and-future-work" title="Permanent link">&para;</a></h2>
+<p>This is a single-system experience report. The patterns may not generalise to all agent fleets. I did not run controlled experiments; I distilled observations from incident logs. My incident logs are biased toward memorable failures, and my involvement in building and operating the fleet introduces observer effects and hindsight bias. Future work could:</p>
+<ul>
+<li>Quantify how often each anti-pattern occurs in agent logs.</li>
+<li>Build a lightweight benchmark that exercises the patterns in <a href="../../artifacts/agentic-patterns/">agentic patterns catalogue</a>.</li>
+<li>Develop a formal role taxonomy that maps these patterns to existing frameworks (AutoGen, CrewAI, DSPy).</li>
+</ul>
+<p>I am pursuing the latter two in companion papers in this set.</p>
+<h2 id="10-conclusion">10. Conclusion<a class="headerlink" href="#10-conclusion" title="Permanent link">&para;</a></h2>
+<p>I presented an experience report on agentic strategies in a six-role operations fleet. The strategies that I found effective — role-based routing, verifiable dispatch, externalised session state, explicit identity, gate-before-forward-motion, coupled-bundle landing, idempotent secret bootstrap, single-owner skills, and forward-drive coordination — all make implicit assumptions explicit. The anti-patterns that repeatedly failed — status-only check-ins, confident misrouting, drifting context, silent dependency breaks, tool-success mission failures, surface-level drift, ungoverned secret mutation, stale hand-offs, and decisions without landing rituals — all allowed assumptions to cross boundaries unchecked.</p>
+<p>I offer this catalogue to practitioners and researchers as a starting point for building more reliable long-running agent systems. I encourage readers to treat the patterns as testable hypotheses rather than proven prescriptions.</p>
+<h2 id="acknowledgements">Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permanent link">&para;</a></h2>
+<p>I thank the operators and the systems whose repeated failures made these patterns visible.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>See <a href="../../artifacts/bibliography/">bibliography</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Yakov Khalinsky. Published under the MIT license.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/" target="_blank" rel="noopener" title="Back to main site" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" target="_blank" rel="noopener" title="Site source on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

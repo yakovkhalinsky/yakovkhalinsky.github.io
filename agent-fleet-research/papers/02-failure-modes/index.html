@@ -1,0 +1,1397 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A research set on multi-agent operations, failure modes, role taxonomy, and evaluation.">
+      
+      
+      
+        <link rel="canonical" href="https://yakov.khalinsky.com/agent-fleet-research/papers/02-failure-modes/">
+      
+      
+        <link rel="prev" href="../01-field-study/">
+      
+      
+        <link rel="next" href="../03-taxonomy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Failure Modes in Long-Running Agent Collaboration - Agent Fleet Research</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#failure-modes-in-long-running-agent-collaboration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="/" title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agent Fleet Research
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Failure Modes in Long-Running Agent Collaboration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yakovkhalinsky.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-field-study/" class="md-tabs__link">
+          
+  
+  
+  Papers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../artifacts/agentic-patterns/" class="md-tabs__link">
+          
+  
+  
+  Artifacts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../artifacts/pattern-examples-proposal/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pattern Examples Supplement
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../publishing-charter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Publishing Charter
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="/" title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+
+    </a>
+    Agent Fleet Research
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yakovkhalinsky.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-field-study/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Strategies in a Six-Agent Operations Fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Long-Running Agent Collaboration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Long-Running Agent Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-failure-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Failure classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Failure classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-memory-and-identity-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Memory and identity failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dispatch-and-routing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Dispatch and routing failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-build-deploy-and-runtime-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Build, deploy, and runtime failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-documentation-and-surface-level-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Documentation and surface-level drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-evaluation-and-metric-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Evaluation and metric failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-composite-failure-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Composite failure chains
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-containment-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Containment strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-limitations-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Limitations and future work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Role-Oriented Taxonomy for Multi-Agent Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-position-paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory-Centric Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-evaluation-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toward an Evaluation Protocol for Persistent Multi-Agent Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artifacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/agentic-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/role-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Role Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/incident-archetypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Archetypes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/pattern-examples-proposal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pattern Examples Supplement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publishing-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-failure-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Failure classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Failure classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-memory-and-identity-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Memory and identity failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dispatch-and-routing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Dispatch and routing failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-build-deploy-and-runtime-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Build, deploy, and runtime failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-documentation-and-surface-level-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Documentation and surface-level drift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-evaluation-and-metric-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Evaluation and metric failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-composite-failure-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Composite failure chains
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-containment-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Containment strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-limitations-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Limitations and future work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="failure-modes-in-long-running-agent-collaboration">Failure Modes in Long-Running Agent Collaboration<a class="headerlink" href="#failure-modes-in-long-running-agent-collaboration" title="Permanent link">&para;</a></h1>
+<p><strong>Abstract.</strong> I report on the failure modes observed while operating a multi-agent operations fleet over an extended period. The fleet was organised around six stable roles: Dispatcher, Builder, Runtime, Verifier, Researcher, and Archivist. Failures did not usually come from a single bad tool call; they emerged when coordination assumptions crossed role boundaries and were not shared, verified, or owned. I group the recurring failures into five classes: memory and identity, dispatch and routing, build/deploy/runtime, documentation and surface-level drift, and evaluation and metrics. For each class I describe the symptoms, root cause, and the ritual or contract that eventually contained it. The paper is intended as an experience report for practitioners building long-running agent systems and as a complement to the companion field study of agentic strategies.</p>
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>Much attention in multi-agent systems research is paid to cooperation: how agents share tasks, negotiate, or jointly solve problems. Less is written about what fails when agents operate continuously, share state, and inherit responsibilities from previous sessions. In a long-running fleet, a single tool call can be correct while the surrounding coordination is wrong. The failure is often not in the model but in the contract between agents.</p>
+<p>I operated a fleet organised around six stable roles. Over an extended period I recorded operational failures, near-misses, and coordination breakdowns, de-identified them into incident archetypes, and grouped them by the boundary that broke. This paper focuses on what went wrong and what containment strategies proved useful. The companion field study paper focuses on the corresponding positive patterns.</p>
+<h2 id="2-method">2. Method<a class="headerlink" href="#2-method" title="Permanent link">&para;</a></h2>
+<p>The incidents in this paper come from the same operational logs as the companion field study. I followed three steps:</p>
+<ol>
+<li><strong>Collect incidents.</strong> I recorded failures and near-misses as they happened, noting the roles involved and the symptom that was first visible.</li>
+<li><strong>Extract archetypes.</strong> I removed system-specific identifiers and retained only the interaction pattern, root-cause category, and lesson. The full set of eight archetypes is in the <a href="../../artifacts/incident-archetypes/">incident archetypes catalogue</a>.</li>
+<li><strong>Group by boundary.</strong> I asked which boundary the archetype crossed: memory, dispatch, runtime, documentation, or evaluation. This produced the five failure classes below.</li>
+</ol>
+<p>This is a single-system, qualitative experience report. The fleet operated within human-supervised guardrails, as described in the companion field study; the failures below occurred when implicit contracts failed despite that oversight. I make no claim of statistical prevalence across all agent fleets; I claim only that these failure classes recurred in mine and are plausible in other long-running systems.</p>
+<h2 id="3-failure-classes">3. Failure classes<a class="headerlink" href="#3-failure-classes" title="Permanent link">&para;</a></h2>
+<h3 id="31-memory-and-identity-failures">3.1 Memory and identity failures<a class="headerlink" href="#31-memory-and-identity-failures" title="Permanent link">&para;</a></h3>
+<p>The most persistent failures involved shared memory. An agent would read or write state under the wrong identity, a session would be lost across restarts, or a summarised conversation would drop a constraint.</p>
+<p><strong>Stale hand-off.</strong> One agent completed a recovery step but left state bound to an environment that no longer existed. The new environment looked healthy, but stateful resources still pointed to the old environment identity. The next agent tried to schedule workloads, and storage could not attach. The compute layer was fine; the stateful layer was not.</p>
+<blockquote>
+<p><strong>Example.</strong> A Runtime role rebuilt a compute environment after a failure. The new environment passed health checks, but the storage layer still referenced the old environment identity. When the Builder role scheduled a stateful workload, the workload could not attach its data. The failure appeared as a storage error, not as a recovery misstep.</p>
+</blockquote>
+<p><strong>Drifting context.</strong> A long conversation or workflow was summarised for compactness, and the summary dropped a goal or constraint. A later agent then proposed an action that violated the original requirement. The constraint had not been explicitly contradicted; it had silently disappeared.</p>
+<blockquote>
+<p><strong>Example.</strong> A Researcher role spent twelve turns comparing deployment strategies for a service that must remain available. The thread was summarised to fit the context window, and the summary omitted the availability constraint. The next agent proposed a strategy that required a brief outage. The original requirement was not disputed; it had been compressed away.</p>
+</blockquote>
+<p><strong>Silent dependency break.</strong> An agent changed a shared value without notifying downstream consumers. A credential was rotated, an identity namespace was changed, or a config file was rewritten. Hours later, other agents failed with symptoms that did not obviously trace back to the change.</p>
+<blockquote>
+<p><strong>Example.</strong> A Runtime role rotated a credential used by the Archivist role to write to the shared memory service. The rotation was reported as successful locally, but no event was broadcast. Hours later, every memory lookup began failing with an authentication error, and the symptom was first interpreted as unrelated "amnesia" in downstream tasks.</p>
+</blockquote>
+<p>The common root cause was that memory boundaries were implicit. There was no canonical identity for reads and writes, no immutable artefact for the original goal, and no event log for changes.</p>
+<h3 id="32-dispatch-and-routing-failures">3.2 Dispatch and routing failures<a class="headerlink" href="#32-dispatch-and-routing-failures" title="Permanent link">&para;</a></h3>
+<p>Failures in this class were not usually caused by a bad model answer; they were caused by the wrong specialist receiving the wrong task under the wrong assumptions.</p>
+<p><strong>Confident misrouting.</strong> A Dispatcher routed work based on an unverified assumption. A build role was asked to fix a runtime problem because the failure appeared near a recently changed file. The build role produced a technically correct edit that did not address the actual fault.</p>
+<blockquote>
+<p><strong>Example.</strong> A health check began failing shortly after a configuration change. The Dispatcher assumed the change was at fault and sent the Builder role a request to revert it. The Builder reverted the change, but the real issue was a stale route in the network layer, owned by the Runtime role. The revert was harmless and irrelevant; the outage continued.</p>
+</blockquote>
+<p><strong>Loop without progress.</strong> A coordination ritual asked agents for status at fixed intervals. Each agent reported what it planned to do next, but no one verified that the previous step had actually happened. After several cycles the same blocker appeared, merely re-described.</p>
+<blockquote>
+<p><strong>Example.</strong> Every hour the Dispatcher asked the Builder for an update on a failing deployment. The Builder replied, "I will inspect the logs next," for six consecutive cycles. No log inspection was produced, no artefact changed, and the deployment remained broken because the ritual never required evidence of progress.</p>
+</blockquote>
+<p>Both cases shared a root cause: the dispatch contract did not require evidence. The instruction either lacked a concrete deliverable or lacked a mechanism to decline or escalate when the assignment was outside the specialist’s domain.</p>
+<h3 id="33-build-deploy-and-runtime-failures">3.3 Build, deploy, and runtime failures<a class="headerlink" href="#33-build-deploy-and-runtime-failures" title="Permanent link">&para;</a></h3>
+<p>These failures happened when changes were partially landed, secrets were mutated without a re-seeding plan, or declarative tooling was used against its own semantics.</p>
+<p><strong>Ungoverned secret mutation.</strong> A helper script intended for rendering values was run against a live environment file. It regenerated API keys, database passwords, and signing secrets, and applied them. Services restarted with new credentials, but other agents and stateful consumers still held the old ones. The result was a fleet-wide authentication outage.</p>
+<blockquote>
+<p><strong>Example.</strong> A Runtime role ran a values-rendering helper against an environment file to refresh a deployment preview. The helper regenerated every credential in the file and applied the new values. Services using the new credentials started, but the Archivist and several downstream consumers still held the old credentials. Within minutes, authentication failures spread across the fleet.</p>
+</blockquote>
+<p><strong>Tool success, mission failure.</strong> Every step in a deploy pipeline reported green: the template rendered, the build passed, the tests passed. But the rendered manifest was missing a required value, and the deployed service crashed immediately. No end-to-end health gate existed, so the failure surfaced in production rather than in the pipeline.</p>
+<blockquote>
+<p><strong>Example.</strong> A deployment pipeline reported green for rendering, building, and unit tests. The Runtime role promoted the result to the live environment. The service started and immediately crashed because a required environment variable was absent from the rendered manifest. No end-to-end health check existed between the test suite and the live deploy.</p>
+</blockquote>
+<p><strong>Stale hand-off</strong> also appears in this class when one agent’s setup output is consumed by another agent hours later in an environment that has since changed.</p>
+<p>The common root cause was that landing rituals were incomplete. A decision existed on paper but had no merge plan, deploy plan, verification gate, or rollback plan.</p>
+<h3 id="34-documentation-and-surface-level-drift">3.4 Documentation and surface-level drift<a class="headerlink" href="#34-documentation-and-surface-level-drift" title="Permanent link">&para;</a></h3>
+<p>Documentation, scripts, and code examples drifted from the actual system shape. Each file was internally consistent, but together they were impossible to follow.</p>
+<p><strong>Surface-level drift.</strong> A quickstart guide used flat configuration keys while the loader expected nested keys. A tutorial emitted URLs for a reverse proxy that had been removed. Tool names differed between the README and the runtime. New adopters followed a path that looked correct but failed.</p>
+<blockquote>
+<p><strong>Example.</strong> A quickstart told a new operator to run a setup command using one binary name, but the command-line tool had been renamed. The same guide emitted a URL for a reverse proxy component that had been removed two releases earlier. Each document was internally consistent; together they were impossible to follow on the first attempt.</p>
+</blockquote>
+<p>The root cause was that guidance was not treated as a testable interface. No single owner role was accountable for keeping examples current, and no end-to-end verification gate checked that the quickstart actually worked.</p>
+<h3 id="35-evaluation-and-metric-failures">3.5 Evaluation and metric failures<a class="headerlink" href="#35-evaluation-and-metric-failures" title="Permanent link">&para;</a></h3>
+<p>Not all failures were runtime outages. Some were failures of measurement.</p>
+<p>A benchmark suite used a fitness formula that collapsed to zero for long but successful tasks. The metric could not distinguish a fast success from a slow success, making comparison meaningless. In my experience, a metric that cannot distinguish successful outcomes is worse than no metric, because it creates false confidence while hiding real differences.</p>
+<blockquote>
+<p><strong>Example.</strong> A benchmark compared two agents on task completion. The scoring function rewarded speed but collapsed to zero whenever a task exceeded a threshold, regardless of whether the final answer was correct. A slow but correct agent received the same score as an agent that failed outright. The metric could not distinguish competence from failure.</p>
+</blockquote>
+<p>The root cause was that the metric was not calibrated to the actual task distribution. The evaluation contract assumed that execution time alone captured task quality.</p>
+<h2 id="4-composite-failure-chains">4. Composite failure chains<a class="headerlink" href="#4-composite-failure-chains" title="Permanent link">&para;</a></h2>
+<p>The classes above rarely occurred in isolation. A typical chain looked like this:</p>
+<ol>
+<li>A Dispatcher confidently misrouted a task to a build role because an environmental precondition was not verified.</li>
+<li>The build role made a change that touched shared configuration, but the change was not broadcast because identity and ownership were implicit.</li>
+<li>A downstream agent failed hours later. The initial routing error and the silent dependency break combined into an outage.</li>
+<li>During recovery, documentation was found to be out of date, so the operator followed a stale quickstart and prolonged the incident.</li>
+</ol>
+<p>The lesson is that small boundary failures compound. In my experience, a single missing contract can turn a local mistake into a fleet-wide, long-duration incident.</p>
+<h2 id="5-containment-strategies">5. Containment strategies<a class="headerlink" href="#5-containment-strategies" title="Permanent link">&para;</a></h2>
+<p>For each failure class, a containment strategy eventually emerged:</p>
+<ul>
+<li><strong>Memory and identity:</strong> externalise session state, require explicit identity on every shared-memory write, and keep an immutable goal artefact.</li>
+<li><strong>Dispatch and routing:</strong> route by responsibility, include a concrete deliverable and verification criterion, and allow specialists to decline or escalate.</li>
+<li><strong>Build/deploy/runtime:</strong> land coupled fixes as one bundle, separate secret rendering from rotation, and always render the desired state in declarative tools.</li>
+<li><strong>Documentation:</strong> treat quickstarts and examples as testable interfaces with a single owner role.</li>
+<li><strong>Evaluation:</strong> calibrate metrics to the actual task distribution and verify end-to-end outcomes.</li>
+</ul>
+<p>These are described in detail, with examples, in the <a href="../../artifacts/agentic-patterns/">agentic patterns catalogue</a>.</p>
+<h2 id="6-limitations-and-future-work">6. Limitations and future work<a class="headerlink" href="#6-limitations-and-future-work" title="Permanent link">&para;</a></h2>
+<p>This is a single-system experience report. The failure classes may not cover all multi-agent failure modes. The logs are biased toward memorable incidents, and my involvement in building the fleet introduces observer bias. Future work could quantify how often each failure class occurs in agent logs and build lightweight benchmarks that exercise them. I am pursuing the latter in the companion evaluation-protocol paper.</p>
+<h2 id="7-conclusion">7. Conclusion<a class="headerlink" href="#7-conclusion" title="Permanent link">&para;</a></h2>
+<p>I presented five classes of failure observed in a long-running multi-agent operations fleet: memory and identity, dispatch and routing, build/deploy/runtime, documentation drift, and evaluation metrics. In each case, the failure was less about an individual tool call and more about a missing or implicit contract between agents. The containment strategies all make boundaries explicit: identity, ownership, deliverables, landing rituals, and measurement criteria. I offer this taxonomy to practitioners and researchers as a starting point for building more reliable long-running agent systems.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>See <a href="../../artifacts/bibliography/">bibliography</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Yakov Khalinsky. Published under the MIT license.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/" target="_blank" rel="noopener" title="Back to main site" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" target="_blank" rel="noopener" title="Site source on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,154 +1,338 @@
+/* Base */
+:root {
+    --bg: #0a120f;
+    --surface: #112019;
+    --surface-2: #1b3228;
+    --text: #f7f9f6;
+    --text-muted: #9fb3a8;
+    --accent: #4ade80;
+    --accent-2: #22c55e;
+    --hover: #86efac;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --radius: 12px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #f6f8f4;
+        --surface: #ffffff;
+        --surface-2: #e6ede7;
+        --text: #111c16;
+        --text-muted: #4d6255;
+        --accent: #15803d;
+        --accent-2: #166534;
+        --hover: #14532d;
+        --shadow: rgba(0, 0, 0, 0.08);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
 html, body {
-    width: 100%;
-    height: 100%;
     margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
     display: flex;
-    flex-direction: row;
-}
-
-.macbook-air {
-    flex-direction: row;
-    margin: 30px 10px;
-    background-image: url(images/mbair13.svg);
-    background-size: 80% 80%;
-    background-position: top center;
-    background-repeat: no-repeat;
-    min-width: 450px;
-    min-height: 350px;
-}
-
-.padded-row {
-    padding: 25px;
-}
-
-.page-container {
-    min-width: 270px;
-    min-height: 550px;
-    display: flex;
-    flex: 1;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-.heading {
-    background: #000;
-    color: #fff;
+.container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
 }
 
-.grey {
-    background: #f5f5e5;
-}
-
-.page-container .macbook-air {
+/* Hero */
+.hero {
     display: flex;
-    flex: 1;
+    align-items: center;
     justify-content: center;
-    flex-direction: column;
-}
-
-.page-inner-content {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.catch-phrase {
-    font-family: 'Dosis', sans-serif;
+    padding: clamp(4rem, 12vh, 8rem) 1.5rem;
     text-align: center;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.12), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(129, 140, 248, 0.12), transparent 35%),
+        var(--bg);
 }
 
-.script {
-    align-self: center;
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.5em;
-    color: greenyellow;
-    opacity: 0.8;
+.hero-content {
+    max-width: 720px;
 }
 
-.links-projects {
-    font-family: 'Dosis', sans-serif;
-    font-size: 0.875em;
-    color: #999;
-    letter-spacing: 1.1px;
-    padding-top: 15px;
+.eyebrow {
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
 }
 
-.page-inner-content.links-projects a {
-    font-size: 1.2em;
+.name {
+    margin: 0 0 1rem;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
 }
 
-.links-projects a,
-.links-general a {
-    font-family: 'Dosis', sans-serif;
-    font-size: 1.25rem;
-    letter-spacing: 0.5px;
+.tagline {
+    margin: 0 auto 2rem;
+    max-width: 600px;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    color: var(--text-muted);
+}
+
+/* Hero card for latest research */
+.hero-card {
+    display: block;
+    max-width: 520px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--surface-2);
+    border-radius: var(--radius);
+    text-align: left;
     text-decoration: none;
-    margin: 0 15px;
-    padding: 6px 0;
-    color: #000;
-    border-bottom: 1px solid transparent;
-    opacity: 0.5;
-    transition: opacity 0.3s ease-in-out;
+    color: var(--text);
+    box-shadow: 0 8px 28px var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.links-projects a:hover,
-.links-general a:hover {
-    opacity: 1;
-    border-bottom: 1px dashed #000;
+.hero-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px var(--shadow);
+    border-color: var(--accent);
 }
 
-.fa-2x {
-    font-size: 1.6em;
+.hero-card-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
 }
 
-.fa {
-    color: #000;
-    margin: 0 25px;
-    opacity: 0.5;
-    transition: opacity 0.3s ease-in-out;
+.hero-card-title {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 700;
 }
 
-.fa:hover {
-    opacity: 1;
+.hero-card-desc {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
 }
 
-@media (max-height: 1024px) {
-    .macbook-air {
-        background-size: 95% 95%;
-        min-width: 350px;
-        min-height: 200px;
+.hero-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* CTAs */
+.cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.button-primary,
+.button-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    box-shadow: 0 4px 14px var(--shadow);
+}
+
+.button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.button-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--surface-2);
+}
+
+.button-secondary:hover {
+    background: var(--surface-2);
+}
+
+/* Sections */
+.links-section,
+.projects-section,
+.experiments-section {
+    padding: 3rem 1.5rem;
+}
+
+.links-section,
+.projects-section {
+    background: var(--surface);
+    flex: 1;
+}
+
+.experiments-section {
+    background: var(--bg);
+}
+
+h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Link grid */
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--surface-2);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.card .icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    border-radius: 10px;
+    color: var(--accent);
+}
+
+.card div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.card strong {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.card:hover strong {
+    color: var(--accent);
+}
+
+.card span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Experiments */
+.experiment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.experiment-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--surface-2);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.experiment-list a::after {
+    content: "→";
+    color: var(--accent);
+    transition: transform 0.2s ease;
+}
+
+.experiment-list a:hover::after {
+    transform: translateX(3px);
+}
+
+.experiment-list a:hover {
+    background: var(--surface-2);
+    border-color: var(--accent);
+}
+
+/* Footer */
+.site-footer {
+    padding: 2rem 1.5rem;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
+    border-top: 1px solid var(--surface-2);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
-@media (max-height: 700px) {
-    .macbook-air {
-        background-size: 95% 95%;
-        min-width: 200px;
-        min-height: 150px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .script {
-        font-size: 3em;
-    }
-}
-
-@media (max-width: 960px) {
-    .script {
-        font-size: 2.25em;
-    }
-}
-
-@media (max-width: 640px) {
-    .script {
-        font-size: 1.6em;
-    }
-}
-
-@media (max-width: 380px) {
-    .script {
-        font-size: 1.2em;
-    }
+/* Focus */
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }

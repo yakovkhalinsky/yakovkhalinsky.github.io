@@ -1,0 +1,1128 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research on memory systems for long-running multi-agent fleets.">
+      
+      
+      
+      
+        <link rel="prev" href="../08-explicit-identity/">
+      
+      
+        <link rel="next" href="../../artifacts/fleet-memory-patterns/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Failure Modes in Federated Agent Memory - Memory Systems for Agent Fleets</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#failure-modes-in-federated-agent-memory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Memory Systems for Agent Fleets" class="md-header__button md-logo" aria-label="Memory Systems for Agent Fleets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Memory Systems for Agent Fleets
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Failure Modes in Federated Agent Memory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Memory Systems for Agent Fleets" class="md-nav__button md-logo" aria-label="Memory Systems for Agent Fleets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Memory Systems for Agent Fleets
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-local-first-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing a Local-First Memory Runtime for Agent Fleets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-sync-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Taxonomy of Sync Strategies for Fleet Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-explicit-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicit Identity and Async Semantics in Agent Memory Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Federated Agent Memory
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Federated Agent Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-shift-from-code-bugs-to-contract-failures-in-federated-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The shift from code bugs to contract failures in federated memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-archetype-1-notification-as-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Archetype 1: notification-as-source-of-truth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-archetype-2-embedded-replica-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Archetype 2: embedded-replica trap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-archetype-3-blocking-embedding-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Archetype 3: blocking-embedding path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-archetype-4-anonymous-agent-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Archetype 4: anonymous-agent default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-archetype-5-tombstone-garbage-collection-race" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Archetype 5: tombstone garbage-collection race
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-archetype-6-hub-identity-ambiguity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Archetype 6: hub-identity ambiguity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recovery-and-observability-lessons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recovery and observability lessons
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artifacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/fleet-memory-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patterns Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/fleet-memory-archetypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Archetypes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/fleet-memory-bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/fleet-memory-publication-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publication Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/fleet-memory-papers-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fleet Memory Papers Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publishing-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-shift-from-code-bugs-to-contract-failures-in-federated-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The shift from code bugs to contract failures in federated memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-archetype-1-notification-as-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Archetype 1: notification-as-source-of-truth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-archetype-2-embedded-replica-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Archetype 2: embedded-replica trap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-archetype-3-blocking-embedding-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Archetype 3: blocking-embedding path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-archetype-4-anonymous-agent-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Archetype 4: anonymous-agent default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-archetype-5-tombstone-garbage-collection-race" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Archetype 5: tombstone garbage-collection race
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-archetype-6-hub-identity-ambiguity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Archetype 6: hub-identity ambiguity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recovery-and-observability-lessons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recovery and observability lessons
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="failure-modes-in-federated-agent-memory">Failure Modes in Federated Agent Memory<a class="headerlink" href="#failure-modes-in-federated-agent-memory" title="Permanent link">&para;</a></h1>
+<p><strong>Abstract.</strong> We report on the failure modes that emerge when agent memory moves from a single process to a federated edge-and-hub architecture. In this shift, the common failure class changes from local code bugs to distributed contract failures: durability, identity, ordering, retention, and authority contracts that were implicit in the single-process design become visible only when they break. We describe six incident archetypes observed in a long-running six-role operations fleet: notification treated as a source of truth, the embedded-replica trap, the blocking-embedding path, the anonymous-agent default, the tombstone garbage-collection race, and hub-identity ambiguity. For each archetype we give the interaction pattern, an anonymised example, and the contract or ritual that contained it. The paper also connects each archetype to the patterns that contain it and to the broader reliability-engineering literature. It is intended as an incident experience report for practitioners building federated agent memory and as a companion to the sync taxonomy and memory-centric position papers.</p>
+<h2 id="1-the-shift-from-code-bugs-to-contract-failures-in-federated-memory">1. The shift from code bugs to contract failures in federated memory<a class="headerlink" href="#1-the-shift-from-code-bugs-to-contract-failures-in-federated-memory" title="Permanent link">&para;</a></h2>
+<p>When memory lives inside one agent or one process, a memory failure is usually a local bug: a wrong retrieval, a stale cache, a bad summarisation. The fix is local too — correct the function, refresh the cache, tighten the prompt. When memory is federated across edges and a shared hub, the picture changes. Each edge can be correct in isolation while the fleet as a whole fails, because the contract between the parts is wrong or missing.</p>
+<p>We operated a fleet organised around six stable roles — Dispatcher, Builder, Runtime, Verifier, Researcher, and Archivist — over an extended period. As memory responsibilities spread across edges and a hub, the incidents that consumed considerable time were rarely caused by a single bad tool call. They were contract failures. A durability contract failed: an at-most-once notification was treated as a durable update. A storage contract failed: an embedded replication mechanism was used as the sync protocol. A latency contract failed: every write blocked on embedding inference. An identity contract failed: generic defaults merged memories across agents. A retention contract failed: tombstones were collected before an offline edge returned. An authority contract failed: an edge accepted state from a hub it could not authenticate.</p>
+<p>These failures are harder to debug than local bugs because every individual component can pass its own tests. The symptom often appears hours or days after the breach, in a different role, with no stack trace pointing back to the contract. The lesson we took from this is that federated memory must be designed as a set of explicit contracts first, and as an implementation second. The rest of this paper describes the six archetypes that taught us that lesson.</p>
+<h2 id="2-archetype-1-notification-as-source-of-truth">2. Archetype 1: notification-as-source-of-truth<a class="headerlink" href="#2-archetype-1-notification-as-source-of-truth" title="Permanent link">&para;</a></h2>
+<p><strong>Pattern.</strong> A fast, at-most-once publish/subscribe channel is used to distribute memory updates across the fleet. Because notifications arrive quickly, the team assumes they are also durable.</p>
+<p><strong>Root cause.</strong> Notification latency is mistaken for sync correctness. A channel that drops messages when a subscriber is offline is treated as the source of truth rather than as a hint.</p>
+<p><strong>Manifestation.</strong> A previous design used an in-memory coordination service to broadcast fleet events. The channel was fast and simple, but it was fire-and-forget. A gateway that rebooted during a broadcast missed the update permanently. When it rejoined, its local store was consistent with itself but divergent from the rest of the fleet. The divergence was not visible until a downstream agent made a decision based on stale memory. The problem was compounded by the fact that the notification path had no delivery acknowledgement, so the team had no signal that a node had missed frames.</p>
+<p><strong>Lesson.</strong> Durable sync must be backed by an append-only operation log, not by a notification channel. Notifications are useful for cache invalidation or as a hint that new state is available, but the safe recovery path is a pull-based reconciliation loop that reads the log from a known watermark. This maps to the <em>notification-as-source-of-truth</em> archetype in the site catalogue and is the counter-pattern to the append-only operation log and push/pull sync agent patterns. Adding a sync-status surface that reported pending frames and last successful pull made the divergence visible before downstream agents could act on stale memory.</p>
+<h2 id="3-archetype-2-embedded-replica-trap">3. Archetype 2: embedded-replica trap<a class="headerlink" href="#3-archetype-2-embedded-replica-trap" title="Permanent link">&para;</a></h2>
+<p><strong>Pattern.</strong> A storage engine that offers built-in replication is adopted as the default sync transport. The application reads and writes through the same engine, so replication appears to come for free.</p>
+<p><strong>Root cause.</strong> Storage replication and application sync are conflated. The engine's frame-level replication becomes a second, hidden sync abstraction that operators must understand alongside the data model.</p>
+<p><strong>Manifestation.</strong> A Researcher prototyped a fleet gateway using an embedded replica engine. The prototype worked in short demos, but the engine's own documentation warned that opening the local database while the replica was syncing could corrupt data. A long-running gateway cannot pause all local reads during every sync window. The team rejected the approach as the default because it forced operators to reason about two sync layers: the engine's replication frames and the application's operation log.</p>
+<p><strong>Lesson.</strong> Decouple the sync wire protocol from the local storage engine. Treat the local database as a persistence target, not as the transport. A single application-level operation log is the sync abstraction that operators debug, back up, and restore. This is the <em>embedded-replica trap</em> archetype; the counter-pattern is to keep sync explicit and storage pluggable, as described in the sync strategy taxonomy. The decision allowed us to keep the local storage engine lightweight while changing the sync transport between local sockets, a private IP, and an encrypted overlay without touching the data model.</p>
+<h2 id="4-archetype-3-blocking-embedding-path">4. Archetype 3: blocking-embedding path<a class="headerlink" href="#4-archetype-3-blocking-embedding-path" title="Permanent link">&para;</a></h2>
+<p><strong>Pattern.</strong> Every memory write waits for a vector embedding before it returns. Vector search is treated as the primary or only retrieval mode.</p>
+<p><strong>Root cause.</strong> The write path is coupled to inference latency. When the embedder is slow, busy, or offline, the whole memory surface stalls.</p>
+<p><strong>Manifestation.</strong> In an earlier backend, every remember-style call had to wait for a remote embedding service before the write could commit. During inference spikes, write latency rose from milliseconds to several seconds. Agents stopped using the memory tool and kept facts in local scratchpads or prompt context. Those scratchpads were lost on restart, and the shared store was starved of the facts it was supposed to hold. The symptom was not a crash but a gradual desertion of the memory surface.</p>
+<p><strong>Lesson.</strong> Separate search availability from embedding freshness. Default to deterministic full-text search, which returns in milliseconds, and queue semantic embedding asynchronously. Vector recall becomes available once embeddings complete, but the write path never waits on the embedder. This is the <em>blocking-embedding path</em> archetype; the counter-patterns are the full-text-first recall surface and the asynchronous embedding queue. The practical result was that agents resumed using the memory tool for routine facts; richer semantic search remained available for harder queries once the queue drained.</p>
+<h2 id="5-archetype-4-anonymous-agent-default">5. Archetype 4: anonymous-agent default<a class="headerlink" href="#5-archetype-4-anonymous-agent-default" title="Permanent link">&para;</a></h2>
+<p><strong>Pattern.</strong> Memory tools fall back to a generic identity when the caller does not supply one. The default looks sensible in a demo but is dangerous in a fleet.</p>
+<p><strong>Root cause.</strong> Defaults encode a single-agent, single-user assumption. In a multi-agent fleet, they silently merge provenance across agents and users.</p>
+<p><strong>Manifestation.</strong> Early memory tools defaulted to a generic agent and user identity. One Runtime agent wrote operational notes into the default bucket. Later, a different agent queried with its own explicit identity and found nothing. Downstream agents then regenerated credentials because they believed the notes did not exist. The failure was not a retrieval bug; it was an identity contract violation.</p>
+<p><strong>Lesson.</strong> Reject ambiguous calls rather than silently defaulting to a shared bucket. Every memory write must carry explicit caller identity and subject identity, plus workspace and session context. This is the <em>anonymous-agent default</em> archetype, closely related to the <em>silent dependency break</em> archetype in the catalogue; the counter-pattern is explicit identity in shared tools. The Verifier added a regression check that fails any memory write lacking explicit caller and subject identity, so the contract is checked on every build rather than enforced only by code review.</p>
+<h2 id="6-archetype-5-tombstone-garbage-collection-race">6. Archetype 5: tombstone garbage-collection race<a class="headerlink" href="#6-archetype-5-tombstone-garbage-collection-race" title="Permanent link">&para;</a></h2>
+<p><strong>Pattern.</strong> Deleted facts are represented by tombstone records, but those tombstones are garbage-collected after a fixed retention window. An edge offline longer than the window misses the delete.</p>
+<p><strong>Root cause.</strong> The trade-off between storage cost and offline capability is left implicit. There is no documented recovery path for edges that exceed the retention window.</p>
+<p><strong>Manifestation.</strong> The fleet used tombstone records to propagate deletes. To control disk growth, a short retention window was chosen. One edge was offline for maintenance longer than the window. When it reconnected, it pulled only the live operation-log frames and never saw the tombstone. A deleted conclusion resurrected on that edge and influenced a deployment decision. The other nodes had already purged the fact.</p>
+<p><strong>Lesson.</strong> Make the retention window explicit and bound offline capability by it. Before garbage collection, snapshot the log. Provide a reseed path for edges that return after the window. Expose sync status so operators can see which edges are lagging. This is the <em>garbage-collection race</em> archetype; the counter-pattern is tombstone soft deletes with a documented retention and recovery policy. We found that a 30-day window was long enough for personal edges that are occasionally offline and short enough to keep storage growth bounded, provided the trade-off was explicitly documented so operators knew what they were choosing.</p>
+<h2 id="7-archetype-6-hub-identity-ambiguity">7. Archetype 6: hub-identity ambiguity<a class="headerlink" href="#7-archetype-6-hub-identity-ambiguity" title="Permanent link">&para;</a></h2>
+<p><strong>Pattern.</strong> An edge trusts any reachable hub address. A load-balancer or DNS change can point the edge at a different hub instance with older state.</p>
+<p><strong>Root cause.</strong> Sync watermarks are treated as absolute, but they are only meaningful with respect to a stable hub identity. The edge authenticates itself to the hub, but not the hub to the edge.</p>
+<p><strong>Manifestation.</strong> An edge synced to a hub behind a load balancer. A configuration change shifted traffic to a freshly restored hub replica that held an older operation log. The edge pulled from the new hub, accepted the older state, and replayed deletes and updates in the wrong order. The fleet briefly held two authoritative views until the mismatch was detected by a Verifier audit. The trigger was not a compromise; it was a routine DNS change combined with a missing identity check.</p>
+<p><strong>Lesson.</strong> Pin hub identity in edge configuration, using a stable credential or certificate fingerprint, and validate it on every sync session. Watermarks and conflict resolution only make sense against a known hub. This is the <em>hub-identity ambiguity</em> archetype; the counter-pattern is authenticated, stable hub identity combined with monotonic watermark reads. The cost of the extra configuration is small compared with the cost of a split-brain recovery, which required a Verifier audit and a manual reseed of the affected edge.</p>
+<h2 id="8-recovery-and-observability-lessons">8. Recovery and observability lessons<a class="headerlink" href="#8-recovery-and-observability-lessons" title="Permanent link">&para;</a></h2>
+<p>The six archetypes share a common theme: federated memory fails when a contract is implicit. The containment strategies all make the contract explicit and observable.</p>
+<p>The first contract is <strong>durability is local first</strong>. Every edge should be able to write to a local append-only log without the hub. When connectivity returns, the edge pushes pending frames. If the local store is corrupted, the edge can reseed from the hub or restore from a snapshot. Local-first durability also means that an offline agent can continue to operate; the federated system degrades gracefully rather than stopping the world.</p>
+<p>The second contract is <strong>sync must be idempotent</strong>. Each operation-log frame needs a deterministic key so retries after timeouts do not create duplicates. This turns network retry from a hazard into a normal recovery mechanism. Idempotency is especially important at the boundary between an optimistic local write and the eventual push to the hub, where retries are common.</p>
+<p>Third, <strong>watermarks must be monotonic and bound to a stable identity</strong>. An edge resumes from its last known watermark, but only against a hub whose identity it can verify. Without hub identity pinning, watermarks become dangerous. Monotonic reads also prevent an edge from applying a pull batch with gaps, which would otherwise let an older frame slip past a newer one and create ordering violations.</p>
+<p>Fourth, <strong>tombstone retention must be a first-class policy</strong>. The operator should choose the maximum offline duration the fleet supports, and the system should enforce that bound. Edges that exceed it reseed rather than resurrect stale data.</p>
+<p>Fifth, <strong>observability must expose sync state</strong>. A health surface or status tool should report mode, last successful sync, pending frames, and the identity of the connected hub. Roles need to know whether they are caught up before they act on shared memory.</p>
+<p>Finally, <strong>recovery must be operator-simple</strong>. The lengthiest incidents happened when recovery required manual intervention across multiple storage layers. A federated memory system should recover by replaying the operation log or by restoring a snapshot. If recovery requires editing internals, the contract has already failed. Operator simplicity is not a convenience; it is a safety property, because recovery usually happens under pressure, when mistakes are most likely.</p>
+<p>These lessons echo the broader SRE emphasis on error budgets, post-mortems, and explicit contracts: the work of Allspaw, Dekker, and Beyer and colleagues on reliability engineering, and Nygard's stability patterns, all apply to federated memory once we treat it as a distributed system rather than a model feature. The companion evaluation-protocol paper turns several of these archetypes into testable acceptance gates.</p>
+<p>A note on scope. This paper is a qualitative experience report from one fleet. We do not claim that every federated memory system will encounter all six archetypes, only that the contract failures described here are plausible wherever edges and hubs share mutable state. The patterns that contain them — append-only log, explicit identity, full-text-first retrieval, durable embedding queue, tombstone retention with reseed, and pinned hub identity — are offered as a starting checklist rather than as a general recipe.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>See <a href="../../artifacts/fleet-memory-bibliography/">fleet-memory bibliography</a>.</p>
+<p>See also the site artifacts: <a href="../../artifacts/fleet-memory-archetypes/">fleet-memory incident archetypes</a>, <a href="../../artifacts/fleet-memory-patterns/">fleet-memory patterns catalogue</a>, <a href="../06-sync-taxonomy/">sync taxonomy</a>, and <a href="../08-explicit-identity/">explicit identity and async semantics</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/eden-research/public-site" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

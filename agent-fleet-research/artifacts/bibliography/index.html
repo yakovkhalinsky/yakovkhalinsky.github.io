@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A research set on multi-agent operations, failure modes, role taxonomy, and evaluation.">
+        <meta name="description" content="A publishable research set on multi-agent operations, failure modes, taxonomy, and evaluation.">
       
       
-      
-        <link rel="canonical" href="https://yakov.khalinsky.com/agent-fleet-research/artifacts/bibliography/">
       
       
         <link rel="prev" href="../incident-archetypes/">
       
       
-        <link rel="next" href="../pattern-examples-proposal/">
+        <link rel="next" href="../../publishing-charter/">
       
       
         
@@ -69,7 +67,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,12 +88,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/" title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+    <a href="../.." title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -125,21 +125,13 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
     
   
 </form>
@@ -175,8 +167,6 @@
         </button>
       </nav>
       
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
@@ -194,13 +184,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    yakovkhalinsky.github.io
+    GitHub
   </div>
 </a>
       </div>
@@ -213,114 +203,6 @@
       
       
         
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../papers/01-field-study/" class="md-tabs__link">
-          
-  
-  
-  Papers
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../agentic-patterns/" class="md-tabs__link">
-          
-  
-  
-  Artifacts
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../pattern-examples-proposal/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Pattern Examples Supplement
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../publishing-charter/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Publishing Charter
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
           
         
       
@@ -335,28 +217,26 @@
                     
 
 
-  
 
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/" title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+    <a href="../.." title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Agent Fleet Research
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    yakovkhalinsky.github.io
+    GitHub
   </div>
 </a>
     </div>
@@ -400,19 +280,12 @@
     
     
     
-      
-      
-        
-      
-    
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -603,23 +476,15 @@
     
     
     
-      
-        
-        
-      
-      
-        
-      
     
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -785,9 +650,7 @@
       
         
 
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -796,7 +659,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      On this page
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -805,17 +668,6 @@
     <span class="md-ellipsis">
       
         Multi-agent systems and agentic workflows
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autonomous-operations-and-sre" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Autonomous operations and SRE
       
     </span>
   </a>
@@ -834,6 +686,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#systems-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Systems and operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#evaluation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -845,10 +708,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-coordination-frameworks-and-role-models" class="md-nav__link">
+  <a href="#agent-coordination-and-roles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent coordination frameworks and role models
+        Agent coordination and roles
       
     </span>
   </a>
@@ -856,21 +719,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practitioner-engineering" class="md-nav__link">
+  <a href="#to-do" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practitioner engineering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cited-in-this-set" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cited in this set
+        To do
       
     </span>
   </a>
@@ -889,33 +741,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pattern-examples-proposal/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pattern Examples Supplement
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -960,9 +785,7 @@
                   <div class="md-sidebar__inner">
                     
 
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -971,7 +794,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      On this page
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -980,17 +803,6 @@
     <span class="md-ellipsis">
       
         Multi-agent systems and agentic workflows
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autonomous-operations-and-sre" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Autonomous operations and SRE
       
     </span>
   </a>
@@ -1009,6 +821,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#systems-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Systems and operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#evaluation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1020,10 +843,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-coordination-frameworks-and-role-models" class="md-nav__link">
+  <a href="#agent-coordination-and-roles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent coordination frameworks and role models
+        Agent coordination and roles
       
     </span>
   </a>
@@ -1031,21 +854,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practitioner-engineering" class="md-nav__link">
+  <a href="#to-do" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practitioner engineering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cited-in-this-set" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cited in this set
+        To do
       
     </span>
   </a>
@@ -1073,53 +885,45 @@
 
 
 <h1 id="bibliography">Bibliography<a class="headerlink" href="#bibliography" title="Permanent link">&para;</a></h1>
-<p>Sanitised, publishable reference library for the research publication set. The internal workspace keeps working annotations and system-specific notes separately.</p>
+<p>Sanitized, publishable reference library for the research publication set. See <code>../../internal/bibliography-internal.md</code> for working annotations and Eden-specific notes.</p>
 <h2 id="multi-agent-systems-and-agentic-workflows">Multi-agent systems and agentic workflows<a class="headerlink" href="#multi-agent-systems-and-agentic-workflows" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Wei, J., et al. (2022). <em>Chain-of-thought prompting elicits reasoning in large language models.</em> NeurIPS 2022. — Reasoning decomposition; relevant to how agents break down multi-step operational tasks.</li>
-<li>Wang, L., et al. (2024). <em>A survey on large language model based autonomous agents.</em> Frontiers of Computer Science. — General survey of architectures and capabilities; provides context for role specialisation.</li>
-<li>Xi, Z., et al. (2023). <em>The rise and potential of large language model based agents: A survey.</em> arXiv:2309.07864. — Surveys planning, memory, and tool use; motivates the memory and dispatch concerns in the field study.</li>
-<li>Park, J. S., et al. (2023). <em>Generative agents: Interactive simulacra of human behaviour.</em> ACM UIST 2023. — Memory-stream architecture for long-running agents; compare to the externalised-session-state pattern.</li>
-</ul>
-<h2 id="autonomous-operations-and-sre">Autonomous operations and SRE<a class="headerlink" href="#autonomous-operations-and-sre" title="Permanent link">&para;</a></h2>
-<ul>
-<li>STRATUS: Autonomous Cloud Reliability Engineering (IBM Research, arXiv:2506.02009, NeurIPS 2025). — Closest parallel to this work: an LLM-based multi-agent system for autonomous cloud reliability engineering. Cited to position the present paper as complementary (patterns and lessons) rather than competing.</li>
-<li>Beyer, B., et al. (2016). <em>Site Reliability Engineering: How Google Runs Production Systems.</em> O'Reilly. — Source of gates, ownership, post-mortems, and error budgets; the SRE lineage in which the observed patterns sit.</li>
-<li>Gawande, A. (2009). <em>The Checklist Manifesto: How to Get Things Right.</em> Metropolitan Books. — Checklist and ritual as coordination tools; relevant to verifiable dispatch and landing rituals.</li>
-<li>Limoncelli, T. A., et al. (2014). <em>The Practice of Cloud System Administration.</em> Addison-Wesley. — Operational patterns for distributed systems; background for build/deploy/runtime sections.</li>
-<li>Allspaw, J. (2015). <em>The Field Guide to Understanding 'Human Error'.</em> 3rd ed. Productivity Press. — Incident archetype framing; helps justify why interaction patterns matter more than root-cause labels.</li>
-<li>Dekker, S. W. A. (2011). <em>Drift into Failure: From Hunting Broken Components to Understanding Complex Systems.</em> Ashgate. — Drift and erosion of safety constraints; directly relevant to the drifting-context anti-pattern.</li>
+<li>Wei, J., et al. (2022). <em>Chain-of-thought prompting elicits reasoning in large language models.</em> NeurIPS 2022.</li>
+<li>Wang, L., et al. (2024). <em>A survey on large language model based autonomous agents.</em> Frontiers of Computer Science.</li>
+<li>Xi, Z., et al. (2023). <em>The rise and potential of large language model based agents: A survey.</em> arXiv:2309.07864.</li>
+<li>Park, J. S., et al. (2023). <em>Generative agents: Interactive simulacra of human behavior.</em> ACM UIST 2023.</li>
 </ul>
 <h2 id="memory-for-agents">Memory for agents<a class="headerlink" href="#memory-for-agents" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Park et al., 2023 (above) — Generative Agents memory stream: reflection, retrieval, importance scoring.</li>
-<li>MemGPT / Letta, Zep — Persistent memory backends for conversational agents. Compare as product-layer memory systems, not as deployment infrastructure.</li>
+<li>Generative Agents memory stream (reflection, retrieval, importance) — Park et al., 2023.</li>
+<li>MemGPT / Letta, Zep — persistent memory backends for conversational agents. (Compare as product-layer memory systems, not as deployment infrastructure.)</li>
 <li>Open Knowledge Format (OKF) v0.1 — Google. File-format layer for portable structured knowledge; compare at format layer, not runtime layer.</li>
+</ul>
+<h2 id="systems-and-operations">Systems and operations<a class="headerlink" href="#systems-and-operations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Beyer, B., et al. (2016). <em>Site Reliability Engineering: How Google Runs Production Systems.</em> O'Reilly.</li>
+<li>Gawande, A. (2009). <em>The Checklist Manifesto: How to Get Things Right.</em> Metropolitan Books.</li>
+<li>Limoncelli, T. A., et al. (2014). <em>The Practice of Cloud System Administration.</em> Addison-Wesley.</li>
 </ul>
 <h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Hendrycks, D., et al. (2021). <em>Measuring massive multitask language understanding.</em> ICLR 2021. — General LLM capability benchmark; contrast with fleet-level collaboration metrics.</li>
-<li>Liu, X., et al. (2023). <em>AgentBench: Evaluating LLMs as agents.</em> ICLR 2024. — Multi-task agent benchmark; relevant to Paper 5 (evaluation protocol).</li>
-<li>Jimenez, C., et al. (2023). <em>SWE-bench: Can language models resolve real-world GitHub issues?</em> NeurIPS 2023 Datasets and Benchmarks. — End-to-end software-engineering evaluation; cited in §5.2 on metric calibration and end-to-end gates.</li>
-<li>Zheng, L., et al. (2023). <em>Judging LLM-as-a-judge with MT-bench and chatbot arena.</em> NeurIPS 2023. — LLM-as-a-judge methods; relevant for evaluating agent outputs in Paper 5.</li>
+<li>Hendrycks, D., et al. (2021). <em>Measuring massive multitask language understanding.</em> ICLR 2021.</li>
+<li>Liu, X., et al. (2023). <em>AgentBench: Evaluating LLMs as agents.</em> ICLR 2024.</li>
+<li>Jimenez, C., et al. (2023). <em>SWE-bench: Can language models resolve real-world GitHub issues?</em> NeurIPS 2023 Datasets and Benchmarks.</li>
+<li>Zheng, L., et al. (2023). <em>Judging LLM-as-a-judge with MT-bench and chatbot arena.</em> NeurIPS 2023.</li>
 </ul>
-<h2 id="agent-coordination-frameworks-and-role-models">Agent coordination frameworks and role models<a class="headerlink" href="#agent-coordination-frameworks-and-role-models" title="Permanent link">&para;</a></h2>
+<h2 id="agent-coordination-and-roles">Agent coordination and roles<a class="headerlink" href="#agent-coordination-and-roles" title="Permanent link">&para;</a></h2>
 <ul>
-<li>AutoGen / Multi-Agent Conversation Framework (Microsoft Research). — General conversation-based multi-agent framework; compare to the role-routing and dispatch patterns.</li>
-<li>CrewAI — Role-based agent crews. — Directly comparable to the role taxonomy; note that CrewAI roles are often task-centric rather than operational.</li>
-<li>DSPy — Declarative language model programming and optimisers. — Declarative program construction; compare to the explicit-contracts argument in the Discussion.</li>
+<li>AutoGen / Multi-Agent Conversation Framework (Microsoft Research).</li>
+<li>CrewAI — role-based agent crews.</li>
+<li>DSPy — declarative language model programming and optimizers.</li>
 </ul>
-<h2 id="practitioner-engineering">Practitioner engineering<a class="headerlink" href="#practitioner-engineering" title="Permanent link">&para;</a></h2>
+<h2 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Nygard, M. T. (2018). <em>Release It! Design and Deploy Production-Ready Software.</em> 2nd ed. Pragmatic Bookshelf. — Stability patterns and deployment anti-patterns; background for §6.</li>
-</ul>
-<h2 id="cited-in-this-set">Cited in this set<a class="headerlink" href="#cited-in-this-set" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Paper 1 (field study/experience report): Beyer et al. 2016, Gawande 2009, Allspaw 2015, Dekker 2011, STRATUS, AutoGen, CrewAI, DSPy.</li>
-<li>Paper 2 (failure modes): Allspaw 2015, Dekker 2011, Nygard 2018.</li>
-<li>Paper 3 (taxonomy): AutoGen, CrewAI, DSPy, Wang et al. 2024, Xi et al. 2023.</li>
-<li>Paper 4 (position — memory-centric): Park et al. 2023, MemGPT/Letta, OKF.</li>
-<li>Paper 5 (evaluation): AgentBench, SWE-bench, Hendrycks et al. 2021, Zheng et al. 2023.</li>
+<li>[ ] Add one-paragraph annotation per entry explaining relevance to the publication set.</li>
+<li>[ ] Categorize entries by paper (field study, failure modes, taxonomy, position, evaluation).</li>
+<li>[ ] Add practitioner/operations references (e.g., incident command, post-mortem templates).</li>
+<li>[ ] Export final version to <code>public/mini-site/docs/artifacts/bibliography.md</code> once papers are complete.</li>
 </ul>
 
 
@@ -1141,12 +945,6 @@
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
-</button>
-        
       </main>
       
         <footer class="md-footer">
@@ -1154,10 +952,6 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      © Yakov Khalinsky. Published under the MIT license.
-    </div>
   
   
     Made with
@@ -1174,15 +968,10 @@
     
     
     
-    <a href="/" target="_blank" rel="noopener" title="Back to main site" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
-    </a>
-  
+      
+      
     
-    
-    
-    
-    <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" target="_blank" rel="noopener" title="Site source on GitHub" class="md-social__link">
+    <a href="https://github.com/eden-research/public-site" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -1201,7 +990,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -1,0 +1,1344 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research on memory systems for long-running multi-agent fleets.">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../06-sync-taxonomy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Designing a Local-First Memory Runtime for Agent Fleets - Memory Systems for Agent Fleets</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#designing-a-local-first-memory-runtime-for-agent-fleets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Memory Systems for Agent Fleets" class="md-header__button md-logo" aria-label="Memory Systems for Agent Fleets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Memory Systems for Agent Fleets
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Designing a Local-First Memory Runtime for Agent Fleets
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Memory Systems for Agent Fleets" class="md-nav__button md-logo" aria-label="Memory Systems for Agent Fleets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Memory Systems for Agent Fleets
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing a Local-First Memory Runtime for Agent Fleets
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing a Local-First Memory Runtime for Agent Fleets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-setting-and-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Setting and motivation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-anti-pattern-the-heavy-default-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Anti-pattern: the heavy default stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-anti-pattern-the-blocking-embedding-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Anti-pattern: the blocking-embedding path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pattern-local-first-runtime-with-full-text-first-retrieval-and-asynchronous-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pattern: local-first runtime with full-text-first retrieval and asynchronous embedding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pattern: local-first runtime with full-text-first retrieval and asynchronous embedding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-single-edge-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Single edge runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-single-file-local-store-with-embedded-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Single-file local store with embedded search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-full-text-first-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Full-text-first retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-asynchronous-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Asynchronous embedding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-federation-as-a-configuration-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Federation as a configuration change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-explicit-identity-and-local-first-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Explicit identity and local-first promotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-operational-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Operational trade-offs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Operational trade-offs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Gains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-losses-and-new-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Losses and new constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lessons-for-builders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lessons for builders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-threats-to-validity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Threats to validity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-sync-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Taxonomy of Sync Strategies for Fleet Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-explicit-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicit Identity and Async Semantics in Agent Memory Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-federated-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Federated Agent Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artifacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/fleet-memory-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patterns Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/fleet-memory-archetypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Archetypes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artifacts/fleet-memory-bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/fleet-memory-publication-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publication Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/fleet-memory-papers-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fleet Memory Papers Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publishing-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-setting-and-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Setting and motivation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-anti-pattern-the-heavy-default-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Anti-pattern: the heavy default stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-anti-pattern-the-blocking-embedding-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Anti-pattern: the blocking-embedding path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pattern-local-first-runtime-with-full-text-first-retrieval-and-asynchronous-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pattern: local-first runtime with full-text-first retrieval and asynchronous embedding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pattern: local-first runtime with full-text-first retrieval and asynchronous embedding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-single-edge-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Single edge runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-single-file-local-store-with-embedded-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Single-file local store with embedded search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-full-text-first-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Full-text-first retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-asynchronous-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Asynchronous embedding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-federation-as-a-configuration-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Federation as a configuration change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-explicit-identity-and-local-first-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Explicit identity and local-first promotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-operational-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Operational trade-offs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Operational trade-offs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Gains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-losses-and-new-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Losses and new constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lessons-for-builders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lessons for builders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-threats-to-validity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Threats to validity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="designing-a-local-first-memory-runtime-for-agent-fleets">Designing a Local-First Memory Runtime for Agent Fleets<a class="headerlink" href="#designing-a-local-first-memory-runtime-for-agent-fleets" title="Permanent link">&para;</a></h1>
+<p><strong>Abstract.</strong> We examine why long-running multi-agent fleets often abandon shared memory tools, and what design patterns make memory usable again. Drawing on a six-role operations fleet, we identified three recurring anti-patterns — the blocking-embedding path, the heavy default stack, and remote-only storage — and three counter-patterns: full-text-first retrieval, asynchronous embedding queues, and a local-first runtime whose fleet mode is a configuration change rather than a different product. We report on the operational gains and losses observed when these patterns were adopted, and on the contracts that remain fragile: single-writer concurrency, tombstone retention, and hub-identity pinning. The paper is intended as an experience report for builders who want durable agent memory without presuming a data-centre footprint.</p>
+<h2 id="1-setting-and-motivation">1. Setting and motivation<a class="headerlink" href="#1-setting-and-motivation" title="Permanent link">&para;</a></h2>
+<p>We operated a six-role fleet — Dispatcher, Builder, Runtime, Verifier, Researcher, and Archivist — for long enough that continuity of context mattered more than any single task. A Builder needed to know why a previous refactor had been rejected. A Runtime agent needed to remember the last known-good configuration. The Archivist needed to keep skills, runbooks, and incident lessons consistent across sessions and across agents. Memory was not a convenience; it was the coordination surface.</p>
+<p>Yet the shared memory layer was failing in a quiet way: agents were not using it. They kept context in prompt prefixes, local files, or ad-hoc notes rather than in the shared memory surface. The surface offered vector search, hybrid retrieval, session scoping, and a role-aware data model. The reason for avoidance was friction. Every memory write blocked on a remote embedding call. Every recall required a round trip through a network gateway, a vector database, and a relational database. Running the stack locally meant orchestrating several services and a container orchestrator before a single fact could be stored.</p>
+<p>We set out to answer a narrower question: what is the smallest durable memory runtime that a single agent or a small fleet can actually rely on?</p>
+<h2 id="2-anti-pattern-the-heavy-default-stack">2. Anti-pattern: the heavy default stack<a class="headerlink" href="#2-anti-pattern-the-heavy-default-stack" title="Permanent link">&para;</a></h2>
+<p>A common assumption in cloud-native agent memory is that the default deployment should mirror a production backend: a relational store, a vector store, a separate embedding service, an in-memory coordination service, a network gateway, and an orchestrator. Each component is reasonable on its own; together they form a heavy default stack for what is, at small scale, mostly append-only text, messages, and conclusions.</p>
+<p>The costs we observed were concrete. A developer who wanted memory on a laptop had to stand up several services before the first fact could be stored. Recovery meant restoring multiple stateful systems in the right order. More importantly, the operational weight changed behaviour: agents kept notes in local scratchpads because the shared path was too slow and too brittle for routine use. The memory layer existed, was technically capable, and was effectively unused for cross-session work.</p>
+<p>We treat this as an instance of the broader anti-pattern <strong>tool success, mission failure</strong>: every component works, but the composed workflow fails its real purpose because the cost of using it exceeds the benefit.</p>
+<h2 id="3-anti-pattern-the-blocking-embedding-path">3. Anti-pattern: the blocking-embedding path<a class="headerlink" href="#3-anti-pattern-the-blocking-embedding-path" title="Permanent link">&para;</a></h2>
+<p>The second anti-pattern is coupling the memory write path to embedding inference. If every remember-style call blocks until an embedding service returns a vector, the whole memory surface stalls when the embedder is slow, busy, or unreachable. Agents learn to keep facts in prompt context or local scratchpads. Those scratchpads are fast, but they vanish on restart or hand-off.</p>
+<p>We observed this directly. During inference spikes, write latency rose from milliseconds to several seconds. The shared store became a cold archive for data written during quiet periods, not a living memory used in real decisions. The symptom was not a crash but a gradual desertion of the memory surface.</p>
+<h2 id="4-pattern-local-first-runtime-with-full-text-first-retrieval-and-asynchronous-embedding">4. Pattern: local-first runtime with full-text-first retrieval and asynchronous embedding<a class="headerlink" href="#4-pattern-local-first-runtime-with-full-text-first-retrieval-and-asynchronous-embedding" title="Permanent link">&para;</a></h2>
+<p>The counter-pattern we found effective is a deliberately minimal edge runtime: one process, a local file-backed database, full-text search as the default retrieval path, asynchronous embedding, and optional federation through a shared hub that is enabled by configuration rather than by a different product.</p>
+<h3 id="41-single-edge-runtime">4.1 Single edge runtime<a class="headerlink" href="#41-single-edge-runtime" title="Permanent link">&para;</a></h3>
+<p>The pattern is a single runtime package that bundles the API surface, the agent protocol, the local store, and optional federation. In local mode the package runs as one binary or container, binds to a local-only address, and needs no external network. In fleet mode the same package is pointed at a shared hub by a configuration change; the agent-facing surface does not change.</p>
+<p>This is not a new architectural idea. The novelty, if there is one, is applying it to agent memory rather than to a web application. The single package gives the local agent a stable, inspectable data file that can be read, backed up, and restored with ordinary tools. When something goes wrong, an operator can inspect the local store directly. That debuggability turned out to be more useful than any single advanced retrieval feature.</p>
+<h3 id="42-single-file-local-store-with-embedded-search">4.2 Single-file local store with embedded search<a class="headerlink" href="#42-single-file-local-store-with-embedded-search" title="Permanent link">&para;</a></h3>
+<p>The minimal local store is one durable file — for example a single-file relational database with transaction logging — that holds peers, sessions, messages, conclusions, session metadata, and a sync watermark. A full-text index and a small vector-search extension are loaded inside the same file. A separate vector server is unnecessary at small scale.</p>
+<p>This pattern was driven by the observation that agent memory at the edge is mostly read-heavy, append-mostly, and small enough to fit on a laptop disk. A single file also makes backup trivial: stop the edge runtime, archive the database and its transaction log, and store the archive. Restore is the reverse.</p>
+<h3 id="43-full-text-first-retrieval">4.3 Full-text-first retrieval<a class="headerlink" href="#43-full-text-first-retrieval" title="Permanent link">&para;</a></h3>
+<p>Retrieval defaults to full-text search, not vector similarity. Agents get answers immediately because full-text search requires no model inference. Vector search is available, but it is a secondary, not blocking, path. A memory write is indexed for text search as soon as it is committed; the embedding is queued and applied asynchronously.</p>
+<p>This inverts the common default. Previously, embedding was the primary path and text search an add-on. The local-first default treats text as the reliable path and vectors as the richer but slower path. In practice, many agent recalls are satisfied by text search, and the fleet does not stall when the embedding queue is behind or unavailable.</p>
+<h3 id="44-asynchronous-embedding">4.4 Asynchronous embedding<a class="headerlink" href="#44-asynchronous-embedding" title="Permanent link">&para;</a></h3>
+<p>The pattern is a durable embedding queue inside the same runtime. A write commits the text and metadata immediately and records an indexing job; a background worker later computes vectors using a local or remote embedding provider. Once the vector is ready, the row is updated.</p>
+<p>The queue is not in memory. Jobs are stored durably in the same file-backed database and acknowledged only after the update is committed. A crash loses no queued work because the queue is the database. This addresses the recurring fear that an asynchronous queue would silently drop embeddings during a restart.</p>
+<h3 id="45-federation-as-a-configuration-change">4.5 Federation as a configuration change<a class="headerlink" href="#45-federation-as-a-configuration-change" title="Permanent link">&para;</a></h3>
+<p>When the operator points the edge runtime at a fleet hub, the federation daemon wakes up. The pattern is to maintain an append-only operation log — an oplog — in the local database. Each write appends a frame describing what changed, who changed it, and a vector-clock watermark. The daemon pushes pending frames to the hub and pulls missing frames on reconnect; the transport merely has to authenticate the hub. The hub stores the authoritative log and lets other runtimes replay it.</p>
+<p>The sync protocol is intentionally simple. The domain is mostly append-only: new messages, new conclusions, new sessions. Conflicts are rare and, when they occur, are recorded for review rather than silently resolved by last-write-wins. The watermark is a vector clock, not a wall-clock timestamp, so concurrent writes from different edges can be ordered without pretending that clock synchronisation is reliable.</p>
+<p>Importantly, the local runtime remains the agent's source of truth for reads. Fleet mode adds durability and aggregation; it does not turn the local store into a cache that must phone home on every recall.</p>
+<h3 id="46-explicit-identity-and-local-first-promotion">4.6 Explicit identity and local-first promotion<a class="headerlink" href="#46-explicit-identity-and-local-first-promotion" title="Permanent link">&para;</a></h3>
+<p>One lesson from earlier shared memory tools was that default identity buckets caused silent misrouting. Agents wrote memories that other agents could not see because the defaults silently partitioned the data. The effective surface requires explicit caller and subject identity on every memory operation. There is no generic bucket.</p>
+<p>We also distinguished local memory from shared memory. A local memory is draft, private, or transient. A shared memory is a fact that has been verified and attributed. Promotion from local to shared is explicit, not automatic. This reduced noise in the shared store and prevented half-formed reasoning from leaking across agents.</p>
+<h2 id="5-operational-trade-offs">5. Operational trade-offs<a class="headerlink" href="#5-operational-trade-offs" title="Permanent link">&para;</a></h2>
+<h3 id="51-gains">5.1 Gains<a class="headerlink" href="#51-gains" title="Permanent link">&para;</a></h3>
+<p><strong>Reduced footprint.</strong> A personal agent can run with a single binary and a data file. Setup time drops from orchestrating multiple services to starting one process.</p>
+<p><strong>Immediate writes and recalls.</strong> Because the write path no longer blocks on embedding, agents use memory for small, frequent notes. Because full-text search answers first, recalls return in milliseconds.</p>
+<p><strong>Simpler backup and restore.</strong> A local archive contains the database, configuration, sync watermark, and model cache. Restore is a single command. Fleet recovery is either a local restore followed by sync, or a fresh edge reseeding from the hub.</p>
+<p><strong>Inspectability.</strong> Operators can query the local database with ordinary tools. This made debugging faster than tracing through a distributed stack.</p>
+<p><strong>Mode transparency.</strong> The agent-facing API and agent-protocol surface is the same in local and fleet mode. An agent written against the local runtime graduates to a fleet without code changes.</p>
+<h3 id="52-losses-and-new-constraints">5.2 Losses and new constraints<a class="headerlink" href="#52-losses-and-new-constraints" title="Permanent link">&para;</a></h3>
+<p><strong>Single-writer concurrency.</strong> A file-backed database with transaction logging is still a single writer. Multiple edge runtimes cannot safely share the same file. For a personal fleet this is a natural constraint; for larger edge deployments it requires routing all writes for a workspace through one runtime process or a write queue.</p>
+<p><strong>Brute-force vector limits.</strong> The local vector extension works well for thousands of memories but will not scale to millions. A fleet that outgrows the local extension can point the hub at a dedicated vector database while keeping the same agent surface.</p>
+<p><strong>Sync complexity is real but deferred.</strong> The simple oplog works because the domain is append-mostly. It still requires idempotent pushes, monotonic watermark reads, tombstone retention, conflict logging, and pinned hub identity. These are not free; they are simply smaller and more contained than a backend stack that couples the same concerns to separate services.</p>
+<p><strong>Embedding lag.</strong> Asynchronous embedding means a recalled memory may not yet be vector-searchable. The design accepts this by making full-text search the default and by treating vector search as a quality improvement, not a correctness gate.</p>
+<h2 id="6-lessons-for-builders">6. Lessons for builders<a class="headerlink" href="#6-lessons-for-builders" title="Permanent link">&para;</a></h2>
+<p>Several lessons from this experience generalise beyond the specific stack.</p>
+<p><strong>Optimise the path agents actually use.</strong> A memory layer that agents avoid is worse than a simpler one they use constantly. Reducing the cost of the common case — a quick note and a quick recall — mattered more than supporting every advanced retrieval mode.</p>
+<p><strong>Make local mode truly local.</strong> If local mode still requires a remote service to function, it is not local mode. The test is whether an agent can remember and recall with no network and no dependencies beyond the runtime.</p>
+<p><strong>Default to text, not vectors.</strong> Full-text search is fast, deterministic, and requires no model. It is a better default for most agent memory lookups. Vector search should be layered on top, not assumed as the primary path.</p>
+<p><strong>Queue embeddings durably, not in memory.</strong> An in-memory queue creates a durability gap that is hard to explain to operators. Storing the queue in the same durable store as the data removes an entire class of crash-loss incidents.</p>
+<p><strong>Require explicit identity from day one.</strong> Shared memory tools that default to a generic caller or subject create partitions that agents cannot see. Reject ambiguous calls rather than silently picking a bucket.</p>
+<p><strong>Distinguish local draft from shared fact.</strong> Automatic promotion of every agent thought into shared memory pollutes the shared store. Promotion should be explicit and reversible.</p>
+<p><strong>Do not use a message bus as the source of truth.</strong> We briefly considered using a pub/sub service for sync notifications, then rejected it because the delivery model is at-most-once. A durable operation log with pull-based catch-up is a slower but safer foundation. Pub/sub can be used as a hint layer, not as a correctness layer.</p>
+<p><strong>Keep the agent surface stable across modes.</strong> One of the more useful properties of the local-first pattern is that local and fleet mode expose the same API and agent-protocol tools. Agents should not need rewrites when the deployment grows.</p>
+<h2 id="7-threats-to-validity">7. Threats to validity<a class="headerlink" href="#7-threats-to-validity" title="Permanent link">&para;</a></h2>
+<p>This report has the usual limits of a single-system field study. We observed, shaped, and operated the edge runtime over time, so observer effects and hindsight bias are likely. The workload was dominated by operational tasks — infrastructure, code, documentation, and incident response — and may not match fleets doing creative, scientific, or customer-facing work.</p>
+<p>We also cannot claim that the local-first approach is always cheaper. The trade-offs flip once the fleet grows large enough that single-writer file-backed databases, brute-force vector search, or per-edge storage become bottlenecks. For such fleets, the value of this pattern is as a small-fleet default and a clear upgrade path, not as a large-scale architecture.</p>
+<p>Finally, the reported gains in agent adoption are observational, not measured by a controlled experiment. Agents began using memory more often, but we did not instrument a randomised comparison. Future work could quantify recall success rates, time-to-recall, and memory-write frequency before and after adopting these patterns.</p>
+<h2 id="8-conclusion">8. Conclusion<a class="headerlink" href="#8-conclusion" title="Permanent link">&para;</a></h2>
+<p>We examined why a long-running multi-agent fleet abandoned its shared memory tools and what patterns restored their usefulness. The local-first runtime pattern — file-backed storage, full-text-first retrieval, asynchronous embedding, and optional federation through an append-only operation log — trades advanced per-component capability for a smaller, more reliable common path. The agents in the fleet began using memory once the cost of using it dropped below the cost of avoiding it.</p>
+<p>The deeper lesson is that agent memory infrastructure should be judged by whether agents trust it for the small, frequent, cross-session facts that hold coordination together. Trust comes from low latency, durability, and debuggability more than from feature richness. We offer this field study to builders who are facing the same tension between capability and operability.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>See <a href="../../artifacts/fleet-memory-bibliography/">fleet-memory bibliography</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/eden-research/public-site" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

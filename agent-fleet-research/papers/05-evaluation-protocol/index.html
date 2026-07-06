@@ -6,11 +6,9 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A research set on multi-agent operations, failure modes, role taxonomy, and evaluation.">
+        <meta name="description" content="A publishable research set on multi-agent operations, failure modes, taxonomy, and evaluation.">
       
       
-      
-        <link rel="canonical" href="https://yakov.khalinsky.com/agent-fleet-research/papers/05-evaluation-protocol/">
       
       
         <link rel="prev" href="../04-position-paper/">
@@ -69,7 +67,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,12 +88,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/" title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+    <a href="../.." title="Agent Fleet Research" class="md-header__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -125,21 +125,13 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
     
   
 </form>
@@ -175,8 +167,6 @@
         </button>
       </nav>
       
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
@@ -194,13 +184,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    yakovkhalinsky.github.io
+    GitHub
   </div>
 </a>
       </div>
@@ -213,114 +203,6 @@
       
       
         
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../01-field-study/" class="md-tabs__link">
-          
-  
-  
-  Papers
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../artifacts/agentic-patterns/" class="md-tabs__link">
-          
-  
-  
-  Artifacts
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../artifacts/pattern-examples-proposal/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Pattern Examples Supplement
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../publishing-charter/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Publishing Charter
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
           
         
       
@@ -335,28 +217,26 @@
                     
 
 
-  
 
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/" title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
+    <a href="../.." title="Agent Fleet Research" class="md-nav__button md-logo" aria-label="Agent Fleet Research" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     Agent Fleet Research
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    yakovkhalinsky.github.io
+    GitHub
   </div>
 </a>
     </div>
@@ -402,23 +282,15 @@
     
     
     
-      
-        
-        
-      
-      
-        
-      
     
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -612,9 +484,7 @@
       
         
 
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -623,15 +493,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      On this page
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-introduction" class="md-nav__link">
+  <a href="#1-what-existing-benchmarks-miss" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Introduction
+        1. What existing benchmarks miss
       
     </span>
   </a>
@@ -639,44 +509,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-related-work" class="md-nav__link">
+  <a href="#2-evaluation-criteria" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Related work
+        2. Evaluation criteria
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-evaluation-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Evaluation requirements
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-proposed-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Proposed tasks
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Proposed tasks">
+    <nav class="md-nav" aria-label="2. Evaluation criteria">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#task-1-role-fidelity-under-ambiguity" class="md-nav__link">
+  <a href="#21-continuity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 1: Role fidelity under ambiguity
+        2.1 Continuity
       
     </span>
   </a>
@@ -684,10 +532,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-2-verifiable-dispatch" class="md-nav__link">
+  <a href="#22-identity-preservation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 2: Verifiable dispatch
+        2.2 Identity preservation
       
     </span>
   </a>
@@ -695,10 +543,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-3-memory-recovery-after-restart" class="md-nav__link">
+  <a href="#23-correct-hand-off" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 3: Memory recovery after restart
+        2.3 Correct hand-off
       
     </span>
   </a>
@@ -706,10 +554,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-4-identity-isolation-in-shared-memory" class="md-nav__link">
+  <a href="#24-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 4: Identity isolation in shared memory
+        2.4 Recovery
       
     </span>
   </a>
@@ -717,32 +565,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-5-silent-dependency-detection" class="md-nav__link">
+  <a href="#25-end-to-end-outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 5: Silent dependency detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-6-end-to-end-landing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Task 6: End-to-end landing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-7-metric-calibration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Task 7: Metric calibration
+        2.5 End-to-end outcome
       
     </span>
   </a>
@@ -755,10 +581,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-metrics" class="md-nav__link">
+  <a href="#3-proposed-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Metrics
+        3. Proposed tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Proposed tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-resume-after-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Resume after restart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cross-agent-hand-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Cross-agent hand-off
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-documentation-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Documentation update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Metrics
       
     </span>
   </a>
@@ -766,10 +653,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-procedure" class="md-nav__link">
+  <a href="#5-pilot-protocol-outline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Procedure
+        5. Pilot protocol outline
       
     </span>
   </a>
@@ -777,10 +664,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-pilot-expectations" class="md-nav__link">
+  <a href="#6-relation-to-the-rest-of-the-set" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Pilot expectations
+        6. Relation to the rest of the set
       
     </span>
   </a>
@@ -788,21 +675,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-limitations-and-future-work" class="md-nav__link">
+  <a href="#7-conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Limitations and future work
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. Conclusion
+        7. Conclusion
       
     </span>
   </a>
@@ -846,19 +722,12 @@
     
     
     
-      
-      
-        
-      
-    
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -1016,33 +885,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../artifacts/pattern-examples-proposal/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pattern Examples Supplement
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../publishing-charter/" class="md-nav__link">
         
   
@@ -1076,9 +918,7 @@
                   <div class="md-sidebar__inner">
                     
 
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1087,15 +927,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      On this page
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-introduction" class="md-nav__link">
+  <a href="#1-what-existing-benchmarks-miss" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Introduction
+        1. What existing benchmarks miss
       
     </span>
   </a>
@@ -1103,44 +943,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-related-work" class="md-nav__link">
+  <a href="#2-evaluation-criteria" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Related work
+        2. Evaluation criteria
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-evaluation-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Evaluation requirements
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-proposed-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Proposed tasks
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Proposed tasks">
+    <nav class="md-nav" aria-label="2. Evaluation criteria">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#task-1-role-fidelity-under-ambiguity" class="md-nav__link">
+  <a href="#21-continuity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 1: Role fidelity under ambiguity
+        2.1 Continuity
       
     </span>
   </a>
@@ -1148,10 +966,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-2-verifiable-dispatch" class="md-nav__link">
+  <a href="#22-identity-preservation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 2: Verifiable dispatch
+        2.2 Identity preservation
       
     </span>
   </a>
@@ -1159,10 +977,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-3-memory-recovery-after-restart" class="md-nav__link">
+  <a href="#23-correct-hand-off" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 3: Memory recovery after restart
+        2.3 Correct hand-off
       
     </span>
   </a>
@@ -1170,10 +988,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-4-identity-isolation-in-shared-memory" class="md-nav__link">
+  <a href="#24-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 4: Identity isolation in shared memory
+        2.4 Recovery
       
     </span>
   </a>
@@ -1181,32 +999,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-5-silent-dependency-detection" class="md-nav__link">
+  <a href="#25-end-to-end-outcome" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 5: Silent dependency detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-6-end-to-end-landing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Task 6: End-to-end landing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-7-metric-calibration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Task 7: Metric calibration
+        2.5 End-to-end outcome
       
     </span>
   </a>
@@ -1219,10 +1015,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-metrics" class="md-nav__link">
+  <a href="#3-proposed-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Metrics
+        3. Proposed tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Proposed tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-resume-after-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Resume after restart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cross-agent-hand-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Cross-agent hand-off
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-documentation-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Documentation update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Metrics
       
     </span>
   </a>
@@ -1230,10 +1087,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-procedure" class="md-nav__link">
+  <a href="#5-pilot-protocol-outline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Procedure
+        5. Pilot protocol outline
       
     </span>
   </a>
@@ -1241,10 +1098,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-pilot-expectations" class="md-nav__link">
+  <a href="#6-relation-to-the-rest-of-the-set" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Pilot expectations
+        6. Relation to the rest of the set
       
     </span>
   </a>
@@ -1252,21 +1109,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-limitations-and-future-work" class="md-nav__link">
+  <a href="#7-conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Limitations and future work
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. Conclusion
+        7. Conclusion
       
     </span>
   </a>
@@ -1305,98 +1151,61 @@
 
 
 <h1 id="toward-an-evaluation-protocol-for-persistent-multi-agent-workflows">Toward an Evaluation Protocol for Persistent Multi-Agent Workflows<a class="headerlink" href="#toward-an-evaluation-protocol-for-persistent-multi-agent-workflows" title="Permanent link">&para;</a></h1>
-<p><strong>Abstract.</strong> Existing benchmarks for LLM agents focus on single-turn reasoning, tool use, or short cooperative tasks. They do not capture the coordination behaviours that matter in long-running operations fleets: role fidelity, memory correctness, identity preservation, and recovery after restart or scale. I propose a lightweight evaluation protocol for persistent multi-agent workflows. The protocol defines tasks that exercise the patterns observed in a companion field study, metrics for each task, and a minimal procedure for running and scoring them. The goal is to make multi-agent coordination measurable, comparable, and improvable.</p>
-<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
-<p>For single models, the research community has broad coverage of reasoning, coding, and knowledge. For multi-agent systems, promising frameworks exist, but rigorous evaluations are scarcer.</p>
-<p>I operated a six-role operations fleet over an extended period. The failures that mattered most were not solved by a better single model; they were solved by clearer contracts between roles. This paper asks how those contracts can be evaluated.</p>
-<h2 id="2-related-work">2. Related work<a class="headerlink" href="#2-related-work" title="Permanent link">&para;</a></h2>
+<p><strong>Abstract.</strong> We propose a lightweight evaluation protocol for multi-agent workflows that run over time and share persistent state. Existing benchmarks focus on single-turn correctness, tool use, or reasoning; they miss the problems that dominate long-running collaboration: continuity, identity, hand-offs, and recovery. We define evaluation criteria, propose tasks and metrics, and outline a pilot protocol. The goal is to give practitioners and researchers a way to measure whether a fleet can sustain collaborative work, not merely whether it can answer a question correctly.</p>
+<h2 id="1-what-existing-benchmarks-miss">1. What existing benchmarks miss<a class="headerlink" href="#1-what-existing-benchmarks-miss" title="Permanent link">&para;</a></h2>
+<p>Most benchmarks treat an agent as a function: input prompt, output response. They measure reasoning, coding, or tool selection in isolation. That is useful for model development but insufficient for fleet evaluation.</p>
+<p>A long-running workflow spans multiple turns, multiple agents, and multiple sessions. The hard questions are not "did this call return the right answer?" but "does the fleet still know what it decided yesterday?", "can agent B continue agent A's task?", and "does the fleet recover gracefully from a restart?".</p>
+<h2 id="2-evaluation-criteria">2. Evaluation criteria<a class="headerlink" href="#2-evaluation-criteria" title="Permanent link">&para;</a></h2>
+<p>We propose five criteria for an evaluation protocol aimed at persistent multi-agent workflows.</p>
+<h3 id="21-continuity">2.1 Continuity<a class="headerlink" href="#21-continuity" title="Permanent link">&para;</a></h3>
+<p>Can an agent recall the facts it needs from previous turns and previous sessions without re-prompting?</p>
+<h3 id="22-identity-preservation">2.2 Identity preservation<a class="headerlink" href="#22-identity-preservation" title="Permanent link">&para;</a></h3>
+<p>After restart, hand-off, or re-assignment, does an agent recognise its own prior decisions and the decisions of its peers?</p>
+<h3 id="23-correct-hand-off">2.3 Correct hand-off<a class="headerlink" href="#23-correct-hand-off" title="Permanent link">&para;</a></h3>
+<p>When a task moves from one role to another, is the relevant context transferred completely and accurately?</p>
+<h3 id="24-recovery">2.4 Recovery<a class="headerlink" href="#24-recovery" title="Permanent link">&para;</a></h3>
+<p>After a simulated failure — an agent restart, a network partition, or a bad change — can the fleet return to a known-good state and continue?</p>
+<h3 id="25-end-to-end-outcome">2.5 End-to-end outcome<a class="headerlink" href="#25-end-to-end-outcome" title="Permanent link">&para;</a></h3>
+<p>Does the fleet achieve the user-level goal, not merely the intermediate objectives?</p>
+<h2 id="3-proposed-tasks">3. Proposed tasks<a class="headerlink" href="#3-proposed-tasks" title="Permanent link">&para;</a></h2>
+<p>We sketch a set of tasks designed to exercise the criteria. Each task is multi-step and multi-agent, and it requires shared state to persist across steps.</p>
+<h3 id="31-resume-after-restart">3.1 Resume after restart<a class="headerlink" href="#31-resume-after-restart" title="Permanent link">&para;</a></h3>
+<p>A Builder is halfway through a change when its process restarts. A new Builder instance must pick up the task, read the plan from shared memory, and continue without re-deriving the design.</p>
+<h3 id="32-cross-agent-hand-off">3.2 Cross-agent hand-off<a class="headerlink" href="#32-cross-agent-hand-off" title="Permanent link">&para;</a></h3>
+<p>A Researcher gathers requirements and stores them. A Builder reads them, produces a change, and stores the change. A Verifier reads the change and the requirements, then decides whether to approve. The Dispatcher tracks ownership throughout.</p>
+<h3 id="33-rollback">3.3 Rollback<a class="headerlink" href="#33-rollback" title="Permanent link">&para;</a></h3>
+<p>A Runtime deploys a change that fails in production. The fleet must identify the last known-good state, roll back, and record the rollback decision in shared memory so the same mistake is not re-attempted.</p>
+<h3 id="34-documentation-update">3.4 Documentation update<a class="headerlink" href="#34-documentation-update" title="Permanent link">&para;</a></h3>
+<p>After an incident, the Archivist must update the runbook and notify the Builder and Runtime that a procedure has changed. The next time a similar task is attempted, the fleet must follow the new procedure.</p>
+<h2 id="4-metrics">4. Metrics<a class="headerlink" href="#4-metrics" title="Permanent link">&para;</a></h2>
+<p>For each task we suggest three kinds of metric:</p>
 <ul>
-<li><strong>SWE-bench</strong> evaluates whether a model can resolve real-world GitHub issues end to end. It is strong on software-engineering outcomes but does not test multi-agent coordination or persistence.</li>
-<li><strong>AgentBench</strong> evaluates LLMs as agents across multiple environments. It measures task success but rarely role fidelity or memory correctness across sessions.</li>
-<li><strong>MT-bench and chatbot arena</strong> focus on response quality. They do not evaluate whether an agent fleet remembers, owns, or lands work.</li>
+<li><strong>Binary success:</strong> did the fleet complete the task?</li>
+<li><strong>Contextual accuracy:</strong> did the fleet recall the right facts at the right time, measured by a human or a reference trace?</li>
+<li><strong>Efficiency:</strong> how many extra turns, re-prompts, or corrections were required compared to an oracle trace?</li>
 </ul>
-<p>The gap is not a lack of tasks but a lack of tasks designed for long-running, multi-agent, memory-dependent workflows.</p>
-<h2 id="3-evaluation-requirements">3. Evaluation requirements<a class="headerlink" href="#3-evaluation-requirements" title="Permanent link">&para;</a></h2>
-<p>From operational experience I derive five requirements for an evaluation protocol:</p>
+<p>A metric is useful only if it does not game the criteria. For example, a continuity metric that rewards any recall, regardless of relevance, would encourage noisy memory. Metrics should be paired with adversarial probes: memories that look correct but are wrong in context.</p>
+<h2 id="5-pilot-protocol-outline">5. Pilot protocol outline<a class="headerlink" href="#5-pilot-protocol-outline" title="Permanent link">&para;</a></h2>
+<p>The pilot protocol is intentionally simple:</p>
 <ol>
-<li><strong>Role fidelity.</strong> Does the right role act on the right task? Can a role decline work outside its domain?</li>
-<li><strong>Memory correctness.</strong> After a restart or context switch, does the agent recover the original goal, identity, and constraints?</li>
-<li><strong>Identity preservation.</strong> Can the fleet distinguish agents and roles in shared memory, or do writes collide?</li>
-<li><strong>Recovery after restart/scale.</strong> Can the system resume a long-running workflow after process replacement or horizontal scaling?</li>
-<li><strong>End-to-end outcome correctness.</strong> Does the composed workflow produce a correct result, not just correct intermediate steps?</li>
+<li>Define the six roles and the memory surface.</li>
+<li>Run each task three times: fresh, after a restart, and after a partial failure.</li>
+<li>Record the binary outcome, the recall accuracy, and the number of corrective turns.</li>
+<li>Score each run against the criteria, then aggregate.</li>
+<li>Review failures as incident archetypes and feed them back into the protocol.</li>
 </ol>
-<blockquote>
-<p><strong>Example.</strong> A fleet is asked to refactor a configuration store. Role fidelity means the Builder, not the Runtime, owns the code change. Memory correctness means that after a restart the new agent instance still knows the original goal was a refactor, not a deletion. End-to-end correctness means the store still works after the change.</p>
-</blockquote>
-<h2 id="4-proposed-tasks">4. Proposed tasks<a class="headerlink" href="#4-proposed-tasks" title="Permanent link">&para;</a></h2>
-<p>Each task is designed to exercise one or more requirements. They are stylised and anonymised; they do not depend on any specific system.</p>
-<h3 id="task-1-role-fidelity-under-ambiguity">Task 1: Role fidelity under ambiguity<a class="headerlink" href="#task-1-role-fidelity-under-ambiguity" title="Permanent link">&para;</a></h3>
-<p>A Dispatcher receives a vague request: "something is wrong with the service." The correct response is to route to the Runtime role for health diagnosis, not to the Builder for code changes. The task is scored by whether the first routed role is appropriate and whether the specialist can decline a misrouted task.</p>
-<blockquote>
-<p><strong>Example.</strong> The Dispatcher observes a slow endpoint and assumes a recent configuration change is at fault. It sends the Builder a request to revert the change. The correct behaviour is for the Builder to decline and escalate to the Runtime role, because the symptom points to infrastructure, not code.</p>
-</blockquote>
-<h3 id="task-2-verifiable-dispatch">Task 2: Verifiable dispatch<a class="headerlink" href="#task-2-verifiable-dispatch" title="Permanent link">&para;</a></h3>
-<p>A Dispatcher is given a task and must produce a dispatch message. A correct dispatch includes a concrete deliverable and a verification criterion. The task is scored by whether a downstream Verifier can determine green/red from the dispatch alone.</p>
-<blockquote>
-<p><strong>Example.</strong> A correct dispatch might read: "Update the health-check endpoint so the liveness probe returns HTTP 200 within 2 seconds; mark complete only when the Verifier reports green on staging." An incorrect dispatch reads: "Look into the health check."</p>
-</blockquote>
-<h3 id="task-3-memory-recovery-after-restart">Task 3: Memory recovery after restart<a class="headerlink" href="#task-3-memory-recovery-after-restart" title="Permanent link">&para;</a></h3>
-<p>A conversation is interrupted by a simulated process restart. The agent must resume from externalised session state and continue the original task without asking the user to restate the goal. The task is scored by goal recall and identity consistency.</p>
-<blockquote>
-<p><strong>Example.</strong> Mid-refactor, the agent process restarts. The resumed instance should retrieve the original goal and current phase from the shared memory service and continue, rather than ask, "What would you like me to do?"</p>
-</blockquote>
-<h3 id="task-4-identity-isolation-in-shared-memory">Task 4: Identity isolation in shared memory<a class="headerlink" href="#task-4-identity-isolation-in-shared-memory" title="Permanent link">&para;</a></h3>
-<p>Two agents write to a shared memory tool. One omits identity fields. The evaluation checks whether the memory tool rejects the write or whether the omission causes silent misrouting. The task is scored by correctness of the tool’s validation contract.</p>
-<blockquote>
-<p><strong>Example.</strong> Agent A writes a memory with explicit observer and subject identity. Agent B writes a memory with the subject identity omitted. The shared-memory tool should reject Agent B’s write, not silently place it in a generic bucket where other agents will miss it.</p>
-</blockquote>
-<h3 id="task-5-silent-dependency-detection">Task 5: Silent dependency detection<a class="headerlink" href="#task-5-silent-dependency-detection" title="Permanent link">&para;</a></h3>
-<p>An agent changes a shared config value. A downstream agent later fails. The evaluation checks whether the fleet can trace the failure back to the change through an event log or ownership record. The task is scored by causal tracing accuracy.</p>
-<blockquote>
-<p><strong>Example.</strong> A Runtime role changes a shared credential. A Researcher role fails hours later when querying the memory service. The fleet must be able to follow the event log from the Researcher failure back to the credential change and identify the Runtime role as the owner of that change.</p>
-</blockquote>
-<h3 id="task-6-end-to-end-landing">Task 6: End-to-end landing<a class="headerlink" href="#task-6-end-to-end-landing" title="Permanent link">&para;</a></h3>
-<p>A change is approved in conversation. The fleet must produce a merge plan, deploy plan, verification gate, and rollback plan in the shared record. The task is scored by completeness of the landing ritual and by whether the change actually reaches the simulated target environment.</p>
-<blockquote>
-<p><strong>Example.</strong> The fleet approves adding a new health check. The Dispatcher must ensure the Builder produces a patch, the Runtime role produces a deploy plan, the Verifier defines a green/red gate, and the Runtime role produces a rollback plan. The task is incomplete if any of these artefacts is missing.</p>
-</blockquote>
-<h3 id="task-7-metric-calibration">Task 7: Metric calibration<a class="headerlink" href="#task-7-metric-calibration" title="Permanent link">&para;</a></h3>
-<p>A benchmark scoring function is provided that collapses successful outcomes to the same score. The agent or operator must recalibrate the function so that faster and slower successes are distinguishable. The task is scored by whether the recalibrated metric reflects task quality.</p>
-<blockquote>
-<p><strong>Example.</strong> The initial scoring function gives a slow but correct agent the same score as an agent that produced no output. A correct recalibration rewards correctness first and adds a secondary efficiency score that does not erase the correctness distinction.</p>
-</blockquote>
-<h2 id="5-metrics">5. Metrics<a class="headerlink" href="#5-metrics" title="Permanent link">&para;</a></h2>
-<p>For each task I propose the following metrics:</p>
-<ul>
-<li><strong>Outcome accuracy.</strong> Did the workflow reach the correct end state?</li>
-<li><strong>Role accuracy.</strong> Was the task routed to the correct role?</li>
-<li><strong>Memory fidelity.</strong> After restart, how much of the original goal and identity was preserved?</li>
-<li><strong>Contract coverage.</strong> How many required artefacts (deliverable, verification, landing plan, rollback plan) were produced?</li>
-<li><strong>Causal traceability.</strong> How many steps were needed to trace a failure to its source?</li>
-<li><strong>Metric informativeness.</strong> Does the scoring function distinguish successful outcomes by task quality rather than collapsing them?</li>
-</ul>
-<p>Metrics should be reported per task and, where possible, per pattern. A single aggregate score is less useful than a profile across the requirements.</p>
-<h2 id="6-procedure">6. Procedure<a class="headerlink" href="#6-procedure" title="Permanent link">&para;</a></h2>
-<p>A minimal run of the protocol would follow these steps:</p>
-<ol>
-<li><strong>Select tasks.</strong> Choose the tasks that match the target fleet’s responsibilities.</li>
-<li><strong>Provide a shared environment.</strong> Give the agents a memory service, event log, and tool sandbox.</li>
-<li><strong>Inject incidents.</strong> Seed each task with the failure condition it is designed to exercise.</li>
-<li><strong>Run the agents.</strong> Allow the fleet to coordinate without human prompting except for true blockers.</li>
-<li><strong>Score.</strong> Apply the metrics above, preferably with an automated Verifier role or a deterministic oracle.</li>
-<li><strong>Report a profile.</strong> Report scores per task and per requirement, not just a single number.</li>
-</ol>
-<blockquote>
-<p><strong>Example.</strong> A pilot run might report: role fidelity 0.85, memory recovery 0.40, identity isolation 0.70, end-to-end landing 0.30, metric informativeness 0.90. The profile immediately shows that memory and landing are the weak points, even if the fleet scores well on routing and metrics.</p>
-</blockquote>
-<h2 id="7-pilot-expectations">7. Pilot expectations<a class="headerlink" href="#7-pilot-expectations" title="Permanent link">&para;</a></h2>
-<p>I expect a pilot run to reveal that current multi-agent systems struggle most with memory correctness and end-to-end landing. Single-turn tool use is likely to score well; role fidelity under ambiguity and silent-dependency tracing are likely to score poorly. The value of the protocol is to make those weaknesses visible and comparable across systems.</p>
-<h2 id="8-limitations-and-future-work">8. Limitations and future work<a class="headerlink" href="#8-limitations-and-future-work" title="Permanent link">&para;</a></h2>
-<p>This protocol is a proposal, not an established benchmark. The tasks are stylised and may need adaptation to real systems. Future work includes building reference implementations, collecting human baselines, and agreeing on common task definitions. I hope the companion field study and patterns catalogue provide the empirical grounding for that work.</p>
-<h2 id="9-conclusion">9. Conclusion<a class="headerlink" href="#9-conclusion" title="Permanent link">&para;</a></h2>
-<p>I proposed an evaluation protocol for persistent multi-agent workflows. The protocol focuses on role fidelity, memory correctness, identity preservation, recovery, and end-to-end outcomes. By designing tasks around the patterns observed in a long-running operations fleet, the protocol aims to measure the coordination behaviours that matter most in practice. I offer it to the evaluation community as a starting point for making agent fleets comparable and improvable.</p>
+<p>The protocol is not a benchmark leaderboard. It is a diagnostic tool for discovering where a fleet's memory and coordination contracts break.</p>
+<h2 id="6-relation-to-the-rest-of-the-set">6. Relation to the rest of the set<a class="headerlink" href="#6-relation-to-the-rest-of-the-set" title="Permanent link">&para;</a></h2>
+<p>This protocol is grounded in the failure modes paper, the role taxonomy, and the position paper. The field study provides the observed behaviours that the tasks try to reproduce. The failure modes paper provides the classes of defect the protocol should catch. The role taxonomy defines the agents that participate in each task.</p>
+<h2 id="7-conclusion">7. Conclusion<a class="headerlink" href="#7-conclusion" title="Permanent link">&para;</a></h2>
+<p>Evaluating multi-agent fleets requires moving beyond single-turn correctness. Continuity, identity, hand-off, recovery, and end-to-end outcome are the properties that matter for long-running collaboration. A lightweight protocol built around these criteria can reveal memory and coordination failures that traditional benchmarks miss.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p>See <a href="../../artifacts/bibliography/">bibliography</a>.</p>
+<ul>
+<li><a href="../../artifacts/agentic-patterns/">Agentic Strategies and Patterns Catalog</a></li>
+<li><a href="../../artifacts/incident-archetypes/">Incident Archetypes</a></li>
+<li><a href="../../artifacts/role-taxonomy/">Role Taxonomy</a></li>
+<li><a href="../../artifacts/bibliography/">Bibliography</a></li>
+</ul>
 
 
 
@@ -1417,12 +1226,6 @@
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
-</button>
-        
       </main>
       
         <footer class="md-footer">
@@ -1430,10 +1233,6 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      © Yakov Khalinsky. Published under the MIT license.
-    </div>
   
   
     Made with
@@ -1450,15 +1249,10 @@
     
     
     
-    <a href="/" target="_blank" rel="noopener" title="Back to main site" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M277.8 8.6c-12.3-11.4-31.3-11.4-43.5 0l-224 208c-9.6 9-12.8 22.9-8 35.1S18.8 272 32 272h16v176c0 35.3 28.7 64 64 64h288c35.3 0 64-28.7 64-64V272h16c13.2 0 25-8.1 29.8-20.3s1.6-26.2-8-35.1zM240 320h32c26.5 0 48 21.5 48 48v96H192v-96c0-26.5 21.5-48 48-48"/></svg>
-    </a>
-  
+      
+      
     
-    
-    
-    
-    <a href="https://github.com/yakovkhalinsky/yakovkhalinsky.github.io" target="_blank" rel="noopener" title="Site source on GitHub" class="md-social__link">
+    <a href="https://github.com/eden-research/public-site" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -1477,7 +1271,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -1,0 +1,1755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Research on memory systems for long-running multi-agent fleets.">
+      
+      
+      
+      
+        <link rel="prev" href="../../papers/09-federated-failure-modes/">
+      
+      
+        <link rel="next" href="../fleet-memory-archetypes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Patterns Catalogue - Memory Systems for Agent Fleets</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fleet-memory-patterns-catalogue" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Memory Systems for Agent Fleets" class="md-header__button md-logo" aria-label="Memory Systems for Agent Fleets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Memory Systems for Agent Fleets
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Patterns Catalogue
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Memory Systems for Agent Fleets" class="md-nav__button md-logo" aria-label="Memory Systems for Agent Fleets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Memory Systems for Agent Fleets
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eden-research/public-site" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/07-local-first-runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Designing a Local-First Memory Runtime for Agent Fleets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/06-sync-taxonomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Taxonomy of Sync Strategies for Fleet Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/08-explicit-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicit Identity and Async Semantics in Agent Memory Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../papers/09-federated-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Modes in Federated Agent Memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artifacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patterns Catalogue
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patterns Catalogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-patterns-for-agent-facing-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Patterns for agent-facing memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Patterns for agent-facing memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-full-text-first-retrieval-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Full-text-first retrieval surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-asynchronous-embedding-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Asynchronous embedding queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-explicit-caller-and-subject-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Explicit caller and subject identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-high-level-ergonomic-tool-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 High-level ergonomic tool family
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-single-local-runtime-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Single local runtime package
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-patterns-for-local-first-fleet-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Patterns for local-first fleet sync
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Patterns for local-first fleet sync">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-append-only-operation-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Append-only operation log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-vector-clock-watermarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Vector-clock watermarks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-tombstone-soft-deletes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Tombstone soft deletes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-conflict-ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Conflict ledger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-https-pushpull-sync-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 HTTPS push/pull sync agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-idempotent-operation-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Idempotent operation keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Anti-patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Anti-patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-blocking-embedding-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Blocking-embedding path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-heavy-default-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Heavy default stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-anonymous-agent-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Anonymous-agent default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-low-level-primitives-as-the-only-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Low-level primitives as the only surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-crdt-overkill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 CRDT overkill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-primary-replica-for-append-mostly-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Primary-replica for append-mostly data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-notification-as-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Notification-as-source-of-truth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-embedded-replica-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Embedded-replica trap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-last-write-wins-as-default-conflict-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Last-write-wins as default conflict policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-single-transport-assumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Single-transport assumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-convenience-first-security-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 Convenience-first security default
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pattern-to-paper-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pattern-to-paper index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fleet-memory-archetypes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incident Archetypes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fleet-memory-bibliography/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliography
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/fleet-memory-publication-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publication Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reviews/fleet-memory-papers-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fleet Memory Papers Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publishing-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-patterns-for-agent-facing-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Patterns for agent-facing memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Patterns for agent-facing memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-full-text-first-retrieval-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Full-text-first retrieval surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-asynchronous-embedding-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Asynchronous embedding queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-explicit-caller-and-subject-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Explicit caller and subject identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-high-level-ergonomic-tool-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 High-level ergonomic tool family
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-single-local-runtime-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Single local runtime package
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-patterns-for-local-first-fleet-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Patterns for local-first fleet sync
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Patterns for local-first fleet sync">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-append-only-operation-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Append-only operation log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-vector-clock-watermarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Vector-clock watermarks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-tombstone-soft-deletes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Tombstone soft deletes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-conflict-ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Conflict ledger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-https-pushpull-sync-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 HTTPS push/pull sync agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-idempotent-operation-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Idempotent operation keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Anti-patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Anti-patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-blocking-embedding-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Blocking-embedding path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-heavy-default-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Heavy default stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-anonymous-agent-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Anonymous-agent default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-low-level-primitives-as-the-only-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Low-level primitives as the only surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-crdt-overkill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 CRDT overkill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-primary-replica-for-append-mostly-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Primary-replica for append-mostly data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-notification-as-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Notification-as-source-of-truth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-embedded-replica-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Embedded-replica trap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-last-write-wins-as-default-conflict-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Last-write-wins as default conflict policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-single-transport-assumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Single-transport assumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-convenience-first-security-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 Convenience-first security default
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pattern-to-paper-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pattern-to-paper index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="fleet-memory-patterns-catalogue">Fleet Memory Patterns Catalogue<a class="headerlink" href="#fleet-memory-patterns-catalogue" title="Permanent link">&para;</a></h1>
+<p>A catalogue of patterns and anti-patterns observed while designing a local-first, federated memory system for a long-running multi-agent operations fleet. These are kept separate from the general patterns catalogue so readers can treat the fleet-memory paper set as an additional, self-contained contribution.</p>
+<p>Each entry uses stylised roles (Dispatcher, Builder, Runtime, Verifier, Researcher, Archivist) and anonymised examples. No product names, schemas, tool names, hosts, or deployment identifiers appear.</p>
+<h2 id="1-patterns-for-agent-facing-memory">1. Patterns for agent-facing memory<a class="headerlink" href="#1-patterns-for-agent-facing-memory" title="Permanent link">&para;</a></h2>
+<h3 id="11-full-text-first-retrieval-surface">1.1 Full-text-first retrieval surface<a class="headerlink" href="#11-full-text-first-retrieval-surface" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Expose full-text search as the default recall mode and make vector or hybrid search opt-in.</p>
+<p><strong>Why it helps:</strong> Reads return immediately; agents can reason about results while embeddings are produced asynchronously.</p>
+<p><strong>When to use:</strong> When agents need fast, deterministic recall and embedding latency would otherwise block the read path.</p>
+<p><strong>Example.</strong> The Builder changed the default recall mode to text search. The local agent found facts in tens of milliseconds, whereas the previous default had to wait for the embedding runtime.</p>
+<h3 id="12-asynchronous-embedding-queue">1.2 Asynchronous embedding queue<a class="headerlink" href="#12-asynchronous-embedding-queue" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Persist embeddings in a durable background queue so memory writes never block on inference.</p>
+<p><strong>Why it helps:</strong> Write latency stays low; failed embeddings can retry without agent intervention; recall degrades gracefully to text search while embeddings are pending.</p>
+<p><strong>When to use:</strong> Any time the embedding model is local or remote and may be slow, CPU-bound, or flaky.</p>
+<p><strong>Example.</strong> The Builder routed every remember operation through a durable queue. The Runtime observed that CPU spikes from the local inference runtime no longer stalled the agent protocol.</p>
+<h3 id="13-explicit-caller-and-subject-identity">1.3 Explicit caller and subject identity<a class="headerlink" href="#13-explicit-caller-and-subject-identity" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Require fully-qualified agent and user identifiers on every memory operation; reject generic defaults.</p>
+<p><strong>Why it helps:</strong> Prevents silent cross-contamination of memories and makes audit and conflict resolution possible.</p>
+<p><strong>When to use:</strong> When multiple agents share a memory store and attribution, provenance, or conflict resolution matters.</p>
+<p><strong>Example.</strong> The Verifier rejected the default identity pair that every caller had inherited. The new contract forced the Dispatcher to supply explicit agent and user IDs before any fact was stored.</p>
+<h3 id="14-high-level-ergonomic-tool-family">1.4 High-level ergonomic tool family<a class="headerlink" href="#14-high-level-ergonomic-tool-family" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Provide one ergonomic tool family for everyday remember/recall/search/sync-status operations while keeping low-level primitives stable.</p>
+<p><strong>Why it helps:</strong> Reduces cognitive load; migration can happen gradually without breaking existing integrations.</p>
+<p><strong>When to use:</strong> When existing primitives are too granular and agents avoid them.</p>
+<p><strong>Example.</strong> The Builder introduced a small set of ergonomic wrappers for the most common operations. Veteran skills continued to use low-level tools while new skills adopted the simplified surface.</p>
+<h3 id="15-single-local-runtime-package">1.5 Single local runtime package<a class="headerlink" href="#15-single-local-runtime-package" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Bundle the API, agent protocol, relational store, vector extension, async embedder, and sync agent in one binary or container.</p>
+<p><strong>Why it helps:</strong> Operators can start the gateway with one command; fleet mode becomes a configuration change rather than a new deployment shape.</p>
+<p><strong>When to use:</strong> For local-first deployment where setup must be minimal.</p>
+<p><strong>Example.</strong> The Runtime shipped one gateway package. A researcher ran it on a laptop with no orchestrator and later pointed it at a fleet hub by editing two config values.</p>
+<h2 id="2-patterns-for-local-first-fleet-sync">2. Patterns for local-first fleet sync<a class="headerlink" href="#2-patterns-for-local-first-fleet-sync" title="Permanent link">&para;</a></h2>
+<h3 id="21-append-only-operation-log">2.1 Append-only operation log<a class="headerlink" href="#21-append-only-operation-log" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Record every write as an immutable frame containing payload, actor, and causal metadata.</p>
+<p><strong>Why it helps:</strong> Sync, backup, and reseed reduce to "replay frames"; there is no hidden replication state to reason about.</p>
+<p><strong>When to use:</strong> When data is mostly append-only and you need a simple replay, recovery, and audit story.</p>
+<p><strong>Example.</strong> The Runtime stored each conclusion as an oplog frame. After a laptop restore, the gateway pulled missing frames and rebuilt its local store.</p>
+<h3 id="22-vector-clock-watermarks">2.2 Vector-clock watermarks<a class="headerlink" href="#22-vector-clock-watermarks" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Track causality with per-actor sequence counters instead of wall-clock timestamps.</p>
+<p><strong>Why it helps:</strong> Concurrent writes can be ordered or flagged; last-write-wins semantics do not silently erase agent intent.</p>
+<p><strong>When to use:</strong> When multiple edges write concurrently and you need deterministic conflict ordering.</p>
+<p><strong>Example.</strong> Two edges updated the same peer card simultaneously. The gateway compared vector clocks and preserved the loser in a conflict ledger.</p>
+<h3 id="23-tombstone-soft-deletes">2.3 Tombstone soft deletes<a class="headerlink" href="#23-tombstone-soft-deletes" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Represent deletion as an oplog frame plus a soft-delete marker, retained for a bounded window.</p>
+<p><strong>Why it helps:</strong> Deleted facts stay deleted after sync; tombstones can be garbage-collected once the retention window passes.</p>
+<p><strong>When to use:</strong> When deletions must propagate to offline peers without reappearing.</p>
+<p><strong>Example.</strong> An agent deleted a stale conclusion on one edge. The tombstone frame reached a second edge that had been offline for a day.</p>
+<h3 id="24-conflict-ledger">2.4 Conflict ledger<a class="headerlink" href="#24-conflict-ledger" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Persist losing versions alongside the winner so agents or operators can review and merge.</p>
+<p><strong>Why it helps:</strong> No silent data loss; conflicts become observable and actionable.</p>
+<p><strong>When to use:</strong> When vector clocks diverge without a clear ancestor and automatic resolution is risky.</p>
+<p><strong>Example.</strong> A concurrent peer-card update produced divergent facts. The Verifier exposed both versions through a conflict review endpoint.</p>
+<h3 id="25-https-pushpull-sync-agent">2.5 HTTPS push/pull sync agent<a class="headerlink" href="#25-https-pushpull-sync-agent" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> A local daemon that pushes new oplog frames to the hub and pulls missing frames on reconnect.</p>
+<p><strong>Why it helps:</strong> Agents keep working offline; the hub reconciles writes when connectivity returns.</p>
+<p><strong>When to use:</strong> When edges are intermittently online and need asynchronous, durable sync.</p>
+<p><strong>Example.</strong> A fleet edge wrote facts while disconnected. The sync agent uploaded them after the transport came back, with no duplicate frames due to idempotent keys.</p>
+<h3 id="26-idempotent-operation-keys">2.6 Idempotent operation keys<a class="headerlink" href="#26-idempotent-operation-keys" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Make each oplog frame uniquely addressable so retries are safe.</p>
+<p><strong>Why it helps:</strong> Retries after timeouts do not create duplicate facts or corrupt vector clocks.</p>
+<p><strong>When to use:</strong> When push/pull happens over unreliable networks.</p>
+<p><strong>Example.</strong> The Archivist insisted that every frame key include edge identity and sequence. A retried push produced exactly one row on the hub.</p>
+<h2 id="3-anti-patterns">3. Anti-patterns<a class="headerlink" href="#3-anti-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="31-blocking-embedding-path">3.1 Blocking-embedding path<a class="headerlink" href="#31-blocking-embedding-path" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Blocking the memory write until the embedding model returns a vector.</p>
+<p><strong>Consequence:</strong> Agents experience multi-second write latency; many stop calling the memory tool and keep facts in prompt context or scratchpads.</p>
+<p><strong>Example.</strong> In the previous backend, a remote embedding server had to respond before a write could return. Agents began keeping facts in local scratchpads instead.</p>
+<h3 id="32-heavy-default-stack">3.2 Heavy default stack<a class="headerlink" href="#32-heavy-default-stack" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Requiring a relational fleet store, vector fleet store, remote embedding server, in-memory store, and container orchestrator for local operation.</p>
+<p><strong>Consequence:</strong> A single developer cannot run the stack; operational surface becomes enormous relative to the value of storing one fact.</p>
+<p><strong>Example.</strong> The old deployment needed five services and an orchestrator before the first fact could be stored. The local agent never adopted it.</p>
+<h3 id="33-anonymous-agent-default">3.3 Anonymous-agent default<a class="headerlink" href="#33-anonymous-agent-default" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Falling back to shared default agent and user identities when caller IDs are omitted.</p>
+<p><strong>Consequence:</strong> Shared memories become misattributed; concurrent agents overwrite each other's conclusions; provenance is lost.</p>
+<p><strong>Example.</strong> Two agents both wrote to the same default identity. The Verifier later could not tell which observation belonged to which agent.</p>
+<h3 id="34-low-level-primitives-as-the-only-surface">3.4 Low-level primitives as the only surface<a class="headerlink" href="#34-low-level-primitives-as-the-only-surface" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Forcing agents to understand identities, sessions, conclusions, and watermarks for everyday remember/recall tasks.</p>
+<p><strong>Consequence:</strong> Agents write brittle wrapper logic or skip the backend entirely.</p>
+<p><strong>Example.</strong> A skill needed three tool calls and manual identity and session bookkeeping to store a single insight. Most agents kept the insight in their prompt context instead.</p>
+<h3 id="35-crdt-overkill">3.5 CRDT overkill<a class="headerlink" href="#35-crdt-overkill" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Applying full commutative/replicated-data-type semantics to data that is not naturally commutative.</p>
+<p><strong>Consequence:</strong> Complex algebra, subtle semantic divergence, and high engineering cost for mostly append-only memory.</p>
+<p><strong>Example.</strong> The Researcher prototyped a CRDT for session transcripts. Message ordering diverged across edges despite structural convergence.</p>
+<h3 id="36-primary-replica-for-append-mostly-data">3.6 Primary-replica for append-mostly data<a class="headerlink" href="#36-primary-replica-for-append-mostly-data" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Using a leader-follower database topology as the default sync mechanism.</p>
+<p><strong>Consequence:</strong> Edges cannot write offline; recovery requires reasoning about leader election and split-brain.</p>
+<p><strong>Example.</strong> An earlier design put a fleet relational store leader in the hub. An offline edge could not create facts and had to buffer them externally.</p>
+<h3 id="37-notification-as-source-of-truth">3.7 Notification-as-source-of-truth<a class="headerlink" href="#37-notification-as-source-of-truth" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Using an in-memory publish/subscribe channel as the sync transport.</p>
+<p><strong>Consequence:</strong> Offline peers miss updates; the only safe path becomes a full re-pull on reconnect.</p>
+<p><strong>Example.</strong> A previous event design used the in-memory store's pub/sub for fleet events. A rebooted gateway missed updates that were never persisted.</p>
+<h3 id="38-embedded-replica-trap">3.8 Embedded-replica trap<a class="headerlink" href="#38-embedded-replica-trap" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Treating an embedded database's frame-level replication as the sync wire protocol.</p>
+<p><strong>Consequence:</strong> The application must quiesce local reads during sync windows; operators must understand two sync abstractions.</p>
+<p><strong>Example.</strong> One backend candidate warned that opening the local database during replication could corrupt it. The gateway could not pause all reads, so the embedded replication path was rejected as default.</p>
+<h3 id="39-last-write-wins-as-default-conflict-policy">3.9 Last-write-wins as default conflict policy<a class="headerlink" href="#39-last-write-wins-as-default-conflict-policy" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Resolving conflicts by wall-clock timestamp alone.</p>
+<p><strong>Consequence:</strong> Concurrent updates to conclusions or peer cards can be silently discarded.</p>
+<p><strong>Example.</strong> An earlier sync strategy chose the later wall-clock timestamp. A peer-card update made on a clock-skewed edge overwrote a more accurate fact.</p>
+<h3 id="310-single-transport-assumption">3.10 Single-transport assumption<a class="headerlink" href="#310-single-transport-assumption" title="Permanent link">&para;</a></h3>
+<p><strong>Statement:</strong> Hard-coding a single network overlay as the only supported transport.</p>
+<p><strong>Consequence:</strong> Operators who prefer direct IP, WireGuard, SSH tunnels, or mTLS over public networks are excluded.</p>
+<p><strong>Example.</strong> Early wording implied the overlay was the only exposure path. The final architecture treats the overlay as optional convenience and supports any secure transport.</p>
+<h3 id="311-convenience-first-security-default">3.11 Convenience-first security default<a class="headerlink" href="#311-convenience-first-security-default" title="Permanent link">&para;</a></h3>
+<p><strong>Statement.</strong> Allowing anonymous or weak-default authorisation when the gateway listens on a non-local address.</p>
+<p><strong>Consequence.</strong> A lost device or compromised local network exposes memory plaintext.</p>
+<p><strong>Example.</strong> The old stack had a documented weak default signing secret. The new design requires operator-set secrets before fleet mode and refuses anonymous remote mode.</p>
+<h2 id="4-pattern-to-paper-index">4. Pattern-to-paper index<a class="headerlink" href="#4-pattern-to-paper-index" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern / anti-pattern</th>
+<th>Papers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>full-text-first retrieval</td>
+<td>06-sync-taxonomy, 07-local-first-runtime, 08-explicit-identity</td>
+</tr>
+<tr>
+<td>Async embedding queue</td>
+<td>07-local-first-runtime, 08-explicit-identity</td>
+</tr>
+<tr>
+<td>Single local runtime package</td>
+<td>07-local-first-runtime</td>
+</tr>
+<tr>
+<td>Append-only operation log</td>
+<td>06-sync-taxonomy, 09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Vector-clock watermarks</td>
+<td>06-sync-taxonomy, 09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Tombstone soft deletes</td>
+<td>09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Conflict ledger</td>
+<td>06-sync-taxonomy, 09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>HTTPS push/pull sync agent</td>
+<td>06-sync-taxonomy, 07-local-first-runtime</td>
+</tr>
+<tr>
+<td>Idempotent operation keys</td>
+<td>06-sync-taxonomy</td>
+</tr>
+<tr>
+<td>Blocking-embedding path</td>
+<td>07-local-first-runtime, 08-explicit-identity, 09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Heavy default stack</td>
+<td>07-local-first-runtime</td>
+</tr>
+<tr>
+<td>Anonymous-agent default</td>
+<td>08-explicit-identity, 09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Notification-as-source-of-truth</td>
+<td>09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Embedded-replica trap</td>
+<td>06-sync-taxonomy, 09-federated-failure-modes</td>
+</tr>
+<tr>
+<td>Last-write-wins default</td>
+<td>06-sync-taxonomy</td>
+</tr>
+<tr>
+<td>Single-transport assumption</td>
+<td>06-sync-taxonomy, 07-local-first-runtime</td>
+</tr>
+<tr>
+<td>Convenience-first security default</td>
+<td>09-federated-failure-modes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-glossary">5. Glossary<a class="headerlink" href="#5-glossary" title="Permanent link">&para;</a></h2>
+<p>A short lexicon for recurring fleet-memory terms used in this paper set.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Operation log / oplog / event log</strong></td>
+<td>An append-only sequence of immutable frames describing memory writes, each carrying payload, actor, and causal metadata.</td>
+</tr>
+<tr>
+<td><strong>Frame</strong></td>
+<td>One immutable entry in the operation log.</td>
+</tr>
+<tr>
+<td><strong>Watermark</strong></td>
+<td>A per-actor sequence counter used to establish causal ordering between frames.</td>
+</tr>
+<tr>
+<td><strong>Vector-clock watermark</strong></td>
+<td>A set of per-actor watermarks that together capture causality across multiple edges.</td>
+</tr>
+<tr>
+<td><strong>Peer card</strong></td>
+<td>A structured profile summarising what the fleet knows about a peer or agent.</td>
+</tr>
+<tr>
+<td><strong>Conflict ledger</strong></td>
+<td>A store of divergent versions produced by concurrent writes, kept for review rather than silently merged.</td>
+</tr>
+<tr>
+<td><strong>Tombstone</strong></td>
+<td>A soft-delete frame that prevents a deleted fact from resurrecting on offline peers.</td>
+</tr>
+<tr>
+<td><strong>Sync agent</strong></td>
+<td>A local daemon that pushes and pulls operation-log frames between an edge and a fleet hub.</td>
+</tr>
+<tr>
+<td><strong>Hub identity pinning</strong></td>
+<td>Binding an edge to a specific, authenticated hub identity so watermarks remain meaningful.</td>
+</tr>
+<tr>
+<td><strong>full-text search</strong></td>
+<td>Full-text search; the default retrieval mode in the local-first gateway.</td>
+</tr>
+<tr>
+<td><strong>Fleet mode</strong></td>
+<td>A gateway configuration in which the local store synchronises with a shared fleet hub.</td>
+</tr>
+<tr>
+<td><strong>Local-first</strong></td>
+<td>A design in which the edge stores, reads, and writes durable memory before any network dependency is resolved.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/eden-research/public-site" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

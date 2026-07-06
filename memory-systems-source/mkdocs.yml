@@ -1,0 +1,45 @@
+site_name: Memory Systems for Agent Fleets
+site_description: Research on memory systems for long-running multi-agent fleets.
+repo_url: https://github.com/eden-research/public-site  # placeholder
+
+nav:
+  - Home: index.md
+  - Papers:
+    - Designing a Local-First Memory Runtime for Agent Fleets: papers/07-local-first-runtime.md
+    - A Taxonomy of Sync Strategies for Fleet Memory: papers/06-sync-taxonomy.md
+    - Explicit Identity and Async Semantics in Agent Memory Tools: papers/08-explicit-identity.md
+    - Failure Modes in Federated Agent Memory: papers/09-federated-failure-modes.md
+  - Artifacts:
+    - Patterns Catalogue: artifacts/fleet-memory-patterns.md
+    - Incident Archetypes: artifacts/fleet-memory-archetypes.md
+    - Bibliography: artifacts/fleet-memory-bibliography.md
+  - Research Process:
+    - Publication Plan: plans/fleet-memory-publication-plan.md
+    - Fleet Memory Papers Review: reviews/fleet-memory-papers-review.md
+  - Publishing Charter: publishing-charter.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/eden-research/public-site  # placeholder

@@ -1,0 +1,44 @@
+site_name: Agent Fleet Research
+site_description: A publishable research set on multi-agent operations, failure modes, taxonomy, and evaluation.
+repo_url: https://github.com/eden-research/public-site  # placeholder
+
+nav:
+  - Home: index.md
+  - Papers:
+    - Agentic Strategies in a Six-Agent Operations Fleet: papers/01-field-study.md
+    - Failure Modes in Long-Running Agent Collaboration: papers/02-failure-modes.md
+    - A Role-Oriented Taxonomy for Multi-Agent Systems: papers/03-taxonomy.md
+    - Memory-Centric Collaboration: papers/04-position-paper.md
+    - Toward an Evaluation Protocol for Persistent Multi-Agent Workflows: papers/05-evaluation-protocol.md
+  - Artifacts:
+    - Agentic Patterns: artifacts/agentic-patterns.md
+    - Role Taxonomy: artifacts/role-taxonomy.md
+    - Incident Archetypes: artifacts/incident-archetypes.md
+    - Bibliography: artifacts/bibliography.md
+  - Publishing Charter: publishing-charter.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/eden-research/public-site  # placeholder

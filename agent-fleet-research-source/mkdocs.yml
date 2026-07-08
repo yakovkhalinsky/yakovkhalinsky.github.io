@@ -9,7 +9,7 @@ nav:
     - Failure Modes in Long-Running Agent Collaboration: papers/02-failure-modes.md
     - A Role-Oriented Taxonomy for Multi-Agent Systems: papers/03-taxonomy.md
     - Memory-Centric Collaboration: papers/04-position-paper.md
-    - Toward an Evaluation Protocol for Persistent Multi-Agent Workflows: papers/05-evaluation-protocol.md
+    - "Toward an Evaluation Protocol for Persistent Multi-Agent Workflows": papers/05-evaluation-protocol.md
   - Artifacts:
     - Agentic Patterns: artifacts/agentic-patterns.md
     - Role Taxonomy: artifacts/role-taxonomy.md

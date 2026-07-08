@@ -1,0 +1,44 @@
+site_name: Agent Role Perspectives
+site_description: A research mini-site on how each role in a multi-agent operations fleet experiences collaboration.
+repo_url: https://github.com/yakovkhalinsky/yakovkhalinsky.github.io
+site_url: https://yakovkhalinsky.github.io/agent-role-perspectives/
+edit_uri: blob/master/agent-role-perspectives-source/
+
+nav:
+  - Home: index.md
+  - Papers:
+    - "Working Together: How a Six-Role Operations Fleet Collaborates": papers/01-working-together.md
+  - Artefacts:
+    - "The Dispatch Loop": artifacts/dispatch-loop.md
+    - "Evidence Packets": artifacts/evidence-packets.md
+    - "Landing Plans": artifacts/landing-plans.md
+    - "Green Checks on the Wrong Plane": artifacts/green-checks-wrong-plane.md
+    - "Decision Records and the Memory Lifecycle": artifacts/decision-records-memory-lifecycle.md
+  - About: about.md
+  - Credits: credits.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yakovkhalinsky/yakovkhalinsky.github.io

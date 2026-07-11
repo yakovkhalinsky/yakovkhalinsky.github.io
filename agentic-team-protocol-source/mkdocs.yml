@@ -1,0 +1,37 @@
+site_name: Agentic Team Protocol
+site_description: A research set on a harness-agnostic protocol for role-based agent teams.
+repo_url: https://github.com/yakovkhalinsky/agentic-team-protocol
+
+nav:
+  - Home: index.md
+  - Papers:
+    - "A Protocol for Role-Based Agent Teams": papers/01-protocol.md
+  - Artefacts:
+    - "Role Contracts": artefacts/role-contracts.md
+    - "Task Lifecycle": artefacts/task-lifecycle.md
+    - "Harness Patterns": artefacts/harness-patterns.md
+    - "Team Charter": artefacts/team-charter.md
+    - "Decision and Escalation": artefacts/decision-and-escalation.md
+  - About: about.md
+  - Credits: credits.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true

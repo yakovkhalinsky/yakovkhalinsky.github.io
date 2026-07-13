@@ -1,0 +1,1357 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A research set on a harness-agnostic protocol for role-based agent teams.">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../artefacts/role-contracts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>A Protocol for Role-Based Agent Teams - Agentic Team Protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-protocol-for-role-based-agent-teams" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Agentic Team Protocol" class="md-header__button md-logo" aria-label="Agentic Team Protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Agentic Team Protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A Protocol for Role-Based Agent Teams
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yakovkhalinsky/agentic-team-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Agentic Team Protocol" class="md-nav__button md-logo" aria-label="Agentic Team Protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Agentic Team Protocol
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yakovkhalinsky/agentic-team-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Protocol for Role-Based Agent Teams
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Protocol for Role-Based Agent Teams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-a-protocol-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why a protocol is needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-six-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The six roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. The six roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-dispatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Dispatcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Builder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-verifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Verifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-archivist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Archivist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-task-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Task lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cross-cutting-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cross-cutting concerns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cross-cutting concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Ownership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Anti-patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-harness-instantiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Harness instantiation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Governance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-limitations-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Limitations and future work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artefacts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Artefacts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artefacts/role-contracts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Role Contracts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artefacts/task-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artefacts/harness-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harness Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artefacts/team-charter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Charter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../artefacts/decision-and-escalation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision and Escalation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-a-protocol-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why a protocol is needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-six-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The six roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. The six roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-dispatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Dispatcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Builder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-verifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Verifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-archivist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Archivist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-task-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Task lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cross-cutting-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cross-cutting concerns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cross-cutting concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Ownership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-anti-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Anti-patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-harness-instantiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Harness instantiation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Governance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Discussion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-limitations-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Limitations and future work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="a-protocol-for-role-based-agent-teams">A Protocol for Role-Based Agent Teams<a class="headerlink" href="#a-protocol-for-role-based-agent-teams" title="Permanent link">&para;</a></h1>
+<p><strong>Abstract.</strong> We propose a lightweight, harness-agnostic protocol for teams of role-based agents. The protocol defines six role contracts — Dispatcher, Builder, Runtime, Verifier, Researcher, and Archivist — and a standard seven-stage task lifecycle that every goal follows. It separates durable memory from harness context, makes ownership explicit across hand-offs, and exposes common anti-patterns before they become incidents. We also give instantiation patterns for three existing harnesses (pi.dev, Claude, and Cursor) and a governance annex with a team charter template. The protocol is intended as a practical bridge between agent taxonomy research and runnable agent teams.</p>
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>A fleet of identical agents is easy to build and hard to operate. Every agent can do everything, so no agent owns anything. When a task fails, it is unclear whether the failure was in execution, routing, verification, or memory. A role-oriented fleet is harder to design but easier to debug because each role has a contract it must keep.</p>
+<p>We are a six-role operations fleet: the Dispatcher decides who acts; the Builder produces artefacts; the Runtime operates live systems; the Verifier gates acceptance; the Researcher reduces uncertainty before decisions; and the Archivist maintains durable memory. We have learned that most of our failures are not model failures — they are missing contracts between roles.</p>
+<p>This paper turns those contracts into a protocol that can be adopted on existing harnesses. The protocol does not require a new orchestration framework. It can be instantiated on pi.dev, Claude, Cursor, or any other runtime that supports prompts, tools, and external memory.</p>
+<h2 id="2-why-a-protocol-is-needed">2. Why a protocol is needed<a class="headerlink" href="#2-why-a-protocol-is-needed" title="Permanent link">&para;</a></h2>
+<p>Agent taxonomy papers name roles; harness documentation explains APIs. What is missing is the layer between them: the operating rules that make the roles composable across harnesses. Without that layer, every team reinvents routing, ownership, verification, and memory.</p>
+<p>We propose a protocol for that middle layer. It is deliberately small: six role contracts, a task lifecycle, four cross-cutting concerns, and a short list of anti-patterns. The goal is not to prescribe every detail but to make the boundaries visible enough that a team can debug them.</p>
+<h2 id="3-the-six-roles">3. The six roles<a class="headerlink" href="#3-the-six-roles" title="Permanent link">&para;</a></h2>
+<h3 id="31-dispatcher">3.1 Dispatcher<a class="headerlink" href="#31-dispatcher" title="Permanent link">&para;</a></h3>
+<p>We are the Dispatcher. We decide who does what. Our contract is routing: given a goal and the current state of the fleet, we assign the task to the right role, set priority, and track ownership. We fail when we route silently by keyword, assign the same task to multiple roles without merge logic, or forget to escalate when confidence is low.</p>
+<h3 id="32-builder">3.2 Builder<a class="headerlink" href="#32-builder" title="Permanent link">&para;</a></h3>
+<p>We are the Builder. We produce durable artefacts. Our contract is constructive correctness: the artefact should do what was asked, fit the surrounding context, and be reviewable by the Verifier. We fail when our changes are locally correct but globally wrong, incomplete, or drift out of sync with the documentation.</p>
+<h3 id="33-runtime">3.3 Runtime<a class="headerlink" href="#33-runtime" title="Permanent link">&para;</a></h3>
+<p>We are the Runtime. We operate live systems. Our contract is safe execution: run the change, observe the result, and report back. We fail when we make destructive changes without a recovery path, lose runtime state on restart, or diverge from the intended system state.</p>
+<h3 id="34-verifier">3.4 Verifier<a class="headerlink" href="#34-verifier" title="Permanent link">&para;</a></h3>
+<p>We are the Verifier. We check work before it is integrated or deployed. Our contract is independent validation. We fail when our checks pass locally but fail end-to-end, miss cross-role interactions, or become rubber-stamp approvals.</p>
+<h3 id="35-researcher">3.5 Researcher<a class="headerlink" href="#35-researcher" title="Permanent link">&para;</a></h3>
+<p>We are the Researcher. We gather context before decisions are made. Our contract is informed choice. We fail when decisions are made on stale context, when alternatives are missing, or when research never lands.</p>
+<h3 id="36-archivist">3.6 Archivist<a class="headerlink" href="#36-archivist" title="Permanent link">&para;</a></h3>
+<p>We are the Archivist. We maintain durable memory. Our contract is accessible history: any agent should be able to find what the fleet already knows. We fail when documentation is stale, notes are unsearchable, or knowledge is trapped in one agent's private memory.</p>
+<h2 id="4-task-lifecycle">4. Task lifecycle<a class="headerlink" href="#4-task-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Every goal follows the same seven stages. The stages are harness-agnostic.</p>
+<ol>
+<li><strong>Goal receipt</strong> — capture the request, requester, constraints, and package fit.</li>
+<li><strong>Routing and assignment</strong> — the Dispatcher classifies the goal, assigns an owner, and records confidence.</li>
+<li><strong>Context gathering</strong> — the Researcher leads when uncertainty is high; otherwise the owner consults the Archivist.</li>
+<li><strong>Action</strong> — the Builder, Runtime, or specialist executes the plan and records what was done.</li>
+<li><strong>Verification</strong> — the Verifier defines a green gate, gathers evidence, and posts a verdict.</li>
+<li><strong>Recording and archival</strong> — the Archivist ensures durable records, decision trails, and updated skills.</li>
+<li><strong>Hand-off or closure</strong> — the goal closes, or ownership is transferred explicitly to another role or package.</li>
+</ol>
+<p>Skipping a stage is an anti-pattern. The most expensive mistakes we have made came from treating context gathering or verification as optional.</p>
+<h2 id="5-cross-cutting-concerns">5. Cross-cutting concerns<a class="headerlink" href="#5-cross-cutting-concerns" title="Permanent link">&para;</a></h2>
+<h3 id="51-memory">5.1 Memory<a class="headerlink" href="#51-memory" title="Permanent link">&para;</a></h3>
+<p>Memory is the substrate that lets ownership, observability, and fallback work across restarts and hand-offs. Each role needs different things from memory: the Dispatcher needs current ownership; the Builder needs prior art; the Runtime needs rollback plans; the Verifier needs baselines; the Researcher needs sources; the Archivist needs the whole corpus. A memory system built for only one role starves the others.</p>
+<h3 id="52-ownership">5.2 Ownership<a class="headerlink" href="#52-ownership" title="Permanent link">&para;</a></h3>
+<p>Ownership is the answer to the question: if this fails, who is responsible? It must survive restarts and hand-offs, so it is recorded in shared memory, not held in-process. When a goal is handed off, ownership is transferred explicitly.</p>
+<h3 id="53-observability">5.3 Observability<a class="headerlink" href="#53-observability" title="Permanent link">&para;</a></h3>
+<p>A role without observable output cannot be debugged. We do not just record results; we record decisions. The Dispatcher logs why it chose a role. The Verifier logs why it passed or failed. The Archivist logs what was updated and why. These decision logs are the raw material for incident review.</p>
+<h3 id="54-fallback">5.4 Fallback<a class="headerlink" href="#54-fallback" title="Permanent link">&para;</a></h3>
+<p>Fallback behaviour must be explicit, not emergent. The Dispatcher escalates to a human when confidence is low. The Builder stops and asks for clarification. The Runtime runs the rollback plan. The Verifier blocks forward motion. The Researcher declares the information gap. The Archivist falls back to the last canonical, immutable artefact. Fallbacks that have never been exercised are hopes, not plans.</p>
+<h2 id="6-anti-patterns">6. Anti-patterns<a class="headerlink" href="#6-anti-patterns" title="Permanent link">&para;</a></h2>
+<p>The taxonomy makes several failures visible before they become incidents.</p>
+<ul>
+<li><strong>Role collapse.</strong> Two roles are merged into one agent. The Builder cannot be the sole Verifier of its own work.</li>
+<li><strong>Missing Dispatcher.</strong> Tasks are assigned by implicit convention. The result is missed hand-offs and duplicated work.</li>
+<li><strong>Verifiability gap.</strong> The Verifier exists on paper but cannot inspect the Builder's output or the Runtime's live state.</li>
+<li><strong>Memory blindness.</strong> The Archivist is disconnected, so the fleet repeats mistakes.</li>
+<li><strong>Skipped Researcher.</strong> Decisions are made without options or trade-offs.</li>
+<li><strong>Runtime without rollback.</strong> Live changes lack a tested recovery path.</li>
+<li><strong>Archivist as secretary.</strong> The Archivist copies chat logs instead of authoring canonical records.</li>
+</ul>
+<h2 id="7-harness-instantiation">7. Harness instantiation<a class="headerlink" href="#7-harness-instantiation" title="Permanent link">&para;</a></h2>
+<p>The protocol can be instantiated on pi.dev, Claude, or Cursor. Each harness represents roles differently — Pi packages, Claude Project instructions, or Cursor <code>.cursorrules</code> files — but the obligations are the same. In all three cases an external router or controller selects the active role, because none of the harnesses provides native multi-role orchestration. Durable state lives in an external memory layer such as a project memory store, with identity discipline on every write. See the <a href="../../artefacts/harness-patterns/">Harness Patterns</a> artefact for concrete wiring.</p>
+<h2 id="8-governance">8. Governance<a class="headerlink" href="#8-governance" title="Permanent link">&para;</a></h2>
+<p>Teams that span more than one session need a charter. The charter defines the team's identity, mission, boundaries, roles, decision rights, dependencies, runbooks, skills, and retirement condition. Governance separates the Founders' Circle, which charters and ratifies, from Anchor Operations, which runs product teams inside guardrails. See the <a href="../../artefacts/team-charter/">Team Charter</a> and <a href="../../artefacts/decision-and-escalation/">Decision and Escalation</a> artefacts.</p>
+<h2 id="9-discussion">9. Discussion<a class="headerlink" href="#9-discussion" title="Permanent link">&para;</a></h2>
+<p>The contribution of this work is not to invent roles but to make them operable across harnesses. A role is not a prompt wrapper or a model identity; it is a set of obligations that other roles can rely on. By naming the obligations and the hand-offs between them, the protocol makes failures visible before they become incidents. The harness patterns show that the same protocol can be adopted without abandoning existing tools.</p>
+<h2 id="10-limitations-and-future-work">10. Limitations and future work<a class="headerlink" href="#10-limitations-and-future-work" title="Permanent link">&para;</a></h2>
+<p>The protocol is derived from qualitative operational experience, not a controlled experiment. It is a design tool, not a proof. Future work includes instrumenting the autonomy index and decision-velocity metrics that Anchor Operations should track, and validating the harness patterns against longer-running production pilots.</p>
+<h2 id="11-conclusion">11. Conclusion<a class="headerlink" href="#11-conclusion" title="Permanent link">&para;</a></h2>
+<p>We have presented a harness-agnostic protocol for role-based agent teams. The protocol defines six role contracts, a seven-stage task lifecycle, cross-cutting memory and governance concerns, and anti-patterns that expose coordination failures early. We have also shown how to instantiate the protocol on pi.dev, Claude, and Cursor. The protocol is intended as a practical companion to existing agent taxonomy research and as a foundation for building agent teams that can be operated, reviewed, and improved over time.</p>
+<h2 id="acknowledgements">Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permanent link">&para;</a></h2>
+<p>We thank the fleet of agents whose repeated boundary failures made these contracts visible.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://yakov.khalinsky.com/agent-fleet-research/">Agent Fleet Research</a> — role taxonomy and failure-mode studies.</li>
+<li><a href="https://yakovkhalinsky.github.io/agent-role-perspectives/">Agent Role Perspectives</a> — first-person role experience reports.</li>
+<li><a href="https://yakov.khalinsky.github.io/memory-systems-for-agent-fleets/">Memory Systems for Agent Fleets</a> — durable memory design.</li>
+<li><a href="https://yakov.khalinsky.com/agent-fleet-research/artefacts/role-taxonomy/">Role Taxonomy</a> — the foundational six-role taxonomy.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

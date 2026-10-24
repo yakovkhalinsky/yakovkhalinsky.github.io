@@ -19,6 +19,7 @@ Then open http://localhost:8000
 - `index.html` — refreshed personal landing page
 - `styles.css` — site styles
 - `agent-fleet-research/` — built research mini-site (MkDocs Material)
+- `music/` — music tools index (links to the sequencer sites)
 - `life/`, `dungeon/` — static experiments
 - `CNAME` — custom domain config
 - `.nojekyll` — bypass Jekyll processing

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Music tools by Yakov Khalinsky: browser MIDI sequencers and eurorack helpers.">
+    <meta name="theme-color" content="#0f172a">
+    <title>Music · Yakov Khalinsky</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .hero.hero-compact { padding: clamp(3rem, 8vh, 5rem) 1.5rem; }
+        .tool { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+        .tool:hover { transform: none; box-shadow: none; }
+        .card.tool .tool-head { flex-direction: row; align-items: center; gap: 1rem; }
+        .tool .tool-title { text-decoration: none; color: var(--text); font-size: 1.05rem; font-weight: 600; }
+        .tool .tool-title:hover { color: var(--accent); }
+        .tool p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+        .card.tool .tool-links { flex-direction: row; flex-wrap: wrap; gap: 1rem; font-size: 0.9rem; font-weight: 600; margin-top: auto; }
+        .tool-links a { color: var(--accent); text-decoration: none; }
+        .tool-links a:hover { color: var(--hover); }
+        .note { margin: 1.5rem 0 0; font-size: 0.9rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero hero-compact">
+            <div class="hero-content">
+                <p class="eyebrow">Music</p>
+                <h1 class="name">Music tools</h1>
+                <p class="tagline">Browser sequencers and helpers I've built for my synths and eurorack.</p>
+                <nav class="cta" aria-label="Primary">
+                    <a class="button-secondary" href="/">← Home</a>
+                </nav>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <div class="container">
+                <h2>Play in the browser</h2>
+                <div class="link-grid">
+                    <div class="card tool">
+                        <div class="tool-head">
+                            <span class="icon" aria-hidden="true">M18</span>
+                            <a class="tool-title" href="/m18-webseq/">M18 Web Seq</a>
+                        </div>
+                        <p>Four-track pitch and gate step sequencer that drives a DMMDM DROID Master18 over USB MIDI.</p>
+                        <div class="tool-links">
+                            <a href="/m18-webseq/">Open →</a>
+                            <a href="https://github.com/yakovkhalinsky/m18-webseq">Source</a>
+                        </div>
+                    </div>
+                    <div class="card tool">
+                        <div class="tool-head">
+                            <span class="icon" aria-hidden="true">GR</span>
+                            <a class="tool-title" href="/gr00ve/">gr00ve</a>
+                        </div>
+                        <p>Generative multi-track sequencer: algorithmic melodies shaped by sliders and encoders, with Web Audio or MIDI out.</p>
+                        <div class="tool-links">
+                            <a href="/gr00ve/">Open →</a>
+                            <a href="/gr00ve/guide.html">Guide</a>
+                            <a href="https://github.com/yakovkhalinsky/gr00ve">Source</a>
+                        </div>
+                    </div>
+                    <div class="card tool">
+                        <div class="tool-head">
+                            <span class="icon" aria-hidden="true">O&amp;C</span>
+                            <a class="tool-title" href="/midi/">Hemisphere applet ports</a>
+                        </div>
+                        <p>Browser ports of Ornament &amp; Crime / Phazerville applets: TB-3PO, DrumMap, Melogen and a three-slot Rack.</p>
+                        <div class="tool-links">
+                            <a href="/midi/">Open →</a>
+                            <a href="https://github.com/yakovkhalinsky/midi">Source</a>
+                        </div>
+                    </div>
+                    <div class="card tool">
+                        <div class="tool-head">
+                            <span class="icon" aria-hidden="true">LR</span>
+                            <a class="tool-title" href="/sequencers/">Loop recorder</a>
+                        </div>
+                        <p>Live loop recorder for a Korg nanoKEY2 or computer keys, with scale snapping, overdubs and built-in synth voices.</p>
+                        <div class="tool-links">
+                            <a href="/sequencers/">Open →</a>
+                            <a href="https://github.com/yakovkhalinsky/sequencers">Source</a>
+                        </div>
+                    </div>
+                    <div class="card tool">
+                        <div class="tool-head">
+                            <span class="icon" aria-hidden="true">MS</span>
+                            <a class="tool-title" href="/midi-seq/">midi-seq</a>
+                        </div>
+                        <p>MIDI sequencer for set and generative melodies, plus drum and rhythm patterns.</p>
+                        <div class="tool-links">
+                            <a href="/midi-seq/">Open →</a>
+                            <a href="https://github.com/yakovkhalinsky/midi-seq">Source</a>
+                        </div>
+                    </div>
+                </div>
+                <p class="note">Web MIDI needs Chrome or Edge on the computer your MIDI gear is plugged into.</p>
+            </div>
+        </section>
+
+        <section class="experiments-section">
+            <div class="container">
+                <h2>Source only</h2>
+                <div class="experiment-list">
+                    <a href="https://github.com/yakovkhalinsky/droid-sequencer-generator">DROID sequencer patch generator (Node script that builds a droid.ini from templates)</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>© 2026 Yakov Khalinsky.</p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

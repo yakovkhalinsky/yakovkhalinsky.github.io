@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Melodrum — generative melodies and drums as a custom firmware for the M-Vave FM-1. Melogen melody generation plus the Grids/DrumMap rhythm map, on the device itself.">
+    <meta name="theme-color" content="#0f172a">
+    <title>Melodrum — FM-1 firmware · Yakov Khalinsky</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .hero-slim { padding: clamp(2.5rem, 8vh, 5rem) 1.5rem 2.5rem; }
+        .prose { max-width: 680px; margin: 0 auto; font-size: 1.05rem; }
+        .prose p { margin: 0 0 1.1rem; }
+        .shot { margin: 0 auto; max-width: 980px; }
+        .shot img { display: block; width: 100%; height: auto; border: 1px solid var(--surface-2); border-radius: var(--radius); box-shadow: 0 8px 28px var(--shadow); background: #000; }
+        .shot figcaption { margin-top: 0.75rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+        .shot-screen { max-width: 420px; }
+        .shot-screen img { image-rendering: pixelated; }
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+        @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+        .controls-list { max-width: 680px; margin: 0 auto; display: grid; gap: 0.6rem; }
+        .controls-list div { display: flex; gap: 1rem; padding: 0.7rem 1rem; background: var(--bg); border: 1px solid var(--surface-2); border-radius: var(--radius); }
+        .controls-list dt { flex: 0 0 9.5rem; font-weight: 600; color: var(--accent); }
+        .controls-list dd { margin: 0; color: var(--text-muted); }
+        @media (max-width: 560px) { .controls-list div { flex-direction: column; gap: 0.15rem; } .controls-list dt { flex: none; } }
+        .note { max-width: 680px; margin: 1.5rem auto 0; font-size: 0.92rem; color: var(--text-muted); }
+        .plain-section { padding: 3rem 1.5rem; background: var(--bg); flex: 1; }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero hero-slim">
+            <div class="hero-content">
+                <p class="eyebrow">Firmware · M-Vave FM-1 · 28 November 2026</p>
+                <h1 class="name">Melodrum</h1>
+                <p class="tagline">Generative melodies and drums, on the FM-1 itself.</p>
+                <nav class="cta" aria-label="Melodrum links">
+                    <a class="button-primary" href="https://github.com/yakovkhalinsky/melodrum-fm1/releases/download/v0.9/melodrum-0.9.fwsc">Download v0.9 (.fwsc)</a>
+                    <a class="button-secondary" href="https://github.com/yakovkhalinsky/melodrum-fm1">GitHub repo</a>
+                    <a class="button-secondary" href="https://github.com/yakovkhalinsky/melodrum-fm1/blob/main/docs/FLASHING.md">Flashing guide</a>
+                </nav>
+            </div>
+        </section>
+
+        <section class="plain-section">
+            <div class="container">
+                <figure class="shot">
+                    <img src="controls.png" alt="Melodrum running in the FM-1 emulator: the piano-roll screen above the device's keys, buttons and encoders" width="1440" height="2019">
+                    <figcaption>Melodrum v0.9 running in the foma emulator — the same build that runs on the hardware, panel and all.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <div class="container">
+                <div class="split">
+                    <figure class="shot shot-screen">
+                        <img src="screen.png" alt="The Melodrum screen: a piano roll of generated notes over a three-row drum lane" width="960" height="960">
+                        <figcaption>The device screen: piano roll up top, kick / snare / hat lane underneath.</figcaption>
+                    </figure>
+                    <div class="prose">
+                        <p>Melogen writes the tune — Random, Markov, Euclidean and Contour generators in 12 scales — and DrumMap, the Grids pattern map, plays kick, snare and hat underneath. Both go out as MIDI over USB (melody ch 1, drums ch 10), with a tiny preview voice so it makes sound on its own.</p>
+                        <p>It follows external MIDI clock (USB / TRS / BLE) or sends its own, and every parameter is on the panel: five pages of knobs, settings saved to the device. Reseed it, turn the knobs, save what you like.</p>
+                        <p>Melodrum is a port of two of my browser music tools — <a href="https://github.com/yakovkhalinsky/midi/tree/main/apps/melogen">Melogen</a> and <a href="https://github.com/yakovkhalinsky/midi/tree/main/apps/drummap">DrumMap</a> — rewritten in C for the FM-1's integer-only JieLi chip, on the open <a href="https://github.com/konsumer/foma">foma</a> platform. The C engines are verified against the original JavaScript note-for-note. First flashed and played on a real FM-1 on 28 November 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <h2>What's in v0.9</h2>
+                <div class="link-grid">
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">MG</span>
+                        <div><strong>Four melody generators</strong><span>Random, Markov (order 1–3), Euclidean and Contour/arp, in 12 scales — seeded, so a pattern you like is reproducible</span></div>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">DM</span>
+                        <div><strong>Grids drum map</strong><span>DrumMap's 5×5 rhythm map with X/Y morphing, per-channel fill and chaos, plus accent mode on channel B</span></div>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">SY</span>
+                        <div><strong>A real synth voice</strong><span>Oscillator (sine/tri/saw/square) into a resonant lowpass with its own filter envelope, plus an ADSR amp envelope</span></div>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">MX</span>
+                        <div><strong>Drum mix &amp; sound</strong><span>Per-part levels, accent velocity, kick tune, per-part decays — and swing, from straight to shuffling</span></div>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">MU</span>
+                        <div><strong>Performance mutes</strong><span>The three black keys F♯4 / G♯4 / A♯4 mute kick, snare and hat live; the key LED stays lit while muted</span></div>
+                    </div>
+                    <div class="card">
+                        <span class="icon" aria-hidden="true">CK</span>
+                        <div><strong>Clock in &amp; out</strong><span>Follows external MIDI clock over USB, TRS or BLE, or sends its own; BLE MIDI on/off on the panel</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="plain-section">
+            <div class="container">
+                <h2>Controls</h2>
+                <dl class="controls-list">
+                    <div><dt>PLAY</dt><dd>Start / stop the sequencer (in EXT clock mode it arms and waits for clock).</dd></div>
+                    <div><dt>EDIT</dt><dd>Cycles the five pages: MAIN → GEN → DRUM → SYNTH → SYS. HOME returns.</dd></div>
+                    <div><dt>Knobs K1–K4</dt><dd>Whatever the current page puts on them — density, map X/Y, tempo, fills, filter, envelopes, drum levels.</dd></div>
+                    <div><dt>SEQ / REC</dt><dd>Next seed / random seed. Same seed, same tune — on every boot.</dd></div>
+                    <div><dt>F♯4 · G♯4 · A♯4</dt><dd>Kick / snare / hat mutes. LED lit = muted.</dd></div>
+                    <div><dt>Keys</dt><dd>Play the synth voice any time; the bottom octave also sets the root note while stopped.</dd></div>
+                    <div><dt>SAVE</dt><dd>Writes all settings to the device; they load again on boot.</dd></div>
+                </dl>
+                <p class="note">Installing: flash the .fwsc with the foma web installer in Chrome or Edge (the CLI flash doesn't work on Windows) — the <a href="https://github.com/yakovkhalinsky/melodrum-fm1/blob/main/docs/FLASHING.md">flashing guide</a> covers backing up your current firmware and the rescue path first. The firmware reports itself as FM-1_31419. Verified on an original FM-1; newer units with the UC25HQ80 flash chip are untested. Melodrum is GPL-3.0; the Grids pattern data is Mutable Instruments' (GPL-3.0), the DrumMap applet MIT.</p>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>© 2026 Yakov Khalinsky · <a href="/">Home</a></p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

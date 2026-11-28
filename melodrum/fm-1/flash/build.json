@@ -1,0 +1,1 @@
+{"id": "1795857957428056463", "wasm": true, "fwsc": true, "log": "emulator  build/web/firmware.wasm  188 KiB\nFM-1      build/melodrum-0.9.fwsc  identity FM-1_31419  (code 103 of 567 KiB, RAM 21 of 96 KiB, pool 127 of 336 KiB)", "name": "MELODRUM", "version": "0.9", "identity": "FM-1_31419", "ok": true}

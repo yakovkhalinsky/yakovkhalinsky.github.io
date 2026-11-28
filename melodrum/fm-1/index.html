@@ -37,9 +37,9 @@
                 <h1 class="name">Melodrum</h1>
                 <p class="tagline">Generative melodies and drums, on the FM-1 itself.</p>
                 <nav class="cta" aria-label="Melodrum links">
-                    <a class="button-primary" href="https://github.com/yakovkhalinsky/melodrum-fm1/releases/download/v0.9/melodrum-0.9.fwsc">Download v0.9 (.fwsc)</a>
+                    <a class="button-primary" href="/melodrum/fm-1/flash/#install">Flash it from your browser</a>
+                    <a class="button-secondary" href="https://github.com/yakovkhalinsky/melodrum-fm1/releases/download/v0.9/melodrum-0.9.fwsc">Download v0.9 (.fwsc)</a>
                     <a class="button-secondary" href="https://github.com/yakovkhalinsky/melodrum-fm1">GitHub repo</a>
-                    <a class="button-secondary" href="https://github.com/yakovkhalinsky/melodrum-fm1/blob/main/docs/FLASHING.md">Flashing guide</a>
                 </nav>
             </div>
         </section>
@@ -103,6 +103,20 @@
 
         <section class="plain-section">
             <div class="container">
+                <h2>Flash it</h2>
+                <div class="prose">
+                    <p>No tools to install — the flasher runs right here, in this browser. You need Chrome or Edge on a desktop (it talks to the FM-1 over USB using Web MIDI), and a USB cable.</p>
+                    <p>Plug the FM-1 in, open the flasher, and pick <strong>Install</strong>. Your browser will ask for MIDI device access — allow it, choose the FM-1, and the bundled v0.9 package installs itself. The same page has an <strong>Emulator</strong> tab (try Melodrum before you flash) and a <strong>Rescue</strong> tab that can restore the stock firmware, so you're never stuck.</p>
+                    <p>First time? Back up your current firmware before you overwrite it — the steps, and the hold-OCT− rescue path, are in the <a href="https://github.com/yakovkhalinsky/melodrum-fm1/blob/main/docs/FLASHING.md">flashing guide</a>.</p>
+                </div>
+                <nav class="cta" style="margin-top: 1.5rem;" aria-label="Open the web flasher">
+                    <a class="button-primary" href="/melodrum/fm-1/flash/#install">Open the web flasher</a>
+                </nav>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <div class="container">
                 <h2>Controls</h2>
                 <dl class="controls-list">
                     <div><dt>PLAY</dt><dd>Start / stop the sequencer (in EXT clock mode it arms and waits for clock).</dd></div>
@@ -113,7 +127,7 @@
                     <div><dt>Keys</dt><dd>Play the synth voice any time; the bottom octave also sets the root note while stopped.</dd></div>
                     <div><dt>SAVE</dt><dd>Writes all settings to the device; they load again on boot.</dd></div>
                 </dl>
-                <p class="note">Installing: flash the .fwsc with the foma web installer in Chrome or Edge (the CLI flash doesn't work on Windows) — the <a href="https://github.com/yakovkhalinsky/melodrum-fm1/blob/main/docs/FLASHING.md">flashing guide</a> covers backing up your current firmware and the rescue path first. The firmware reports itself as FM-1_31419. Verified on an original FM-1; newer units with the UC25HQ80 flash chip are untested. Melodrum is GPL-3.0; the Grids pattern data is Mutable Instruments' (GPL-3.0), the DrumMap applet MIT.</p>
+                <p class="note">Installing: use the <a href="/melodrum/fm-1/flash/#install">web flasher above</a> in Chrome or Edge (the foma CLI flash doesn't work on Windows) — the <a href="https://github.com/yakovkhalinsky/melodrum-fm1/blob/main/docs/FLASHING.md">flashing guide</a> covers backing up your current firmware and the rescue path first. The firmware reports itself as FM-1_31419. Verified on an original FM-1; newer units with the UC25HQ80 flash chip are untested. Melodrum is GPL-3.0; the Grids pattern data is Mutable Instruments' (GPL-3.0), the DrumMap applet MIT.</p>
             </div>
         </section>
 
